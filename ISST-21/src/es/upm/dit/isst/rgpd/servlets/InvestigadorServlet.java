@@ -1,9 +1,30 @@
 package es.upm.dit.isst.rgpd.servlets;
 
-public class InvestigadorServlet {
+import java.io.IOException;
 
-	public InvestigadorServlet() {
-		// TODO Auto-generated constructor stub
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
+
+import es.upm.dit.isst.rgpd.dao.EvaluadorDAO;
+import es.upm.dit.isst.rgpd.dao.EvaluadorDAOImplementation;
+import es.upm.dit.isst.rgpd.dao.InvestigadorDAO;
+import es.upm.dit.isst.rgpd.dao.InvestigadorDAOImplementation;
+
+@WebServlet({ "/InvestigadorServlet"})
+public class InvestigadorServlet extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String email = req.getParameter("email");
+		//InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
+		//req.getSession().setAttribute("investigador", idao.read(email));
+		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);
 	}
 
 }
