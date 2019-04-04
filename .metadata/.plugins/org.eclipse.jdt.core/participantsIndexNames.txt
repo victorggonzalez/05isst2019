@@ -1,5 +1,3 @@
 INDEX VERSION 1.131
-C:\Users\Victor\Documents\Programas eclipse\eclipse-jee-2019-03-R\workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2080468090.index
-\ISST-19-CRIS\src
-C:\Users\Victor\Documents\Programas eclipse\eclipse-jee-2019-03-R\workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1233744213.index
+C:\Users\Ana Díez\Desktop\Universidad\ISST\ProyectoEclipse-ISST\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1233744213.index
 \ISST-21\src
