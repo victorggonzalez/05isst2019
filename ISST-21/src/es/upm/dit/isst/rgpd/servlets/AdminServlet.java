@@ -21,7 +21,7 @@ public class AdminServlet extends HttpServlet {
 		 * tdao = TFGDAOImplementation.getInstance(); req.getSession().setAttribute(
 		 * "tfg_list", tdao.readAll() );
 		 */ 
-		  getServletContext().getRequestDispatcher( "/FormularioView.jsp" ).forward( req,
+		  getServletContext().getRequestDispatcher( "/AdminView.jsp" ).forward( req,
 		  resp );
 	}
 }
