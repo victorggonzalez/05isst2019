@@ -4089,6 +4089,7 @@ java.io.IOException: Unable to resolve plug-in "org.eclipse.datatools.connectivi
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2019-04-04 17:20:06.673
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+<<<<<<< HEAD
 !SESSION 2019-04-05 13:45:19.873 -----------------------------------------------
 eclipse.buildId=4.11.0.I20190307-0500
 java.version=1.8.0_201
@@ -7020,4 +7021,12 @@ org.eclipse.wst.xml.core.internal.document.StructuredDocumentRegionManagementExc
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2019-04-06 18:52:58.338
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+=======
+>>>>>>> c867c50a652069785c7fa49ea785a3fa9765c0ca
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2019-04-06 18:55:37.018
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2019-04-06 18:55:37.051
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
