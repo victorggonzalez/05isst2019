@@ -1072,3 +1072,29 @@ Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have 
 2019-04-07 18:25:31,527 [Worker-90: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Documents\Programas eclipse\eclipse-jee-2019-03-R\workspace2\ISST-21\src\main\resources
 2019-04-07 18:25:31,528 [Worker-90: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2019-04-07 18:25:31,544 [Worker-90: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Documents\Programas eclipse\eclipse-jee-2019-03-R\workspace2\ISST-21\src\test\resources
+2019-04-07 18:56:17,862 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-04-07 18:56:40,053 [Worker-5: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: ISST2019:ISST2019:0.0.1-SNAPSHOT @ /Users/eduvm/Desktop/ISSTRGPD/ISST-21/pom.xml.
+2019-04-07 18:56:42,533 [Worker-5: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:56:42,534 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/main/resources
+2019-04-07 18:56:42,538 [Worker-5: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:56:42,539 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/test/resources
+2019-04-07 18:56:45,112 [Worker-2: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:56:45,113 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/main/resources
+2019-04-07 18:56:45,119 [Worker-2: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:56:45,120 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/test/resources
+2019-04-07 18:58:09,348 [Worker-4: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:58:09,348 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/main/resources
+2019-04-07 18:58:09,350 [Worker-4: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:58:09,350 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/test/resources
+2019-04-07 18:58:27,241 [Worker-17: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:58:27,242 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/main/resources
+2019-04-07 18:58:27,243 [Worker-17: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:58:27,244 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/test/resources
+2019-04-07 18:58:28,288 [Worker-4: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:58:28,295 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/main/resources
+2019-04-07 18:58:28,297 [Worker-4: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:58:28,299 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/test/resources
+2019-04-07 18:58:40,519 [Worker-16: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:58:40,520 [Worker-16: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/main/resources
+2019-04-07 18:58:40,521 [Worker-16: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-07 18:58:40,522 [Worker-16: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/eduvm/Desktop/ISSTRGPD/ISST-21/src/test/resources
