@@ -2,15 +2,20 @@ package es.upm.dit.isst.rgpd.checkbox.model;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
+
+import javax.persistence.Entity;
 
 import org.springframework.ui.Model;
 
+@Entity
 public class Formulario {
 	
-	private boolean nuevoFormulario;
+	//private boolean nuevoFormulario;
 	
 	private List<String> campos;
+	//private String [] campos;
 	
 	/*public String initForm(Model model) {
 		Formulario formulario = new Formulario();
@@ -30,7 +35,7 @@ public class Formulario {
 	}*/
 	
 
-	public boolean isNuevoFormulario() {
+	/*public boolean isNuevoFormulario() {
 		return nuevoFormulario;
 	}
 
@@ -38,7 +43,17 @@ public class Formulario {
 
 	public void setNuevoFormulario(boolean nuevoFormulario) {
 		this.nuevoFormulario = nuevoFormulario;
+	}*/
+
+
+/*
+	public void setCampos(String[] campos) {
+		this.campos = campos;
 	}
+
+	public String[] getCampos() {
+		return campos;
+	}*/
 
 
 

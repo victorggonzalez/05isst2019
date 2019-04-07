@@ -1,7 +1,3 @@
 INDEX VERSION 1.131
-<<<<<<< HEAD
 C:\Users\Victor\Documents\Programas eclipse\eclipse-jee-2019-03-R\workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1233744213.index
-=======
-C:\Users\Ana Díez\Desktop\Universidad\ISST\ProyectoEclipse-ISST\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1233744213.index
->>>>>>> c867c50a652069785c7fa49ea785a3fa9765c0ca
 \ISST-21\src

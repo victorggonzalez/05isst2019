@@ -14,19 +14,26 @@
  
     <form  action="FormularioServlet" method="post">
         <table>
-           
+     
             <tr>
                 <td>Marque los campos que considere:</td>
             </tr>
             <tr>
-               <c:forEach items = "${campos}" var = "campoi" >
-					 <tr>
-					  <td><input type="checkbox" path="campos" value="${campoi}" > 
+            	<td><input type="checkbox" name="seleccion1" value="campo1" >Esto es Campo 1</td>
+				<td><input type="checkbox" name="seleccion2" value="campo2">Esto es Campo 2</td>
+              	<td><input type="checkbox" name="seleccion3" value="campo3">Esto es Campo 3</td>
+              	<td><input type="checkbox" name="seleccion4" value="campo4">Esto es Campo 4</td>
+              	<td><input type="checkbox" name="seleccion5" value="campo5">Esto es Campo 5</td>
+            
+             
+             <!--   <c:forEach items = "${campos_list}" var = "campoi" >
+					 
+				 <td><input type="checkbox"  value="${campoi}" >
 						</td>
-					</tr>
-				</c:forEach >
 				
-          
+			</c:forEach >-->
+				
+            
             </tr>
             <tr>
                 <td><input type="submit" name="submit" value="Submit"></td>
