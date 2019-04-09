@@ -13,6 +13,7 @@
     <h2>Rellene el formulario con los aspectos relacionados con su solicitud</h2>
  
     <form  action="FormularioServlet" method="post">
+
     
            	<h3>Marque los campos que considere:</h3>
 

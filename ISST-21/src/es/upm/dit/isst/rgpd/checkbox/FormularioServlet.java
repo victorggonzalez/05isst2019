@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
  
 import es.upm.dit.isst.rgpd.checkbox.model.Formulario;
+<<<<<<< HEAD
 import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.model.Solicitud;
+=======
+>>>>>>> 2f13d312ee2837801ae4c6edb5fbd5ae2d779f92
 
 @Controller
 //@RequestMapping("/formulario.html")
@@ -51,6 +54,7 @@ public class FormularioServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+
 			String [] selecciones = req.getParameterValues( "seleccion" );
 			Solicitud solicitud = new Solicitud();
 			solicitud.setFormulario(selecciones);
@@ -59,6 +63,7 @@ public class FormularioServlet extends HttpServlet{
 			//sdao.read(id);
 			
 	    	req.getSession().setAttribute("camposseleccionados", selecciones);
+
 	    	
 			getServletContext().getRequestDispatcher( "/SeleccionesFormularioView.jsp" ).forward( req, resp );
 	}
