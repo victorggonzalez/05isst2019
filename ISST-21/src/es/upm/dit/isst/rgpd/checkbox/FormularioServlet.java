@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
  
 import es.upm.dit.isst.rgpd.checkbox.model.Formulario;
-<<<<<<< HEAD
+
 import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.model.Solicitud;
-=======
->>>>>>> 2f13d312ee2837801ae4c6edb5fbd5ae2d779f92
+
+
 
 @Controller
 //@RequestMapping("/formulario.html")
@@ -44,7 +44,8 @@ public class FormularioServlet extends HttpServlet{
 	    	campos.add("campo4");
 	    	campos.add("ampo5");*/
 	    	req.getSession().setAttribute("formulario", formulario);
-
+	    	String id = req.getParameter("id");
+	    	req.getSession().setAttribute("id", id);
 			getServletContext().getRequestDispatcher( "/FormularioView.jsp" ).forward( req, resp );
 	}
 	
@@ -56,16 +57,19 @@ public class FormularioServlet extends HttpServlet{
 
 
 			String [] selecciones = req.getParameterValues( "seleccion" );
-			Solicitud solicitud = new Solicitud();
-			solicitud.setFormulario(selecciones);
-			
-			//SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
-			//sdao.read(id);
 			
 	    	req.getSession().setAttribute("camposseleccionados", selecciones);
-
 	    	
-			getServletContext().getRequestDispatcher( "/SeleccionesFormularioView.jsp" ).forward( req, resp );
+	    	//Ahora tienes que actualizar el campo formulario de la solicitud
+	    	String id = req.getParameter("id");
+			SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
+	    	Solicitud solicitud = sdao.read(id);
+	    	
+	    	solicitud.setFormulario(selecciones);
+	    	solicitud.setEstado(2);
+	    	sdao.update(solicitud);
+	    	
+			getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 	}
  
    /* @RequestMapping(method = RequestMethod.POST)

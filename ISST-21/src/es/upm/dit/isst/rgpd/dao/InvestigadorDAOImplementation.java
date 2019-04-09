@@ -19,27 +19,11 @@ public class InvestigadorDAOImplementation implements InvestigadorDAO {
 		return instance;
 }
 
-	
-	@Override
-	public Investigador loginInvestigador(String email, String password) {
-		Session session = SessionFactoryService.get().openSession();
-		Investigador investigador = null;
-		try {
-			session.beginTransaction();
-			investigador = (Investigador) session
-					.createQuery("select t from Investigador t where t.email= :email and t.password = :password")
-					.setParameter("email", email).setParameter("password", password).uniqueResult();
-			session.getTransaction().commit();
-		} catch (Exception e) {
 
-		} finally {
-			session.close();
-		}
-		return investigador;
-	}
 
 	@Override
-	public Collection<Investigador> readAllInvestigador() {
+	public Collection<Investigador> readAll() {
+
 		Session session = SessionFactoryService.get().openSession();
 		Collection<Investigador> investigadores = new ArrayList<>();
 		try {
@@ -54,7 +38,8 @@ public class InvestigadorDAOImplementation implements InvestigadorDAO {
 	}
 	
 	@Override
-	public void createInvestigador(Investigador investigador) {
+
+	public void create(Investigador investigador) {
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
@@ -68,7 +53,8 @@ public class InvestigadorDAOImplementation implements InvestigadorDAO {
 	}
 	
 	@Override
-	public Investigador readInvestigador(String email) {
+
+	public Investigador read(String email) {
 		Investigador investigador = null;
 		Session session = SessionFactoryService.get().openSession();
 
@@ -85,7 +71,8 @@ public class InvestigadorDAOImplementation implements InvestigadorDAO {
 	}
 
 	@Override
-	public void updateInvestigador(Investigador investigador) {
+
+	public void update(Investigador investigador) {
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
@@ -98,7 +85,8 @@ public class InvestigadorDAOImplementation implements InvestigadorDAO {
 	}
 
 	@Override
-	public void deleteInvestigador(Investigador investigador) {
+
+	public void delete(Investigador investigador) {
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
