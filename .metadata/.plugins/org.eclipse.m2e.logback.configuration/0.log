@@ -344,3 +344,8 @@ java.lang.NullPointerException: null
 2019-04-04 17:20:06,643 [Worker-66: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ana Díez\Desktop\Universidad\ISST\ProyectoEclipse-ISST\ISST-21\src\main\resources
 2019-04-04 17:20:06,672 [Worker-66: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2019-04-04 17:20:06,675 [Worker-66: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ana Díez\Desktop\Universidad\ISST\ProyectoEclipse-ISST\ISST-21\src\test\resources
+2019-04-09 12:04:06,872 [Worker-8: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-04-09 12:04:18,722 [Worker-0: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-09 12:04:18,729 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ana Díez\Desktop\Universidad\ISST\ProyectoEclipse-ISST\ISST-21\src\main\resources
+2019-04-09 12:04:18,731 [Worker-0: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2019-04-09 12:04:18,738 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ana Díez\Desktop\Universidad\ISST\ProyectoEclipse-ISST\ISST-21\src\test\resources

@@ -6,7 +6,6 @@ INDEX VERSION 1.131+C:\Users\Ana Díez\Desktop\Universidad\ISST\ProyectoEclipse-I
 122382269.index
 896885860.index
 434535315.index
-1115056389.index
 1199999215.index
 3512943363.index
 331633919.index
