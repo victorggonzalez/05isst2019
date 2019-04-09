@@ -37,14 +37,15 @@
 				Grupo de investigación: <input type="text" name="grupo" />
 			</p>
 			<p>
-				Roll: <select name="roll" >
-					<option value = "" disabled selected>Elija un roll </option>
-<!-- 				A ver de donde saco los roles -->
-					<c:forEach items="${roles}" var="rolli">
-						<option value="${rolli}">
-							${rolli}
+				Rol: <select name="roll" >
+					<option value = "" disabled selected>Elija un rol </option>
+						<option value="investigador">
+							Investigador
 						</option>
-					</c:forEach>
+						<option value="evaluador">
+							Evaluador
+						</option>
+					
 					</select>
 			</p>
 			

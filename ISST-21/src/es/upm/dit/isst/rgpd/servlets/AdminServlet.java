@@ -20,9 +20,13 @@ public class AdminServlet extends HttpServlet {
 		 * req.getSession().setAttribute( "professor_list", pdao.readAll() ); TFGDAO
 		 * tdao = TFGDAOImplementation.getInstance(); req.getSession().setAttribute(
 		 * "tfg_list", tdao.readAll() );
+<<<<<<< HEAD
+		 *
+
 		 * 
 		 * getServletContext().getRequestDispatcher( "/AdminView.jsp" ).forward( req,
 		 * resp );
 		 */
+
 	}
 }

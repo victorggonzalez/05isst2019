@@ -45,10 +45,11 @@
 				<tr>
 					<td>${prof.name }</td>
 					<td>${prof.email }</td>
-					<td>${fn:length(prof.advisedTFGs) }</td>
+					<td>${fn.length(prof.advisedTFGs) }</td>
 				</tr>
 			</c:forEach>
 		</table>
+		
 		<h3>Listado de tfgs</h3>
 		<table border="1">
 			<tr>

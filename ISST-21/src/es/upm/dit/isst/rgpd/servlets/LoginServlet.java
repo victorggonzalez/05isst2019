@@ -23,7 +23,9 @@ public class LoginServlet extends HttpServlet {
 		// Para en el LoginView saber si hay ya suficietes evaluadores
 		//EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		//req.getSession().setAttribute("lista_evaluadores", edao.readAll());
+
 		getServletContext().getRequestDispatcher( "/LoginView.jsp" ).forward( req,resp );
+
 		
 	}
 	

@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\Ana Díez\Desktop\Universidad\ISST\ProyectoEclipse-ISST\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1233744213.index
-\ISST-21\src
