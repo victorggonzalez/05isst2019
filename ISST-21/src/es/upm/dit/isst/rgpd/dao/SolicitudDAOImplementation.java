@@ -1,5 +1,18 @@
+package es.upm.dit.isst.rgpd.dao;
 
-public class SolicitudDAOImplementation {
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+
+import java.util.Collection;
+
+import org.hibernate.*;
+
+import es.upm.dit.isst.rgpd.model.Evaluador;
+import es.upm.dit.isst.rgpd.model.Solicitud;
+
+public class SolicitudDAOImplementation implements SolicitudDAO{
 
 	@Override 
 	public void create(Solicitud solicitud) { 

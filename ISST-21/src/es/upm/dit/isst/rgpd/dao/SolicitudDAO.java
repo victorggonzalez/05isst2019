@@ -1,3 +1,9 @@
+package es.upm.dit.isst.rgpd.dao;
+
+
+import java.util.Collection;
+import es.upm.dit.isst.rgpd.model.Solicitud;
+
 
 public interface SolicitudDAO {
 	public void create(Solicitud solicitud);

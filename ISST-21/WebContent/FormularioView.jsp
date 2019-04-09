@@ -24,6 +24,10 @@
             <p><input type="checkbox" name="seleccion" value="campo5">Esto es Campo 5</p>
      
             <p><input type="submit" name="submit" value="Submit"></p>
+<<<<<<< HEAD
+=======
+            <input type="hidden" name="" value="${id}">
+>>>>>>> 52027cc74bff374c75f4653719c043f3d5de1ff2
 
           
 

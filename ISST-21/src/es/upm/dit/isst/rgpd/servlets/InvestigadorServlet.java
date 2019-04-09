@@ -16,19 +16,22 @@ import es.upm.dit.isst.rgpd.dao.EvaluadorDAO;
 import es.upm.dit.isst.rgpd.dao.EvaluadorDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.InvestigadorDAO;
 import es.upm.dit.isst.rgpd.dao.InvestigadorDAOImplementation;
+import es.upm.dit.isst.rgpd.model.Investigador;
 
 @WebServlet({ "/InvestigadorServlet"})
 public class InvestigadorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
-		/*
+
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		Investigador investigador = idao.read(email);
 
 		req.getSession().setAttribute( "investigador", investigador);		
-		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudes());
-		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);*/
+
+		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudesPropias());
+		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);
+
 	}
 
 }

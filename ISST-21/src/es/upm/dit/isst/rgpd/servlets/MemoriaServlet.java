@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
+import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.model.Solicitud;
 @MultipartConfig
 @WebServlet( "/MemoriaServlet")
@@ -27,10 +29,10 @@ public class MemoriaServlet extends HttpServlet {
 	
 		
 		String id = req.getParameter( "id" );
-		Solicitud sdao = SolicitudDAOImplementation.getInstance();
+		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		Solicitud solicitud = sdao.read(id);
 		solicitud.setMemoria(output.toByteArray());
-		solicitud.setStatus(3);
+		solicitud.setEstado(4);
 		sdao.update(solicitud);
 		req.getSession().setAttribute( "emailInvestigador", req.getParameter("emailInvestigador") );
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
