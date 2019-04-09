@@ -16,7 +16,7 @@
         Ha seleccionado los siguientes campos:
         
 	<c:forEach items="${camposseleccionados}" var="current">
-		<c:out value="${current}" />
+		<tr><c:out value="${current}" /></tr>
 	</c:forEach>
 	
 	

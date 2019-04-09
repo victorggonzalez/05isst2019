@@ -22,9 +22,13 @@ public class InvestigadorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
-		//InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
-		//req.getSession().setAttribute("investigador", idao.read(email));
-		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);
+		/*
+		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
+		Investigador investigador = idao.read(email);
+
+		req.getSession().setAttribute( "investigador", investigador);		
+		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudes());
+		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);*/
 	}
 
 }

@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 		//EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		//req.getSession().setAttribute("lista_evaluadores", edao.readAll());
 
-		getServletContext().getRequestDispatcher( "/LoginView.jsp" ).forward( req,resp );
+		getServletContext().getRequestDispatcher( "/FormularioView.jsp" ).forward( req,resp );
 
 		
 	}
