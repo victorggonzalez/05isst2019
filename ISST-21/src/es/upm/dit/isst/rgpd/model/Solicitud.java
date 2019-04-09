@@ -23,26 +23,27 @@ public class Solicitud implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+
 	private String titulo;
+
 	private int estado;
 	private boolean evaluacion1;
 	private boolean evaluacion2;
 	
+
 	private String [] formulario;
+
 	
 	@Lob
 	private byte[] memoria;
 	
+
 	@Lob
 	private byte[] ampliacion;
 	
-	
+	private Evaluador evaluador1;
+	private Evaluador evaluador2;
 
-	
-	
-	@ManyToOne
-	private Evaluador evaluador;
-	
 	@ManyToOne
 	private Investigador investigador;
 
@@ -52,6 +53,14 @@ public class Solicitud implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public int getEstado() {
@@ -78,6 +87,14 @@ public class Solicitud implements Serializable{
 		this.evaluacion2 = evaluacion2;
 	}
 
+	public String[] getFormulario() {
+		return formulario;
+	}
+
+	public void setFormulario(String[] formulario) {
+		this.formulario = formulario;
+	}
+
 	public byte[] getMemoria() {
 		return memoria;
 	}
@@ -94,20 +111,20 @@ public class Solicitud implements Serializable{
 		this.ampliacion = ampliacion;
 	}
 
-	public String[] getFormulario() {
-		return formulario;
+	public Evaluador getEvaluador1() {
+		return evaluador1;
 	}
 
-	public void setFormulario(String[] formulario) {
-		this.formulario = formulario;
+	public void setEvaluador1(Evaluador evaluador1) {
+		this.evaluador1 = evaluador1;
 	}
 
-	public Evaluador getEvaluador() {
-		return evaluador;
+	public Evaluador getEvaluador2() {
+		return evaluador2;
 	}
 
-	public void setEvaluador(Evaluador evaluador) {
-		this.evaluador = evaluador;
+	public void setEvaluador2(Evaluador evaluador2) {
+		this.evaluador2 = evaluador2;
 	}
 
 	public Investigador getInvestigador() {
@@ -117,6 +134,8 @@ public class Solicitud implements Serializable{
 	public void setInvestigador(Investigador investigador) {
 		this.investigador = investigador;
 	}
+
+	
 	
 
 }

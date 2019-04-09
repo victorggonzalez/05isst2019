@@ -48,7 +48,7 @@ public class RegisterServlet extends HttpServlet {
 			//EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 			//edao.create(evaluador);
 			//Pensar a donde quiere ir esto
-			resp.sendRedirect(req.getContextPath() + "/EvaluadorServlet");
+			resp.sendRedirect(req.getContextPath() + "/LoginServlet");
 			
 			
 		}
@@ -69,7 +69,7 @@ public class RegisterServlet extends HttpServlet {
 			//InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 			//idao.create(investigador);
 			//Pensar a donde quiere ir esto
-			resp.sendRedirect(req.getContextPath() + "/InvestigadorServlet");
+			resp.sendRedirect(req.getContextPath() + "/LoginServlet");
 			
 		}		
 	}
