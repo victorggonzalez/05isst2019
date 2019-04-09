@@ -13,33 +13,21 @@
     <h2>Rellene el formulario con los aspectos relacionados con su solicitud</h2>
  
     <form  action="FormularioServlet" method="post">
-        <table>
+
+    
+           	<h3>Marque los campos que considere:</h3>
+
+            <p><input type="checkbox" name="seleccion" value="campo1" >Esto es Campo 1</p>
+			<p><input type="checkbox" name="seleccion" value="campo2">Esto es Campo 2</p>
+            <p><input type="checkbox" name="seleccion" value="campo3">Esto es Campo 3</p>
+            <p><input type="checkbox" name="seleccion" value="campo4">Esto es Campo 4</p>
+            <p><input type="checkbox" name="seleccion" value="campo5">Esto es Campo 5</p>
      
-            <tr>
-                <td>Marque los campos que considere:</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox" name="seleccion1" value="campo1" >Esto es Campo 1</td>
-				<td><input type="checkbox" name="seleccion2" value="campo2">Esto es Campo 2</td>
-              	<td><input type="checkbox" name="seleccion3" value="campo3">Esto es Campo 3</td>
-              	<td><input type="checkbox" name="seleccion4" value="campo4">Esto es Campo 4</td>
-              	<td><input type="checkbox" name="seleccion5" value="campo5">Esto es Campo 5</td>
-            
-             
-             <!--   <c:forEach items = "${campos_list}" var = "campoi" >
-					 
-				 <td><input type="checkbox"  value="${campoi}" >
-						</td>
-				
-			</c:forEach >-->
-				
-            
-            </tr>
-            <tr>
-                <td><input type="submit" name="submit" value="Submit"></td>
-            </tr>
+            <p><input type="submit" name="submit" value="Submit"></p>
+            <input type="hidden" name="" value="${id}">
+
           
-        </table>
+
     </form>
  
 </body>

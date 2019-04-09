@@ -5,7 +5,83 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TFG View</title>
+</head>
+<body>
+<shiro:user>
+    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
+</shiro:user>
 
 
+<hr>
+	<shiro:lacksRole name="investigador">
+	No tienes permiso para ver el contenido de esta página
+	</shiro:lacksRole>
+	<shiro:hasRole name="investigador">
+	<h2>¡Bienvenido investigador!</h2>
+	
+	<h3>Información de tus solicitudes</h3>
+
+		<table border="1">
+			<tr>
+				<th>Título</th>
+				<th>id</th>
+				<th>Estado</th>
+				<th>Evaluador 1</th>
+				<th>Evaluador 2</th>
+				<th>Formulario</th>
+				<th>Memoria</th>
+				<th>Ampliación</th>
+				<th>Valoración 1</th>
+				<th>Valoración 2</th>
+			</tr>
+				<c:forEach items="${solicitudes_list}" var="solicitudi">
+				<tr>
+					
+					<td>${solicitudi.titulo }</td>
+					<td>${solicitudi.id }</td>
+					<td>${solicitudi.estado}</td>
+					<td>${solicitudi.evaluador1}</td>
+					<td>${solicitudi.evaluador2}</td>
+					<td><c:if test="${solicitudi.estado == 2}">
+						Formulario relleno
+						</c:if>
+					</td>
+					<td><c:if test="${solicitudi.estado == 3}">
+						<form action="ServeFileServlet">
+						<input type="hidden" name="id" value="${solicitudi.id}" />
+						<button type="submit">Descargar</button>
+						</form>
+						</c:if>
+					</td>
+					<td>Ampliacion
+					</td>
+					<td><c:if test="${solicitudi.evaluacion1 == true}">
+							Aprobado</c:if>
+						<c:if test="${solicitudi.evaluacion1 == false}">
+							Denegado</c:if>
+					</td>
+					<td><c:if test="${solicitudi.evaluacion2 == true}">
+							Aprobado</c:if>
+						<c:if test="${solicitudi.evaluacion2 == false}">
+							Denegado</c:if>
+					</td>	
+				</tr>
+			</c:forEach>
+		</table>
+		
+		<h3>Crear una nueva solicitud</h3>
+			<form action="SolicitarServlet" method="post">
+				<input type="hidden" name="emailInvestigador" value="${investigador.email}" />
+				<p>Título: <input type="text" name="titulo" /></p>
+				<button type="submit">Crear solicitud</button>
+			</form>
+	
+	
+	
+	
+	</shiro:hasRole>
 
 </html>

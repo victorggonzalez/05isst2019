@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  
 import es.upm.dit.isst.rgpd.checkbox.model.Formulario;
 
+import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
+import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
+import es.upm.dit.isst.rgpd.model.Solicitud;
+
+
 @Controller
 //@RequestMapping("/formulario.html")
 @WebServlet ("/FormularioServlet")
@@ -38,7 +43,8 @@ public class FormularioServlet extends HttpServlet{
 	    	campos.add("campo4");
 	    	campos.add("ampo5");*/
 	    	req.getSession().setAttribute("formulario", formulario);
-
+	    	String id = req.getParameter("id");
+	    	req.getSession().setAttribute("id", id);
 			getServletContext().getRequestDispatcher( "/FormularioView.jsp" ).forward( req, resp );
 	}
 	
@@ -48,26 +54,19 @@ public class FormularioServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-			String seleccion1 = req.getParameter( "seleccion1" );
-			String seleccion2 = req.getParameter( "seleccion2" );
-			String seleccion3 = req.getParameter( "seleccion3" );
-			String seleccion4 = req.getParameter( "seleccion4" );
-			String seleccion5 = req.getParameter( "seleccion5" );
+			String [] selecciones = req.getParameterValues( "seleccion" );
 			
-		
-			Formulario formulario = new Formulario();
-			List<String> campos = new ArrayList<String>();
-	    	campos.add("seleccion1");
-	    	campos.add("seleccion2");
-	    	campos.add("seleccion3");
-	    	campos.add("seleccion4");
-	    	campos.add("seleccion5");
+	    	req.getSession().setAttribute("camposseleccionados", selecciones);
 	    	
-	    	formulario.setCampos(campos);
+	    	//Ahora tienes que actualizar el campo formulario de la solicitud
+	    	String id = req.getParameter("id");
+			SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
+	    	Solicitud solicitud = sdao.read(id);
+	    	solicitud.setFormulario(selecciones);
+	    	solicitud.setEstado(2);
+	    	sdao.update(solicitud);
 	    	
-	    	req.getSession().setAttribute("camposseleccionados", formulario.getCampos());
-	    	
-			getServletContext().getRequestDispatcher( "/SeleccionesFormularioView.jsp" ).forward( req, resp );
+			getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 	}
  
    /* @RequestMapping(method = RequestMethod.POST)
