@@ -16,7 +16,7 @@ import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 import es.upm.dit.isst.rgpd.model.Evaluador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
 
-@WebServlet( "/MemoriaServlet")
+@WebServlet( "/EnviarServlet")
 public class EnviarServlet extends HttpServlet {
 
 	@Override
@@ -28,8 +28,10 @@ public class EnviarServlet extends HttpServlet {
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		Collection<Evaluador> evaluadores = edao.readAll();
 		Evaluador[] evaluadoresArray = (Evaluador[]) evaluadores.toArray();
-		solicitud.setEvaluador1(evaluadoresArray[0]);
+		
+		/*solicitud.setEvaluador1(evaluadoresArray[0]);
 		solicitud.setEvaluador2(evaluadoresArray[1]);
+		*/
 		sdao.update(solicitud);
 		resp.sendRedirect( req.getContextPath() + "/InvestigaddorServlet?email=" + req.getParameter("emailInvestigador") );
 

@@ -49,7 +49,7 @@
 					</select>
 			</p>
 			
-			<button type="submit">Register</button>
+			<button type="submit">Registrar</button>
 		</form>
 
 	</shiro:guest>

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -41,8 +42,9 @@ public class Solicitud implements Serializable{
 	@Lob
 	private byte[] ampliacion;
 	
-	private Evaluador evaluador1;
-	private Evaluador evaluador2;
+
+	@ManyToMany //(mappedBy = "evaluador" , fetch = FetchType.EAGER)
+	private Collection<Evaluador> evaluadores;
 
 	@ManyToOne
 	private Investigador investigador;
@@ -111,20 +113,12 @@ public class Solicitud implements Serializable{
 		this.ampliacion = ampliacion;
 	}
 
-	public Evaluador getEvaluador1() {
-		return evaluador1;
+	public Collection<Evaluador> getEvaluadores() {
+		return evaluadores;
 	}
 
-	public void setEvaluador1(Evaluador evaluador1) {
-		this.evaluador1 = evaluador1;
-	}
-
-	public Evaluador getEvaluador2() {
-		return evaluador2;
-	}
-
-	public void setEvaluador2(Evaluador evaluador2) {
-		this.evaluador2 = evaluador2;
+	public void setEvaluadores(Collection<Evaluador> evaluadores) {
+		this.evaluadores = evaluadores;
 	}
 
 	public Investigador getInvestigador() {
@@ -134,6 +128,8 @@ public class Solicitud implements Serializable{
 	public void setInvestigador(Investigador investigador) {
 		this.investigador = investigador;
 	}
+
+	
 
 	
 	
