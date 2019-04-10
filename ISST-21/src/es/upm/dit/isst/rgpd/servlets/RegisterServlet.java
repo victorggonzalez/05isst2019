@@ -42,13 +42,16 @@ public class RegisterServlet extends HttpServlet {
 			
 			//Aplicar logica
 			Evaluador evaluador = new Evaluador();
-			evaluador.setNombre(name); evaluador.setEmail(email);
-			  evaluador.setArea(area); evaluador.setGrupo(grupo); evaluador.setPassword(
-			  new Sha256Hash( password ).toString());
+			evaluador.setName(name); 
+			evaluador.setEmail(email);
+			evaluador.setArea(area); 
+			evaluador.setGrupo(grupo); 
+			evaluador.setPassword(new Sha256Hash( password ).toString());
 			 
-			
+			//Persistir los datos
 			EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 			edao.create(evaluador);
+			
 			//Pensar a donde quiere ir esto
 			resp.sendRedirect(req.getContextPath() + "/LoginServlet");
 			
@@ -61,15 +64,17 @@ public class RegisterServlet extends HttpServlet {
 			String password = req.getParameter("password");
 			String area = req.getParameter("area");
 			String grupo = req.getParameter("grupo");
-			Investigador investigador = new Investigador();
-			/*
-			 * investigador.setName(name); investigador.setEmail(email);
-			 * investigador.setArea(area); investigador.setGrupo(grupo);
-			 * investigador.setPassword( new Sha256Hash( password ).toString());
-			 */
 			
-			//InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
-			//idao.create(investigador);
+			
+			Investigador investigador = new Investigador();
+			investigador.setName(name); investigador.setEmail(email);
+			investigador.setArea(area); investigador.setGrupo(grupo);
+			investigador.setPassword( new Sha256Hash( password ).toString());
+			 
+			
+			InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
+			idao.create(investigador);
+			
 			//Pensar a donde quiere ir esto
 			resp.sendRedirect(req.getContextPath() + "/LoginServlet");
 			

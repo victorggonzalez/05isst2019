@@ -35,7 +35,7 @@
 			<button type="submit">Enviar Solicitud</button>
 		</form>
 		</c:if>
-		<c:if test="${solicitud.estado == 3}">
+		<c:if test="${solicitud.estado == 4}">
 		<h4>Solicitud enviada para evaluar.</h4>
 		</c:if>
 		

@@ -84,7 +84,7 @@ public class EvaluadorDAOImplementation implements EvaluadorDAO{
 	public Collection<Evaluador> readAll() {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Collection<Evaluador> evaluadores = session.createQuery( "from Evaluador" ).list();
+		Collection<Evaluador> evaluadores = session.createQuery("from Evaluador").list();
 		session.getTransaction().commit();
 		session.close();
 		return evaluadores;

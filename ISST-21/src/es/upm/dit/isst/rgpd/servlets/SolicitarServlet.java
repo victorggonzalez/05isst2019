@@ -30,14 +30,21 @@ public class SolicitarServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String emailInvestigador = req.getParameter( "emailInvestigador" );
+		
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		Investigador investigador = idao.read(emailInvestigador);
 		String titulo = req.getParameter("titulo");
+		
+		//Aplicar logica
 		Solicitud solicitud = new Solicitud();
+		
 		solicitud.setInvestigador(investigador);
 		solicitud.setTitulo(titulo);
 		solicitud.setEstado(1);
+		
+		//Persistir los datos
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		sdao.create(solicitud);
 		Long id = solicitud.getId();

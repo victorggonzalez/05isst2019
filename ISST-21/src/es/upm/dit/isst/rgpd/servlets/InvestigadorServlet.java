@@ -22,14 +22,14 @@ import es.upm.dit.isst.rgpd.model.Investigador;
 public class InvestigadorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String email = req.getParameter("email");
 
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		Investigador investigador = idao.read(email);
-
 		req.getSession().setAttribute( "investigador", investigador);		
-
 		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudesPropias());
+		
 		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);
 
 	}
