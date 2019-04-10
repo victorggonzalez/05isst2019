@@ -31,7 +31,8 @@
 		<c:if test="${solicitud.estado == 3}">
 		<form action="EnviarServlet" method="post">
 			<input type = "hidden" name = "id" value ="${id}" />
-			<input type = "hidden" name = "emailInvestigador" value ="${solicitud.investigador}" />	
+			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
+			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
 			<button type="submit">Enviar Solicitud</button>
 		</form>
 		</c:if>
@@ -39,7 +40,8 @@
 		<h4>Solicitud enviada para evaluar.</h4>
 		</c:if>
 		<form action="InvestigadorServlet" method="get">
-			<input type = "hidden" name = "email" value ="${solicitud.investigador}" />	
+			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
+			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
 			<button type="submit">Back</button>
 		</form>
 		

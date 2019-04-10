@@ -30,7 +30,11 @@ public class SolicitarServlet extends HttpServlet {
 		Long id = Long.parseLong(idString);
 		Solicitud solicitud = sdao.read(id);
 		req.getSession().setAttribute("solicitud",solicitud);
-		req.getSession().setAttribute("id", id);
+		req.getSession().setAttribute("id", id);	
+		String email = req.getParameter("email");
+		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
+		Investigador investigador = idao.read(email);
+		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudesPropias());
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 
 		
