@@ -13,7 +13,21 @@ import es.upm.dit.isst.rgpd.model.Evaluador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
 
 public class SolicitudDAOImplementation implements SolicitudDAO{
+	
+	private static SolicitudDAOImplementation instancia = null;
+	
+	private SolicitudDAOImplementation() {
+		// TODO Auto-generated constructor stub
+	}
 
+	public static SolicitudDAOImplementation getInstance() {
+		if(null == instancia)
+				instancia = new SolicitudDAOImplementation();
+		return instancia;
+	}
+	
+	
+	
 	@Override 
 	public void create(Solicitud solicitud) { 
 		Session session = SessionFactoryService.get().openSession(); 
@@ -32,10 +46,10 @@ public class SolicitudDAOImplementation implements SolicitudDAO{
 	}
 	
 	@Override 
-	public Solicitud read(String email) { 
+	public Solicitud read(Long id) { 
 		Session session = SessionFactoryService.get().openSession(); 
 		session.beginTransaction(); 
-		Solicitud solicitud = session.load( Solicitud.class, email ); 
+		Solicitud solicitud = session.load( Solicitud.class, id ); 
 		session.getTransaction().commit(); 
 		session.close(); 
 		return solicitud; 

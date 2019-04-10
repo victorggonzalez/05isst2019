@@ -1,23 +1,25 @@
 package es.upm.dit.isst.rgpd.dao;
 
 
-import es.upm.dit.isst.rgpd.model.Evaluador;
+import es.upm.dit.isst.rgpd.model.Evaluacion;
+import es.upm.dit.isst.rgpd.model.EvaluacionKey;
+
 import java.util.Collection;
 
-public interface EvaluadorDAO {
-//Esto es un evaluador dao
+public interface EvaluacionDAO {
+
 	
-	public void create(Evaluador evaluador);
+	public void create(Evaluacion evaluacion);
 	//Crea la sesion con la base de datos para realizar operaciones sobre un evaluador
 	
-	public Evaluador read(String email);
+	public Evaluacion read(EvaluacionKey evaluacionKey);
 	//Lee el email, que es la clave primaria, de la tabla que sigue el modelo evaluador
 	
-	public void update(Evaluador evaluador);
+	public void update(Evaluacion evaluacion);
 	//Actualiza la tabla que sigue el modelo evaluador
 	
-	public void delete(Evaluador evaluador);
+	public void delete(Evaluacion evaluacion);
 	//Borra (la tabla? una entrada?) que sigue el modelo evaluador
 	
-	public Collection<Evaluador> readAll();
+	public Collection<Evaluacion> readAll();
 }

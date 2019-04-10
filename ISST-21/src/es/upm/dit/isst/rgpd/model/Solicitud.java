@@ -1,14 +1,20 @@
 package es.upm.dit.isst.rgpd.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,14 +27,13 @@ public class Solicitud implements Serializable{
 	//id autogenerado
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 
 	private String titulo;
 
 	private int estado;
-	private boolean evaluacion1;
-	private boolean evaluacion2;
+	
 	
 
 	private String [] formulario;
@@ -41,100 +46,153 @@ public class Solicitud implements Serializable{
 	@Lob
 	private byte[] ampliacion;
 	
-	private Evaluador evaluador1;
-	private Evaluador evaluador2;
-
+	
+	@OneToMany(mappedBy = "solicitud", fetch = FetchType.EAGER)
+    private Collection<Evaluacion> evaluaciones;
+	
+	
 	@ManyToOne
 	private Investigador investigador;
 
-	public int getId() {
+
+	
+
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public String getTitulo() {
 		return titulo;
 	}
 
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
 
 	public int getEstado() {
 		return estado;
 	}
 
+
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 
-	public boolean isEvaluacion1() {
-		return evaluacion1;
-	}
-
-	public void setEvaluacion1(boolean evaluacion1) {
-		this.evaluacion1 = evaluacion1;
-	}
-
-	public boolean isEvaluacion2() {
-		return evaluacion2;
-	}
-
-	public void setEvaluacion2(boolean evaluacion2) {
-		this.evaluacion2 = evaluacion2;
-	}
 
 	public String[] getFormulario() {
 		return formulario;
 	}
 
+
 	public void setFormulario(String[] formulario) {
 		this.formulario = formulario;
 	}
+
 
 	public byte[] getMemoria() {
 		return memoria;
 	}
 
+
 	public void setMemoria(byte[] memoria) {
 		this.memoria = memoria;
 	}
+
 
 	public byte[] getAmpliacion() {
 		return ampliacion;
 	}
 
+
 	public void setAmpliacion(byte[] ampliacion) {
 		this.ampliacion = ampliacion;
 	}
 
-	public Evaluador getEvaluador1() {
-		return evaluador1;
+
+	public Collection<Evaluacion> getEvaluaciones() {
+		return evaluaciones;
 	}
 
-	public void setEvaluador1(Evaluador evaluador1) {
-		this.evaluador1 = evaluador1;
+
+	public void setEvaluaciones(Collection<Evaluacion> evaluaciones) {
+		this.evaluaciones = evaluaciones;
 	}
 
-	public Evaluador getEvaluador2() {
-		return evaluador2;
-	}
-
-	public void setEvaluador2(Evaluador evaluador2) {
-		this.evaluador2 = evaluador2;
-	}
 
 	public Investigador getInvestigador() {
 		return investigador;
 	}
 
+
 	public void setInvestigador(Investigador investigador) {
 		this.investigador = investigador;
 	}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(ampliacion);
+		result = prime * result + estado;
+		result = prime * result + ((evaluaciones == null) ? 0 : evaluaciones.hashCode());
+		result = prime * result + Arrays.hashCode(formulario);
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((investigador == null) ? 0 : investigador.hashCode());
+		result = prime * result + Arrays.hashCode(memoria);
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Solicitud other = (Solicitud) obj;
+		if (!Arrays.equals(ampliacion, other.ampliacion))
+			return false;
+		if (estado != other.estado)
+			return false;
+		if (evaluaciones == null) {
+			if (other.evaluaciones != null)
+				return false;
+		} else if (!evaluaciones.equals(other.evaluaciones))
+			return false;
+		if (!Arrays.equals(formulario, other.formulario))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (investigador == null) {
+			if (other.investigador != null)
+				return false;
+		} else if (!investigador.equals(other.investigador))
+			return false;
+		if (!Arrays.equals(memoria, other.memoria))
+			return false;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
+			return false;
+		return true;
+	}
 	
 	
 

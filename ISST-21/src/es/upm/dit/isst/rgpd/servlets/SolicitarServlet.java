@@ -25,24 +25,39 @@ public class SolicitarServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
+		String idString = req.getParameter("id");
+		Long id = Long.parseLong(idString);
+		Solicitud solicitud = sdao.read(id);
+		req.getSession().setAttribute("solicitud",solicitud);
+		req.getSession().setAttribute("id", id);
+		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 
+		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String emailInvestigador = req.getParameter( "emailInvestigador" );
+		
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		Investigador investigador = idao.read(emailInvestigador);
 		String titulo = req.getParameter("titulo");
+		
+		//Aplicar logica
 		Solicitud solicitud = new Solicitud();
+		
 		solicitud.setInvestigador(investigador);
 		solicitud.setTitulo(titulo);
 		solicitud.setEstado(1);
+		
+		//Persistir los datos
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		sdao.create(solicitud);
-		int id = solicitud.getId();
-		req.setAttribute("id", id);
-		req.setAttribute("solicitud", solicitud);
+		Long id = solicitud.getId();
+		req.getSession().setAttribute("id", id);
+		req.getSession().setAttribute("solicitud", solicitud);
 		req.setAttribute("emailInvestigador", emailInvestigador);
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 		

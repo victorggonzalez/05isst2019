@@ -31,13 +31,17 @@
 		<c:if test="${solicitud.estado == 3}">
 		<form action="EnviarServlet" method="post">
 			<input type = "hidden" name = "id" value ="${id}" />
-			<input type = "hidden" name = "emailInvestigador" value ="${emailInvestigador}" />	
+			<input type = "hidden" name = "emailInvestigador" value ="${solicitud.investigador}" />	
 			<button type="submit">Enviar Solicitud</button>
 		</form>
 		</c:if>
-		<c:if test="${solicitud.estado == 3}">
+		<c:if test="${solicitud.estado == 4}">
 		<h4>Solicitud enviada para evaluar.</h4>
 		</c:if>
+		<form action="InvestigadorServlet" method="get">
+			<input type = "hidden" name = "email" value ="${solicitud.investigador}" />	
+			<button type="submit">Back</button>
+		</form>
 		
 	</shiro:user>
 </body>

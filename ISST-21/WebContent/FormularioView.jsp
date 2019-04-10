@@ -17,17 +17,29 @@
     
            	<h3>Marque los campos que considere:</h3>
 
-            <p><input type="checkbox" name="seleccion" value="campo1" >Esto es Campo 1</p>
-			<p><input type="checkbox" name="seleccion" value="campo2">Esto es Campo 2</p>
-            <p><input type="checkbox" name="seleccion" value="campo3">Esto es Campo 3</p>
-            <p><input type="checkbox" name="seleccion" value="campo4">Esto es Campo 4</p>
-            <p><input type="checkbox" name="seleccion" value="campo5">Esto es Campo 5</p>
-     
+            <p><input type="checkbox" name="seleccion" value="campo1" >¿Se tratan datos personales que revelen el origen étnico
+             o racial, las opiniones políticas, las convicciones religiosas o filosóficas, o la afiliación sindical, y el 
+             tratamiento de datos genéticos, datos biométricos dirigidos a identificar de manera unívoca a una persona
+             física, datos relativos a la salud o datos relativos a la vida sexual o las orientaciones sexuales de una persona
+             física?</p>
+			<p><input type="checkbox" name="seleccion" value="campo2">¿Se ha obtenido el consentimiento explícito de los individuos
+			cuyos datos arriba mencionados se tratan?</p>
+            <p><input type="checkbox" name="seleccion" value="campo3">¿El individuo cuyos datos se tratan ha hecho públicos 
+            estos datos?</p>
+            <p><input type="checkbox" name="seleccion" value="campo4">¿Se tratan datos de menores de 16 años?</p>
+            <p><input type="checkbox" name="seleccion" value="campo5">En caso afirmativo, ¿se ha obtenido el consentimiento del tutor legal?</p>
+            <p><input type="checkbox" name="seleccion" value="campo5">¿Se hace uso de datos personales relativos a condenas e infracciones penales
+            o medidas de seguridad?</p>
+            <p><input type="checkbox" name="seleccion" value="campo5">En caso afirmativo, ¿este tratamiento se realiza bajo las 
+            supervisión de autoridades públicas o ha sido autorizado por el derecho de la unión?</p>
+           
+                
             <p><input type="submit" name="submit" value="Submit"></p>
-<<<<<<< HEAD
-=======
-            <input type="hidden" name="" value="${id}">
->>>>>>> 52027cc74bff374c75f4653719c043f3d5de1ff2
+
+            <input type="hidden" name="id" value="${id}">
+            <input type="hidden" name="solicitud" value="${solicitud}">
+           
+
 
           
 
