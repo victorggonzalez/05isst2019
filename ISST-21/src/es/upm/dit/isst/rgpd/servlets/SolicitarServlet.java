@@ -25,7 +25,15 @@ public class SolicitarServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
+		String idString = req.getParameter("id");
+		Long id = Long.parseLong(idString);
+		Solicitud solicitud = sdao.read(id);
+		req.getSession().setAttribute("solicitud",solicitud);
+		req.getSession().setAttribute("id", id);
+		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 
+		
 	}
 
 	@Override
@@ -48,8 +56,9 @@ public class SolicitarServlet extends HttpServlet {
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		sdao.create(solicitud);
 		Long id = solicitud.getId();
-		req.setAttribute("id", id);
-		req.setAttribute("solicitud", solicitud);
+
+		req.getSession().setAttribute("id", id);
+		req.getSession().setAttribute("solicitud", solicitud);
 		req.setAttribute("emailInvestigador", emailInvestigador);
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 		

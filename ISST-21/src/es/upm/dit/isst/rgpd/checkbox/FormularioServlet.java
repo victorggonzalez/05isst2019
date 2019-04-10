@@ -44,7 +44,12 @@ public class FormularioServlet extends HttpServlet{
 	    	campos.add("campo4");
 	    	campos.add("ampo5");*/
 	    	req.getSession().setAttribute("formulario", formulario);
-	    	String id = req.getParameter("id");
+	    	String idString = req.getParameter("id");
+	    	Long id = Long.parseLong(idString);
+	    	
+			SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();	
+	    	Solicitud solicitud = sdao.read(id);
+	    	req.getSession().setAttribute("solicitud", solicitud);
 	    	req.getSession().setAttribute("id", id);
 			getServletContext().getRequestDispatcher( "/FormularioView.jsp" ).forward( req, resp );
 	}
@@ -61,13 +66,16 @@ public class FormularioServlet extends HttpServlet{
 	    	req.getSession().setAttribute("camposseleccionados", selecciones);
 	    	
 	    	//Ahora tienes que actualizar el campo formulario de la solicitud
-	    	String id = req.getParameter("id");
+	    	String idString = req.getParameter("id");
+	    	Long id = Long.parseLong(idString);
 			SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 	    	Solicitud solicitud = sdao.read(id);
 	    	
 	    	solicitud.setFormulario(selecciones);
 	    	solicitud.setEstado(2);
 	    	sdao.update(solicitud);
+	    	req.getSession().setAttribute("solicitud", solicitud);
+	    	req.getSession().setAttribute("id", id);
 	    	
 			getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 	}

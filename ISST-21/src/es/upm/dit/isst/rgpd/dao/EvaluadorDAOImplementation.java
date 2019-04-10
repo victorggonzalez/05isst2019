@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.*;
 
+import es.upm.dit.isst.rgpd.model.Evaluacion;
 import es.upm.dit.isst.rgpd.model.Evaluador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
 import java.util.Collection;
@@ -24,26 +25,27 @@ public class EvaluadorDAOImplementation implements EvaluadorDAO{
 
 	@Override
 	public Evaluador read(String email) {
-		Evaluador Evaluador=null;
+		Evaluador evaluador = null;
 		Session session = SessionFactoryService.get().openSession();
+
 		try {
-		session.beginTransaction();
-		session.get(Evaluador.class, email);
-		session.getTransaction().commit();
-		} catch(Exception e) {
-			session.close();
+			session.beginTransaction();
+			evaluador = session.get(Evaluador.class, email);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+
 		} finally {
 			session.close();
 		}
-		return Evaluador;
+		return evaluador;
 	}
 
 	@Override
-	public void delete(Evaluador Evaluador) {
+	public void delete(Evaluador evaluador) {
 		Session session = SessionFactoryService.get().openSession();
 		try {
 		session.beginTransaction();
-		session.delete(Evaluador);
+		session.delete(evaluador);
 		session.getTransaction().commit();
 		} catch(Exception e) {
 			session.close();
@@ -53,11 +55,11 @@ public class EvaluadorDAOImplementation implements EvaluadorDAO{
 	}
 	
 	@Override
-	public void update(Evaluador Evaluador) {
+	public void update(Evaluador evaluador) {
 		Session session =  SessionFactoryService.get().openSession();
 		try {
 		session.beginTransaction();
-		session.saveOrUpdate(Evaluador);
+		session.saveOrUpdate(evaluador);
 		session.getTransaction().commit();
 		} catch(Exception e) {
 			session.close();
@@ -67,12 +69,13 @@ public class EvaluadorDAOImplementation implements EvaluadorDAO{
 	}
 
 	@Override
-	public void create(Evaluador Evaluador) {
+
+	public void create(Evaluador evaluador) {
 		Session session = SessionFactoryService.get().openSession();
 		
 		try {
 		session.beginTransaction();
-		session.save(Evaluador);
+		session.save(evaluador);
 		session.getTransaction().commit();
 		} catch(Exception e) {
 		session.close();

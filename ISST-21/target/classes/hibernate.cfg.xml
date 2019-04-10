@@ -15,6 +15,7 @@
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
 		<mapping class="es.upm.dit.isst.rgpd.model.Evaluador" />
+		<mapping class="es.upm.dit.isst.rgpd.model.Evaluacion" />
 		<mapping class="es.upm.dit.isst.rgpd.model.Investigador" />
 		<mapping class="es.upm.dit.isst.rgpd.model.Solicitud" />
 	</session-factory>

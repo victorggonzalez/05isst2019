@@ -28,12 +28,15 @@ public class MemoriaServlet extends HttpServlet {
 		for (int length = 0; (length = fileContent.read(buffer)) > 0;) output.write(buffer, 0, length);
 	
 		
-		String id = req.getParameter( "id" );
+		String idString = req.getParameter( "id" );
+		Long id = Long.parseLong(idString);
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		Solicitud solicitud = sdao.read(id);
 		solicitud.setMemoria(output.toByteArray());
-		solicitud.setEstado(4);
+		solicitud.setEstado(3);
 		sdao.update(solicitud);
+		req.getSession().setAttribute( "id", id );
+		req.getSession().setAttribute( "solicitud", solicitud );
 		req.getSession().setAttribute( "emailInvestigador", req.getParameter("emailInvestigador") );
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 
