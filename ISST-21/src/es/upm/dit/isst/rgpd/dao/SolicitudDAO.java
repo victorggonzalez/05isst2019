@@ -7,7 +7,7 @@ import es.upm.dit.isst.rgpd.model.Solicitud;
 
 public interface SolicitudDAO {
 	public void create(Solicitud solicitud);
-	public Solicitud read(String email);
+	public Solicitud read(Long id);
 	public void update(Solicitud solicitud);
 	public void delete(Solicitud solicitud);
 	public Collection<Solicitud> readAll();

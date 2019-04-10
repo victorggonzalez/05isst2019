@@ -33,8 +33,8 @@
 				<th>Formulario</th>
 				<th>Memoria</th>
 				<th>Ampliación</th>
-			<!-- 	<th>Valoración 1</th>
-				<th>Valoración 2</th> -->
+
+				<th>Ver solicitud</th>
 			</tr>
 				<c:forEach items="${solicitudes_list}" var="solicitudi">
 				<tr>
@@ -54,17 +54,15 @@
 						</form>
 						</c:if>
 					</td>
-					<td>Ampliacion</td>
-					<!--  <td><c:if test="${solicitudi. == true}">
-							Aprobado</c:if>
-						<c:if test="${solicitudi.evaluacion1 == false}">
-							Denegado</c:if>
+					<td></td>
+
+					
+					<td>
+						<form action="SolicitarServlet" method="get">
+						<input type="hidden" name="id" value="${solicitudi.id}" />
+						<button type="submit">Ver</button>
+						</form>
 					</td>
-					<td><c:if test="${solicitudi.evaluacion2 == true}">
-							Aprobado</c:if>
-						<c:if test="${solicitudi.evaluacion2 == false}">
-							Denegado</c:if>
-					</td>	 -->
 				</tr>
 			</c:forEach>
 		</table>

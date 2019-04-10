@@ -46,10 +46,10 @@ public class SolicitudDAOImplementation implements SolicitudDAO{
 	}
 	
 	@Override 
-	public Solicitud read(String email) { 
+	public Solicitud read(Long id) { 
 		Session session = SessionFactoryService.get().openSession(); 
 		session.beginTransaction(); 
-		Solicitud solicitud = session.load( Solicitud.class, email ); 
+		Solicitud solicitud = session.load( Solicitud.class, id ); 
 		session.getTransaction().commit(); 
 		session.close(); 
 		return solicitud; 

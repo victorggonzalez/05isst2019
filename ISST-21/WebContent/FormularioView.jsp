@@ -36,7 +36,10 @@
                 
             <p><input type="submit" name="submit" value="Submit"></p>
 
-            <input type="hidden" name="" value="${id}">
+
+            <input type="hidden" name="id" value="${id}">
+            <input type="hidden" name="solicitud" value="${solicitud}">
+           
 
 
           

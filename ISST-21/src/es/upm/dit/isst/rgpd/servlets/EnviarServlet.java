@@ -21,11 +21,13 @@ public class EnviarServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String idSolicitud = req.getParameter( "id" );
+
+		String idString = req.getParameter( "id" );
+		Long id = Long.parseLong(idString);
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
-		Solicitud solicitud = sdao.read(idSolicitud);
+		Solicitud solicitud = sdao.read(id);
 		
-		//solicitud.setEstado(5);
+		solicitud.setEstado(4);
 		
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		Collection<Evaluador> evaluadores = edao.readAll();
@@ -36,7 +38,8 @@ public class EnviarServlet extends HttpServlet {
 		solicitud.setEvaluador2(evaluadoresArray[1]);
 		*/
 		sdao.update(solicitud);
-		resp.sendRedirect( req.getContextPath() + "/InvestigaddorServlet?email=" + req.getParameter("emailInvestigador") );
+		
+		resp.sendRedirect( req.getContextPath() + "/InvestigadorServlet?email=" + req.getParameter("emailInvestigador") );
 
 	}
 
