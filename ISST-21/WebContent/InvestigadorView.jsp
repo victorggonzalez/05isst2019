@@ -58,6 +58,8 @@
 					<td>
 						<form action="SolicitarServlet" method="get">
 						<input type="hidden" name="id" value="${solicitudi.id}" />
+						<input type="hidden" name="solicitudes_list" value="${solicitudes_list}" />
+						<input type="hidden" name="email" value="${investigador.email}" />
 						<button type="submit">Ver</button>
 						</form>
 					</td>

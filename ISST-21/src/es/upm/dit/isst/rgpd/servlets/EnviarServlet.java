@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.EvaluadorDAO;
 import es.upm.dit.isst.rgpd.dao.EvaluadorDAOImplementation;
+import es.upm.dit.isst.rgpd.dao.InvestigadorDAO;
+import es.upm.dit.isst.rgpd.dao.InvestigadorDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 import es.upm.dit.isst.rgpd.model.Evaluador;
+import es.upm.dit.isst.rgpd.model.Investigador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
 
 @WebServlet( "/EnviarServlet")
@@ -38,7 +41,14 @@ public class EnviarServlet extends HttpServlet {
 		*/
 		sdao.update(solicitud);
 		
-		resp.sendRedirect( req.getContextPath() + "/InvestigaddorServlet?email=" + req.getParameter("emailInvestigador") );
+		String email = req.getParameter("email");
+
+		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
+		Investigador investigador = idao.read(email);
+		req.getSession().setAttribute( "investigador", investigador);		
+		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudesPropias());
+		
+		resp.sendRedirect( req.getContextPath() + "/InvestigadorServlet?email=" + req.getParameter("email") );
 
 	}
 
