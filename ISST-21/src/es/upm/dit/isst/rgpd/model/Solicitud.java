@@ -1,13 +1,17 @@
 package es.upm.dit.isst.rgpd.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -28,8 +32,7 @@ public class Solicitud implements Serializable{
 	private String titulo;
 
 	private int estado;
-	private boolean evaluacion1;
-	private boolean evaluacion2;
+	
 	
 
 	private String [] formulario;
@@ -42,12 +45,26 @@ public class Solicitud implements Serializable{
 	@Lob
 	private byte[] ampliacion;
 	
-
-	@ManyToMany //(mappedBy = "evaluador" , fetch = FetchType.EAGER)
+	
+	@OneToMany(mappedBy = "solicitud")
+    private Collection<Evaluacion> evaluaciones;
+	
+	/*
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Collection<Evaluador> evaluadores;
-
+	*/
+	
 	@ManyToOne
 	private Investigador investigador;
+	/*
+	public void addEvaluador(Evaluador evaluador){
+	        if(this.evaluadores == null){
+	            this.evaluadores = new ArrayList<Evaluador>();
+	        }
+	        
+	        this.evaluadores.add(evaluador);
+	    }
+	*/
 
 	public int getId() {
 		return id;
@@ -71,22 +88,6 @@ public class Solicitud implements Serializable{
 
 	public void setEstado(int estado) {
 		this.estado = estado;
-	}
-
-	public boolean isEvaluacion1() {
-		return evaluacion1;
-	}
-
-	public void setEvaluacion1(boolean evaluacion1) {
-		this.evaluacion1 = evaluacion1;
-	}
-
-	public boolean isEvaluacion2() {
-		return evaluacion2;
-	}
-
-	public void setEvaluacion2(boolean evaluacion2) {
-		this.evaluacion2 = evaluacion2;
 	}
 
 	public String[] getFormulario() {
@@ -113,12 +114,12 @@ public class Solicitud implements Serializable{
 		this.ampliacion = ampliacion;
 	}
 
-	public Collection<Evaluador> getEvaluadores() {
-		return evaluadores;
+	public Collection<Evaluacion> getEvaluaciones() {
+		return evaluaciones;
 	}
 
-	public void setEvaluadores(Collection<Evaluador> evaluadores) {
-		this.evaluadores = evaluadores;
+	public void setEvaluaciones(Collection<Evaluacion> evaluaciones) {
+		this.evaluaciones = evaluaciones;
 	}
 
 	public Investigador getInvestigador() {
@@ -128,9 +129,7 @@ public class Solicitud implements Serializable{
 	public void setInvestigador(Investigador investigador) {
 		this.investigador = investigador;
 	}
-
 	
-
 	
 	
 

@@ -25,10 +25,12 @@ public class Evaluador implements Serializable{
 	private String grupo;
 	
 	
-	@ManyToMany
+	/*@ManyToMany(mappedBy = "evaluadores")
 	private Collection<Solicitud> solicitudesEvaluadas;
-
-
+	*/
+	@OneToMany(mappedBy = "evaluador")
+	private Collection<Evaluacion> evaluaciones;
+		
 	public String getEmail() {
 		return email;
 	}
@@ -78,7 +80,7 @@ public class Evaluador implements Serializable{
 		this.grupo = grupo;
 	}
 
-
+	/*
 	public Collection<Solicitud> getSolicitudesEvaluadas() {
 		return solicitudesEvaluadas;
 	}
@@ -88,7 +90,7 @@ public class Evaluador implements Serializable{
 		this.solicitudesEvaluadas = solicitudesEvaluadas;
 	}
 
-	
+	*/
 	
 
 	
