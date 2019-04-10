@@ -43,18 +43,25 @@
 					<td>${solicitudi.id }</td>
 					<td>${solicitudi.estado}</td>
 			
-					<td><c:if test="${solicitudi.estado == 2}">
+					<td><c:if test="${solicitudi.estado > 2}">
 						Formulario relleno
 						</c:if>
 					</td>
-					<td><c:if test="${solicitudi.estado == 3}">
+					<td><c:if test="${solicitudi.estado > 3}">
 						<form action="ServeFileServlet">
 						<input type="hidden" name="id" value="${solicitudi.id}" />
-						<button type="submit">Descargar</button>
+						<input type="hidden" name="tipoDocumento" value="memoria" />
+						<button type="submit">Descargar memoria</button>
 						</form>
 						</c:if>
 					</td>
-					<td></td>
+					<td><c:if test="${solicitudi.ampliacion != null}">
+						<form action="ServeFileServlet">
+						<input type="hidden" name="id" value="${solicitudi.id}" />
+						<input type="hidden" name="tipoDocumento" value="ampliacion" />
+						<button type="submit">Descargar ampliación</button>
+						</form>
+						</c:if></td>
 
 					
 					<td>
