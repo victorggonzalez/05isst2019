@@ -38,15 +38,17 @@ public class RegisterServlet extends HttpServlet {
 			String password = req.getParameter("password");
 			String area = req.getParameter("area");
 			String grupo = req.getParameter("grupo");
-			Evaluador evaluador = new Evaluador();
-			/*
-			 * evaluador.setNombre(name); evaluador.setEmail(email);
-			 * evaluador.setArea(area); evaluador.setGrupo(grupo); evaluador.setPassword(
-			 * new Sha256Hash( password ).toString());
-			 */
 			
-			//EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
-			//edao.create(evaluador);
+			
+			//Aplicar logica
+			Evaluador evaluador = new Evaluador();
+			evaluador.setNombre(name); evaluador.setEmail(email);
+			  evaluador.setArea(area); evaluador.setGrupo(grupo); evaluador.setPassword(
+			  new Sha256Hash( password ).toString());
+			 
+			
+			EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
+			edao.create(evaluador);
 			//Pensar a donde quiere ir esto
 			resp.sendRedirect(req.getContextPath() + "/LoginServlet");
 			

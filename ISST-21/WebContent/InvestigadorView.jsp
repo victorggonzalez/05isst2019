@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TFG View</title>
+<title>Investigador View</title>
 </head>
 <body>
 <shiro:user>

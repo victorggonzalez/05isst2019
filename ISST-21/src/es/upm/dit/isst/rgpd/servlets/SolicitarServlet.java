@@ -40,7 +40,7 @@ public class SolicitarServlet extends HttpServlet {
 		solicitud.setEstado(1);
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		sdao.create(solicitud);
-		int id = solicitud.getId();
+		Long id = solicitud.getId();
 		req.setAttribute("id", id);
 		req.setAttribute("solicitud", solicitud);
 		req.setAttribute("emailInvestigador", emailInvestigador);
