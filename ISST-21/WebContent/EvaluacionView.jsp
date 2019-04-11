@@ -17,8 +17,8 @@
 <h2>Resumen de la solicitud</h2>
 <h3>Formulario de datos a tratar</h3>
 
-	<c:forEach items="${solicitudi.formulario}" var="current">
-		<tr><c:out value="${current}" /></tr>
+	<c:forEach items="${evaluacion.solicitud.formulario}" var="current">
+		<p><tr><c:out value="${current}" /></tr></p>
 	</c:forEach>
 
 <h3>Descarga de la memoria</h3>
@@ -29,24 +29,23 @@
 <tr>
 	<td>
 		<c:if test="${solicitudi.estado != 6}">
-			<form action="CompletarServlet">
-				<input type="hidden" name="id" value="${solicitudi.id}" />
+			<form action="CompletarServlet" method = "post">
+				<input type="hidden" name="id" value="${evaluacion.id}" />
 				<button type="submit">Completar</button>
 			</form>
 		</c:if>
 	</td>
 	<td>
 	
-			<form action="AceptarServlet">
-				
-				<input type="hidden" name="ide" value="${evaluacioni.id}" />
+			<form action="AceptarServlet" method = "post">
+				<input type="hidden" name="id" value="${evaluacion.id}" />
 				<button type="submit">Aceptar</button>
 			</form>
 	</td>
 		<td>
 	
-			<form action="DenegarServlet">
-				<input type="hidden" name="id" value="${solicitudi.id}" />
+			<form action="DenegarServlet" method = "post">
+				<input type="hidden" name="id" value="${evaluacion.id}" />
 				<button type="submit">Rechazar</button>
 			</form>
 	</td>

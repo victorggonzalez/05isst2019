@@ -28,15 +28,13 @@ public class AceptarServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		//String idsString = req.getParameter( "ids" );
-		String ideString = req.getParameter("ide");
-		Long ide = Long.parseLong(ideString);
-		//Long ids = Long.parseLong(idsString);
+		
+		String idString = req.getParameter("id");
+		Long id = Long.parseLong(idString);
 		
 		EvaluacionDAO edao = EvaluacionDAOImplementation.getInstance();
-		Evaluacion evaluacion = edao.read(ide);
-		//SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
-		//Solicitud solicitud = sdao.read(ids);
+		Evaluacion evaluacion = edao.read(id);
+		
 		
 		//primer evaluador
 		if(evaluacion.getSolicitud().getEstado()==4 || evaluacion.getSolicitud().getEstado()==6) {
@@ -51,12 +49,10 @@ public class AceptarServlet extends HttpServlet{
 			evaluacion.getSolicitud().setEstado(evaluacion.getSolicitud().getEstado());
 		}
 		//actualizo las tablas
-		//sdao.update(solicitud);
 		edao.update(evaluacion);
 		
 		//mando datos que necesita la siguiente vista
-		//req.getSession().setAttribute( "ids", ids );
-		req.getSession().setAttribute( "ide", ide );		
+		req.getSession().setAttribute( "id", id );		
 		getServletContext().getRequestDispatcher( "/EvaluadorView.jsp" ).forward( req, resp );
 	
 	

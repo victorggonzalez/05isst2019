@@ -31,12 +31,12 @@ public class DenegarServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		//String idsString = req.getParameter( "ids" );
-		String ideString = req.getParameter("ide");
-		Long ide = Long.parseLong(ideString);
+		String ideString = req.getParameter("id");
+		Long id = Long.parseLong(ideString);
 		//Long ids = Long.parseLong(idsString);
 		
 		EvaluacionDAO edao = EvaluacionDAOImplementation.getInstance();
-		Evaluacion evaluacion = edao.read(ide);
+		Evaluacion evaluacion = edao.read(id);
 		//SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		//Solicitud solicitud = sdao.read(ids);
 		//primer evaluador
@@ -57,7 +57,7 @@ public class DenegarServlet extends HttpServlet{
 		
 		//mando datos que necesita la siguiente vista
 		//req.getSession().setAttribute( "ids", ids );
-		req.getSession().setAttribute( "ide", ide );		
+		req.getSession().setAttribute( "id", id );		
 		getServletContext().getRequestDispatcher( "/EvaluadorView.jsp" ).forward( req, resp );
 	
 	

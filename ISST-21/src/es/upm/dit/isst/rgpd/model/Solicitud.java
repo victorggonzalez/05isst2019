@@ -34,8 +34,7 @@ public class Solicitud implements Serializable{
 
 	private int estado;
 	
-	
-
+	private String faltanDatos;
 	private String [] formulario;
 
 	
@@ -194,6 +193,16 @@ public class Solicitud implements Serializable{
 		return true;
 	}
 	
-	
+
+	public String getFaltanDatos() {
+		return faltanDatos;
+	}
+
+
+	public void setFaltanDatos(String faltanDatos) {
+		this.faltanDatos = faltanDatos;
+	}
+
+
 
 }

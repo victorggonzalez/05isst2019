@@ -33,8 +33,9 @@
 				<th>Formulario</th>
 				<th>Memoria</th>
 				<th>Ampliación</th>
-				<th>Tu valoracion</th>
-				<th>Valoración 2</th>
+				<th>Evaluar solicitud</th>
+				<th>Tu valoración</th>
+				
 			</tr>
 				<c:forEach items="${evaluaciones_list}" var="evaluacioni">
 				<tr>
@@ -60,22 +61,22 @@
 					
 					<td>Ampliación
 					</td>
+					
+					
 					<td>
-					</td>
-					<td>
+						<form action="EvaluarServlet" method="post">
+						
+						<input type="hidden" name="id" value="${evaluacioni.id}" />
+						<input type="hidden" name="email" value="${evaluador.email}" />
+						<button type="submit">Evaluar</button>
+						</form>
 					</td>
 					
 						
 				</tr>
 			</c:forEach>
 		</table>
-		
-		<h3>EVALUACIÓN</h3>
-			<form action="EvaluarServlet" method="post">
-				<input type="hidden" name="emailEvaluador" value="${evaluador.email}" />
-				<p>Título: <input type="text" name="titulo" /></p>
-				<button type="submit">Evaluar solicitud</button>
-			</form>
+
 	
 	
 	

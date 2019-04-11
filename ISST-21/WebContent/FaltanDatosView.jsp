@@ -11,11 +11,10 @@
 
 <body>
 	
-	<h1>Indique los datos que el investigador debe aÒadir</h1>
+	<h1>Indique los datos que el investigador debe añadir</h1>
 	<form action="EvaluacionIncompletaServlet" method="post">
 		<input type="text" name="faltandatos">
-		<input type="hidden" name="id" value="${id }"/>
-		<input type="hidden" name="emailEvaluador" value="${email }" />
+		<input type="hidden" name="id" value="${id}"/>
 		<button type="submit">Enviar</button>
 	</form>	
 	

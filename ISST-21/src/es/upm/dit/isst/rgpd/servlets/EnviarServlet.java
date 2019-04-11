@@ -52,12 +52,12 @@ public class EnviarServlet extends HttpServlet {
 			  Evaluacion evaluacion1 = new Evaluacion();
 			  evaluacion1.setEvaluador((Evaluador) evaluadoresArray[0]);
 			  evaluacion1.setSolicitud(solicitud);
-			  evaluacion1.setResultado("sinEvaluar");
+			  evaluacion1.setResultado("Sin evaluar");
 			  
 			  Evaluacion evaluacion2 = new Evaluacion();
 			  evaluacion2.setEvaluador((Evaluador) evaluadoresArray[1]);
 			  evaluacion2.setSolicitud(solicitud);
-			  evaluacion2.setResultado("sinEvaluar");
+			  evaluacion2.setResultado("Sin evaluar");
 			  
 			  EvaluacionDAO evdao = EvaluacionDAOImplementation.getInstance();
 			  evdao.create(evaluacion1); 

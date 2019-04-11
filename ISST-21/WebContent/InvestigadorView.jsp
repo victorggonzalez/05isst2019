@@ -35,6 +35,7 @@
 				<th>Ampliación</th>
 
 				<th>Enviado</th>
+				<th>Faltan datos</th>
 				<th>Ver solicitud</th>
 			</tr>
 				<c:forEach items="${solicitudes_list}" var="solicitudi">
@@ -65,6 +66,10 @@
 					</c:if></td>
 					<td>
 						<c:if test="${solicitudi.estado > 3}"> Si </c:if>
+						<c:if test="${solicitudi.estado < 4}"> No </c:if>
+					</td>
+					<td>
+						<c:if test="${solicitudi.estado == 5}"> ${solicitudi.faltanDatos} </c:if>
 						<c:if test="${solicitudi.estado < 4}"> No </c:if>
 					</td>
 					

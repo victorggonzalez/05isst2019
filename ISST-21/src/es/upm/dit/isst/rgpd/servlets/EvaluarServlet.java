@@ -28,32 +28,31 @@ public class EvaluarServlet extends HttpServlet {
 
 		
 		
-		String idsString = req.getParameter( "ids" );
-		Long ids = Long.parseLong(idsString);
-		SolicitudDAO soldao = SolicitudDAOImplementation.getInstance();
-		Solicitud solicitud = soldao.read(ids);
+		//String idsString = req.getParameter( "ids" );
+		//Long ids = Long.parseLong(idsString);
+		//SolicitudDAO soldao = SolicitudDAOImplementation.getInstance();
+		//Solicitud solicitud = soldao.read(ids);
+
+		///////////////////
 		
-		
-	///////////////////
-		String ideString = req.getParameter( "ide" );
-		EvaluacionKey ide = (EvaluacionKey) ideString; 
+		String idString = req.getParameter( "id" );
+		Long id = Long.parseLong(idString);	
 		EvaluacionDAO evlcdao = EvaluacionDAOImplementation.getInstance();
-		Evaluacion evaluacion = evlcdao.read(ide);
-	///////////////////
+		Evaluacion evaluacion = evlcdao.read(id);
+	
+		///////////////////
 		
-		String emailEvaluador = req.getParameter("emailEvaluador");
+		String emailEvaluador = req.getParameter("email");
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		Evaluador evaluador = edao.read(emailEvaluador);
 		
 		
-		req.getSession().setAttribute( "ids", ids );
-		req.getSession().setAttribute( "solicitud", solicitud );
+		//req.getSession().setAttribute( "ids", ids );
+		//req.getSession().setAttribute( "solicitud", solicitud );
+		req.getSession().setAttribute( "evaluacion", evaluacion);
+		req.getSession().setAttribute( "id", id );
+		req.getSession().setAttribute( "emailEvaluador", emailEvaluador );
 
-		req.getSession().setAttribute( "ide", ide );
-		req.getSession().setAttribute( "evaluacion", evaluacion );
-
-		req.getSession().setAttribute( "emailEvaluador", req.getParameter("emailEvaluador") );
-		req.getSession().setAttribute( "evaluador", evaluador );
 
 				
 		
