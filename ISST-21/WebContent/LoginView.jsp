@@ -44,8 +44,7 @@
 						</option>
 						<option value="evaluador">
 							Evaluador
-						</option>
-					
+						</option>					
 					</select>
 			</p>
 			

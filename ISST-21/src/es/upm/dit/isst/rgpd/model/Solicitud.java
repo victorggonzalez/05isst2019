@@ -47,7 +47,7 @@ public class Solicitud implements Serializable{
 	private byte[] ampliacion;
 	
 	
-	@OneToMany(mappedBy = "solicitud", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "solicitud", fetch = FetchType.EAGER, cascade =CascadeType.ALL)
     private Collection<Evaluacion> evaluaciones;
 	
 	

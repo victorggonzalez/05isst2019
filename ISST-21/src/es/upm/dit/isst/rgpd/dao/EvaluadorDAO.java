@@ -7,6 +7,7 @@ import java.util.Collection;
 public interface EvaluadorDAO {
 //Esto es un evaluador dao
 	
+
 	public void create(Evaluador evaluador);
 	//Crea la sesion con la base de datos para realizar operaciones sobre un evaluador
 	

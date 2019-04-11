@@ -31,7 +31,8 @@ public class RegisterServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(req.getParameter("roll") == "evaluador") {
+		String rol = req.getParameter("roll");
+		if("evaluador".equals(rol)) {
 			//Registrar a un evaluador
 			String name = req.getParameter("name");
 			String email = req.getParameter("email");

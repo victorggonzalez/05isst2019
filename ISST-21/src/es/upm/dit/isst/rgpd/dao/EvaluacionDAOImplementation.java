@@ -18,8 +18,9 @@ public class EvaluacionDAOImplementation implements EvaluacionDAO{
 	
 	
 	public static EvaluacionDAOImplementation getInstance() {
-		if(null == instancia)
+		if(null == instancia) {
 				instancia = new EvaluacionDAOImplementation();
+		}
 		return instancia;
 	}
 
