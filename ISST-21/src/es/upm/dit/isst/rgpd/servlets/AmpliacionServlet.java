@@ -41,8 +41,9 @@ public class AmpliacionServlet extends HttpServlet{
 		req.getSession().setAttribute( "id", id );
 		req.getSession().setAttribute( "solicitud", solicitud );
 		req.getSession().setAttribute( "email", req.getParameter("email") );
+		String email = req.getParameter( "email" );
 
-		resp.sendRedirect( req.getContextPath() + "/InvestigadorServlet?email=" + "email"  );
+		resp.sendRedirect( req.getContextPath() + "/InvestigadorServlet?email=" + email );
 
 		
 		
