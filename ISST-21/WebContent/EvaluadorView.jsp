@@ -33,7 +33,7 @@
 				<th>Formulario</th>
 				<th>Memoria</th>
 				<th>Ampliación</th>
-				<th>Evaluar solicitud</th>
+				<th>Evaluar sol.</th>
 				<th>Tu valoración</th>
 				
 			</tr>
@@ -63,15 +63,16 @@
 					</td>
 					
 					
-					<td>
+					<td><c:if test="${evaluacioni.isResultado() == 'Sin evaluar'}">
 						<form action="EvaluarServlet" method="post">
-						
 						<input type="hidden" name="id" value="${evaluacioni.id}" />
 						<input type="hidden" name="email" value="${evaluador.email}" />
 						<button type="submit">Evaluar</button>
 						</form>
+						</c:if>
+						
 					</td>
-					
+					<td>${evaluacioni.isResultado()}</td>
 						
 				</tr>
 			</c:forEach>

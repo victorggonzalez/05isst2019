@@ -34,7 +34,7 @@
             supervisión de autoridades públicas o ha sido autorizado por el derecho de la unión?</p>
            
                 
-            <p><input type="submit" name="submit" value="Submit"></p>
+            <p><input type="submit" name="submit" value="Enviar"></p>
 
 
             <input type="hidden" name="id" value="${id}">

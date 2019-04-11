@@ -26,7 +26,7 @@ public class ServeFileServlet extends HttpServlet {
 			resp.setContentLength(solicitud.getMemoria().length );
 			resp.getOutputStream().write(solicitud.getMemoria());
 		}
-		else if (tipoDocumento.equals("ampliacion")){
+		else if (tipoDocumento.equals("subirampliacion")){
 			resp.setContentLength(solicitud.getAmpliacion().length );
 			resp.getOutputStream().write(solicitud.getAmpliacion());
 		}
