@@ -14,7 +14,7 @@ package es.upm.dit.isst.rgpd.servlets;
 	import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 	import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 
-	@WebServlet( "/CompletarServlet")
+	@WebServlet( "/EvaluacionIncompletaServlet")
 	public class EvaluacionIncompletaServlet extends HttpServlet {
 		
 		

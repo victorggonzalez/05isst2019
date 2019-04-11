@@ -28,34 +28,34 @@ public class AceptarServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		String idsString = req.getParameter( "ids" );
+		//String idsString = req.getParameter( "ids" );
 		String ideString = req.getParameter("ide");
 		Long ide = Long.parseLong(ideString);
-		Long ids = Long.parseLong(idsString);
+		//Long ids = Long.parseLong(idsString);
 		
 		EvaluacionDAO edao = EvaluacionDAOImplementation.getInstance();
 		Evaluacion evaluacion = edao.read(ide);
-		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
-		Solicitud solicitud = sdao.read(ids);
+		//SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
+		//Solicitud solicitud = sdao.read(ids);
 		
 		//primer evaluador
-		if(solicitud.getEstado()==4 || solicitud.getEstado()==6) {
-			solicitud.setEstado(7);
+		if(evaluacion.getSolicitud().getEstado()==4 || evaluacion.getSolicitud().getEstado()==6) {
+			evaluacion.getSolicitud().setEstado(7);
 			evaluacion.setResultado("Aprobado");
 		//segundo evaluador
-		}else if(solicitud.getEstado()==7) {
-			solicitud.setEstado(8);
+		}else if(evaluacion.getSolicitud().getEstado()==7) {
+			evaluacion.getSolicitud().setEstado(8);
 			evaluacion.setResultado("Aprobado");
 		//incompleto
 		}else {
-			solicitud.setEstado(solicitud.getEstado());
+			evaluacion.getSolicitud().setEstado(evaluacion.getSolicitud().getEstado());
 		}
 		//actualizo las tablas
-		sdao.update(solicitud);
+		//sdao.update(solicitud);
 		edao.update(evaluacion);
 		
 		//mando datos que necesita la siguiente vista
-		req.getSession().setAttribute( "ids", ids );
+		//req.getSession().setAttribute( "ids", ids );
 		req.getSession().setAttribute( "ide", ide );		
 		getServletContext().getRequestDispatcher( "/EvaluadorView.jsp" ).forward( req, resp );
 	

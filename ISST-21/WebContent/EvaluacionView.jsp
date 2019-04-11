@@ -38,7 +38,8 @@
 	<td>
 	
 			<form action="AceptarServlet">
-				<input type="hidden" name="id" value="${solicitudi.id}" />
+				
+				<input type="hidden" name="ide" value="${evaluacioni.id}" />
 				<button type="submit">Aceptar</button>
 			</form>
 	</td>

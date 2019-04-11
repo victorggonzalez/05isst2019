@@ -29,20 +29,19 @@ public class CompletarServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		String idsString = req.getParameter( "ids" );
-		String emailEvaluador = req.getParameter("emailEvaluador");
-		Long ids = Long.parseLong(idsString);
-		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
-		Solicitud solicitud = sdao.read(ids);
+		String idsString = req.getParameter( "ide" );
+		Long ide = Long.parseLong(idsString);
+		EvaluacionDAO edao = EvaluacionDAOImplementation.getInstance();
+		Evaluacion evaluacion = edao.read(ide);
 		
 		//primer evaluador
-		solicitud.setEstado(5);
-		sdao.update(solicitud);
+		evaluacion.getSolicitud().setEstado(5);
+		edao.update(evaluacion);
 
 		
 		//mando datos que necesita la siguiente vista
-		req.getSession().setAttribute( "id", ids );
-		req.getSession().setAttribute( "ide", emailEvaluador);		
+		req.getSession().setAttribute( "id", ide );
+		//req.getSession().setAttribute( "ide", emailEvaluador);		
 		getServletContext().getRequestDispatcher( "/FaltanDatosView.jsp" ).forward( req, resp );
 	
 	
