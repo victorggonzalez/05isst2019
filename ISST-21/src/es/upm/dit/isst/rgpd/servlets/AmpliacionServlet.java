@@ -40,10 +40,9 @@ public class AmpliacionServlet extends HttpServlet{
 		sdao.update(solicitud);
 		req.getSession().setAttribute( "id", id );
 		req.getSession().setAttribute( "solicitud", solicitud );
-		req.getSession().setAttribute( "emailInvestigador", req.getParameter("emailInvestigador") );
+		req.getSession().setAttribute( "email", req.getParameter("email") );
 
-
-		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);
+		resp.sendRedirect( req.getContextPath() + "/InvestigadorServlet?email=" + "email"  );
 
 		
 		
