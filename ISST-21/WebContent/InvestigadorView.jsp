@@ -34,6 +34,7 @@
 				<th>Memoria</th>
 				<th>Ampliación</th>
 
+				<th>Enviado</th>
 				<th>Ver solicitud</th>
 			</tr>
 				<c:forEach items="${solicitudes_list}" var="solicitudi">
@@ -42,12 +43,11 @@
 					<td>${solicitudi.titulo }</td>
 					<td>${solicitudi.id }</td>
 					<td>${solicitudi.estado}</td>
-			
-					<td><c:if test="${solicitudi.estado > 2}">
+					<td><c:if test="${solicitudi.estado > 1}">
 						Formulario relleno
 						</c:if>
 					</td>
-					<td><c:if test="${solicitudi.estado > 3}">
+					<td><c:if test="${solicitudi.estado > 2}">
 						<form action="ServeFileServlet">
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="tipoDocumento" value="memoria" />
@@ -61,8 +61,12 @@
 						<input type="hidden" name="tipoDocumento" value="ampliacion" />
 						<button type="submit">Descargar ampliación</button>
 						</form>
-						</c:if></td>
 
+					</c:if></td>
+					<td>
+						<c:if test="${solicitudi.estado > 3}"> Si </c:if>
+						<c:if test="${solicitudi.estado < 4}"> No </c:if>
+					</td>
 					
 					<td>
 						<form action="SolicitarServlet" method="get">
