@@ -12,7 +12,7 @@ public interface EvaluacionDAO {
 	public void create(Evaluacion evaluacion);
 	//Crea la sesion con la base de datos para realizar operaciones sobre un evaluador
 	
-	public Evaluacion read(EvaluacionKey evaluacionKey);
+	public Evaluacion read(long id);
 	//Lee el email, que es la clave primaria, de la tabla que sigue el modelo evaluador
 	
 	public void update(Evaluacion evaluacion);

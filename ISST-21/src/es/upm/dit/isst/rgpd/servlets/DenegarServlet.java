@@ -21,29 +21,44 @@ import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.model.Evaluacion;
 import es.upm.dit.isst.rgpd.model.Investigador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
+import es.upm.dit.isst.rgpd.model.EvaluacionKey;
 
-@WebServlet( "/CompletarServlet")
+@WebServlet( "/DenegarServlet")
 
-public class CompletarServlet extends HttpServlet{
+public class DenegarServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		String idsString = req.getParameter( "ids" );
-		String emailEvaluador = req.getParameter("emailEvaluador");
+		String ideString = req.getParameter("ide");
+		Long ide = Long.parseLong(ideString);
 		Long ids = Long.parseLong(idsString);
+		EvaluacionDAO edao = EvaluacionDAOImplementation.getInstance();
+		Evaluacion evaluacion = edao.read(req.getParameter(evaluacionKeyide));
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		Solicitud solicitud = sdao.read(ids);
 		
 		//primer evaluador
-		solicitud.setEstado(5);
+		if(solicitud.getEstado()==4 || solicitud.getEstado()==6) {
+			solicitud.setEstado(7);
+			evaluacion.setResultado(false);
+		//segundo evaluador
+		}else if(solicitud.getEstado()==7) {
+			solicitud.setEstado(8);
+			evaluacion.setResultado(false);
+		//incompleto
+		}else {
+			solicitud.setEstado(solicitud.getEstado());
+		}
+		//actualizo las tablas
 		sdao.update(solicitud);
-
+		edao.update(evaluacion);
 		
 		//mando datos que necesita la siguiente vista
-		req.getSession().setAttribute( "id", ids );
-		req.getSession().setAttribute( "ide", emailEvaluador);		
-		getServletContext().getRequestDispatcher( "/FaltanDatosView.jsp" ).forward( req, resp );
+		req.getSession().setAttribute( "ids", ids );
+		req.getSession().setAttribute( "ide", ide );		
+		getServletContext().getRequestDispatcher( "/EvaluadorView.jsp" ).forward( req, resp );
 	
 	
 	}

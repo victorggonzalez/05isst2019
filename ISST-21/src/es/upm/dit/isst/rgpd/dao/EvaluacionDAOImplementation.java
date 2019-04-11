@@ -39,13 +39,13 @@ public class EvaluacionDAOImplementation implements EvaluacionDAO{
 	}
 
 	@Override
-	public Evaluacion read(EvaluacionKey evaluacionKey) {
+	public Evaluacion read(long id) {
 		Evaluacion evaluacion = null;
 		Session session = SessionFactoryService.get().openSession();
 
 		try {
 			session.beginTransaction();
-			evaluacion = session.get(Evaluacion.class, evaluacionKey);
+			evaluacion = session.get(Evaluacion.class, id);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 

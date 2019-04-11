@@ -23,7 +23,7 @@
 
 <h3>Descarga de la memoria</h3>
 	<form action = "DescargarMemoriaServlet" method = "post">		
-		<button type = "submit" >Descargar</button>
+		<button type = "submit" >Descargar Memoria</button>
 	</form>
 		
 <tr>
@@ -31,17 +31,23 @@
 		<c:if test="${solicitudi.estado != 6}">
 			<form action="CompletarServlet">
 				<input type="hidden" name="id" value="${solicitudi.id}" />
-				<button type="submit">Descargar</button>
+				<button type="submit">Completar</button>
 			</form>
 		</c:if>
 	</td>
 	<td>
-		<c:if test="${solicitudi.estado != 7 & }">
-			<form action="Aceptar">
+	
+			<form action="AceptarServlet">
 				<input type="hidden" name="id" value="${solicitudi.id}" />
-				<button type="submit">Descargar</button>
+				<button type="submit">Aceptar</button>
 			</form>
-		</c:if>
+	</td>
+		<td>
+	
+			<form action="DenegarServlet">
+				<input type="hidden" name="id" value="${solicitudi.id}" />
+				<button type="submit">Rechazar</button>
+			</form>
 	</td>
 	
 	
