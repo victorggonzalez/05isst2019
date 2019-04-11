@@ -78,7 +78,7 @@
 					<td>
 						<c:if test="${solicitudi.estado < 5}"> No </c:if>
 						<c:if test="${solicitudi.estado == 5}"> Si</c:if>
-						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion != null}"> No </c:if>
+						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion != null}"> Datos actualizados </c:if>
 						
 					</td>
 					<td>

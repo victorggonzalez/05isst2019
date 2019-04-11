@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
 import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.model.Solicitud;
@@ -34,16 +37,16 @@ public class AmpliacionServlet extends HttpServlet{
 		Long id = Long.parseLong(idString);
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		Solicitud solicitud = sdao.read(id);
-		
 		solicitud.setAmpliacion(output.toByteArray());
 		solicitud.setEstado(6);
 		sdao.update(solicitud);
+
+		Subject currentUser = SecurityUtils.getSubject(); 
 		req.getSession().setAttribute( "id", id );
 		req.getSession().setAttribute( "solicitud", solicitud );
 		req.getSession().setAttribute( "email", req.getParameter("email") );
-		String email = req.getParameter( "email" );
 
-		resp.sendRedirect( req.getContextPath() + "/InvestigadorServlet?email=" + email );
+		resp.sendRedirect( req.getContextPath() + "/InvestigadorServlet?email=" + currentUser.getPrincipal() );
 
 		
 		

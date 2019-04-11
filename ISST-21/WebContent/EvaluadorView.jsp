@@ -42,24 +42,35 @@
 					
 					<td>${evaluacioni.solicitud.titulo }</td>
 					<td>${evaluacioni.solicitud.id }</td>
-					<td>${evaluacioni.solicitud.estado}</td>
-				
-					
-					
+					<td><c:if test="${evaluacioni.solicitud.estado < 7}">
+						En evaluación
+						</c:if>
+						<c:if test="${evaluacioni.solicitud.estado  > 6}">
+						${evaluacioni.resultado}
+						</c:if>
+					</td>
 					<td><c:if test="${evaluacioni.solicitud.estado > 2}">
 						Formulario relleno
 						</c:if>
 					</td>
 					<td><c:if test="${evaluacioni.solicitud.estado > 3}">
 						<form action="ServeFileServlet">
-						<input type="hidden" name="id" value="${evaluacioni.id}" />
+						<input type="hidden" name="id" value="${evaluacioni.solicitud.id}" />
 						<button type="submit">Descargar</button>
 						</form>
 						</c:if>
 					</td>
-					
-					
-					<td>Ampliación
+					<td><c:if test="${evaluacioni.solicitud.estado < 5}"> Ampliación no requerida </c:if>
+						<c:if test="${evaluacioni.solicitud.estado == 5}"> 
+						Esperando ampliación
+						</c:if>
+						<c:if test="${evaluacioni.solicitud.estado > 5 && evaluacioni.solicitud.ampliacion != null}"> 
+						<form action="ServeFileServlet">
+						<input type="hidden" name="id" value="${evaluacioni.solicitud.id}" />
+						<input type="hidden" name="tipoDocumento" value="ampliacion" />
+						<button type="submit">Descargar ampliacion</button>
+						</form>
+						</c:if>
 					</td>
 					
 					

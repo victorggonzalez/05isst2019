@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="ISST-21/WebContent/CSS/estilos.css">
 </head>
 <body>
-	<shiro:user>
+<shiro:user>
     Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
 </shiro:user>
 
@@ -61,7 +61,7 @@
 		</c:if>
 		
 		<c:if test="${solicitud.estado == 4}">
-			<h4>Solicitud enviada para evaluar.</h4>
+			<h2>Solicitud enviada para evaluar.</h2>
 		</c:if>
 		<c:if test="${solicitud.estado == 5}">
 			<h4>Hay una petición de ampliación. Los datos solicitados se muestran a continuación:</h4>
@@ -81,10 +81,9 @@
 		<form action="InvestigadorServlet" method="get">
 			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
-			<p><button type="submit">Back</button></p>
+			<p><button type="submit">Atrás</button></p>
 		</form>
 		
-</body>
-	
-	</shiro:hasRole>
+		</body>
+</shiro:hasRole>
 </html>
