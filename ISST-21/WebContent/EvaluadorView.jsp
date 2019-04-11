@@ -29,29 +29,27 @@
 				<th>Título</th>
 				<th>id</th>
 				<th>Estado</th>
-				<th>Evaluador 1</th>
-				<th>Evaluador 2</th>
+				
 				<th>Formulario</th>
 				<th>Memoria</th>
 				<th>Ampliación</th>
-				<th>Valoración 1</th>
+				<th>Tu valoracion</th>
 				<th>Valoración 2</th>
 			</tr>
 				<c:forEach items="${evaluaciones_list}" var="evaluacioni">
 				<tr>
 					
-					<td>${evaluacioni.titulo }</td>
-					<td>${evaluacioni.id }</td>
-					<td>${evaluacioni.estado}</td>
-					<td>${evaluacioni.evaluador1}</td>
-					<td>${evaluacioni.evaluador2}</td>
+					<td>${evaluacioni.solicitud.titulo }</td>
+					<td>${evaluacioni.solicitud.id }</td>
+					<td>${evaluacioni.solicitud.estado}</td>
+				
 					
 					
-					<td><c:if test="${evaluacioni.estado == 2}">
+					<td><c:if test="${evaluacioni.solicitud.estado > 2}">
 						Formulario relleno
 						</c:if>
 					</td>
-					<td><c:if test="${evaluacioni.estado == 3}">
+					<td><c:if test="${evaluacioni.solicitud.estado > 3}">
 						<form action="ServeFileServlet">
 						<input type="hidden" name="id" value="${evaluacioni.id}" />
 						<button type="submit">Descargar</button>
@@ -62,15 +60,9 @@
 					
 					<td>Ampliación
 					</td>
-					<td><c:if test="${evaluacioni.evaluacion1 == true}">
-							Aprobado</c:if>
-						<c:if test="${evaluacioni.evaluacion1 == false}">
-							Denegado</c:if>
+					<td>
 					</td>
-					<td><c:if test="${evaluacioni.evaluacion2 == true}">
-							Aprobado</c:if>
-						<c:if test="${evaluacioni.evaluacion2 == false}">
-							Denegado</c:if>
+					<td>
 					</td>
 					
 						
@@ -89,5 +81,3 @@
 	
 	
 	</shiro:hasRole>
-
-</
