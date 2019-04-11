@@ -18,6 +18,7 @@ import es.upm.dit.isst.rgpd.dao.InvestigadorDAO;
 import es.upm.dit.isst.rgpd.dao.InvestigadorDAOImplementation;
 import es.upm.dit.isst.rgpd.model.Investigador;
 
+
 @WebServlet({ "/InvestigadorServlet"})
 public class InvestigadorServlet extends HttpServlet {
 	@Override
