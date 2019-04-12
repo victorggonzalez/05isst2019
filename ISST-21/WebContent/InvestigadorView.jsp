@@ -54,8 +54,22 @@
 						<c:if test="${solicitudi.estado == 4}">
 						Enviada
 						</c:if>
-						<c:if test="${solicitudi.estado > 4}">
+
+						<c:if test="${solicitudi.estado == 5}">
+						Falta ampliacion
+						</c:if>
+						<c:if test="${solicitudi.estado > 5 && solicitudi.estado < 8}">
 						En evaluación
+						</c:if>
+						<c:if test="${solicitudi.estado == 8}">
+							<c:if test="${solicitudi.evaluaciones[0].isResultado() == 'Aprobado'}">
+								<c:if test="${solicitudi.evaluaciones[1].isResultado() == 'Aprobado'}">
+									Aprobado
+								</c:if>
+							</c:if>
+							<c:if test="${solicitudi.evaluaciones[0].isResultado() == 'Denegado' || solicitudi.evaluaciones[1].isResultado() == 'Denegado'}">
+								Denegado
+							</c:if>
 						</c:if>
 					</td>
 					<td><c:if test="${solicitudi.estado > 1}">
