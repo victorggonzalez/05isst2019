@@ -31,6 +31,10 @@ public class InvestigadorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String email = req.getParameter("email");
+		int nSolVacia = 0;
+		int nSolCurso= 0;
+		int nSolActualiz = 0;
+		int nSolCerrado= 0;
 
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		Investigador investigador = idao.read(email);
@@ -45,7 +49,30 @@ public class InvestigadorServlet extends HttpServlet {
 					} 
 				} 
 			}
+		
+		for(Solicitud s : sinRepetir) {
+			if(s.getEstado()  < 4) { 
+				nSolVacia++;
+			} 
+			else if(s.getEstado() == 4){
+				nSolCurso++;
+			}
+			else if(s.getEstado() == 5){
+				nSolActualiz++;
+			}
+			else if(s.getEstado() > 5 && s.getEstado() < 8){
+				nSolCurso++;
+			}
+			else if(s.getEstado() == 8){
+				nSolCerrado++;
+			}
+			}
+		
 		req.getSession().setAttribute( "solicitudes_list", sinRepetir);
+		req.getSession().setAttribute( "solicitudes_vacias", nSolVacia);
+		req.getSession().setAttribute( "solicitudes_encurso", nSolCurso);
+		req.getSession().setAttribute( "solicitudes_actualizar", nSolActualiz);
+		req.getSession().setAttribute( "solicitudes_cerradas", nSolCerrado);
 		 
 		
 		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);

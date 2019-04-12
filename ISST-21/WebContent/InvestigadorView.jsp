@@ -22,6 +22,30 @@
 	<shiro:hasRole name="investigador">
 	<h2>¡Bienvenido investigador <shiro:principal />!</h2>
 	
+	<h3>Tus solicitudes</h3>
+		<table border="1">
+			<tr>
+				<th>Solicitudes</th>
+				<th>Cantidad</th>
+			</tr>
+			<tr>
+					<td><a href="">Incompletas</a></td>
+					<td>${solicitudes_vacias}</td>
+				</tr>
+				<tr>
+					<td><a href="">En evaluación</a></td>
+					<td>${solicitudes_encurso}</td>
+				</tr>
+				<tr>
+					<td><a href="">Pendiente de ampliación</a></td>
+					<td>${solicitudes_actualizar}</td>
+				</tr>
+				<tr>
+					<td><a href="">Cerradas</a></td>
+					<td>${solicitudes_cerradas}</td>
+				</tr>
+		</table>
+		
 	<h3>Información de tus solicitudes</h3>
 
 		<table border="1">
