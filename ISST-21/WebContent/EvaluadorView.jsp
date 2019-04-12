@@ -11,7 +11,7 @@
 </head>
 <body>
 <shiro:user>
-    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
+    Pulsa <a href="LogoutServlet">aqui</a> para salir.
 </shiro:user>
 
 
@@ -20,7 +20,7 @@
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="evaluador">
-	<h2>¡Bienvenido evaluador!</h2>
+	<h2>¡Bienvenido evaluador <shiro:principal />!</h2>
 	
 	<h3>Información de tus evaluaciones</h3>
 
@@ -33,7 +33,7 @@
 				<th>Formulario</th>
 				<th>Memoria</th>
 				<th>Ampliación</th>
-				<th>Evaluar sol.</th>
+				<th>Evaluar solicitud</th>
 				<th>Tu valoración</th>
 				
 			</tr>

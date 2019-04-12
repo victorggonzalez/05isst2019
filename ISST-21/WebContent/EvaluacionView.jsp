@@ -10,8 +10,7 @@
 <title>Evaluacion</title>
 </head>
 <body>
-<shiro:user>
-    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
+<shiro:user> Pulsa <a href="LogoutServlet">aqui</a> para salir.
 </shiro:user>
 
 <h2>Resumen de la solicitud</h2>

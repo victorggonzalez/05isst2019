@@ -11,8 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="ISST-21/WebContent/CSS/estilos.css">
 </head>
 <body>
-<shiro:user>
-    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
+<shiro:user> Pulsa <a href="LogoutServlet">aqui</a> para salir.
 </shiro:user>
 
 
@@ -84,6 +83,6 @@
 			<p><button type="submit">Atrás</button></p>
 		</form>
 		
+		</shiro:hasRole>
 		</body>
-</shiro:hasRole>
 </html>

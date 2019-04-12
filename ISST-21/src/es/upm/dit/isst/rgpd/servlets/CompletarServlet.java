@@ -43,6 +43,7 @@ public class CompletarServlet extends HttpServlet{
 		
 		//mando datos que necesita la siguiente vista
 		req.getSession().setAttribute("id", id);		
+		req.getSession().setAttribute("titulo", evaluacion.getSolicitud().getTitulo());
 		getServletContext().getRequestDispatcher( "/FaltanDatosView.jsp" ).forward( req, resp );
 	
 	
