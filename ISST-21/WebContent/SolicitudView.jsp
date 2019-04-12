@@ -77,7 +77,7 @@
 			<h2>Has actualizado la solicitud correctamente.</h2>
 		</c:if>
 		
-		
+<hr>
 		<form action="InvestigadorServlet" method="get">
 			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />

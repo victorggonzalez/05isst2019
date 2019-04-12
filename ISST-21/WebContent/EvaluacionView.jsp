@@ -19,12 +19,18 @@ No tienes permiso para ver el contenido de esta página
 <shiro:hasRole name="evaluador">
 <hr>
 <h2>Resumen de la solicitud</h2>
-<h3>Formulario de datos a tratar</h3>
-
-	<c:forEach items="${evaluacion.solicitud.formulario}" var="current">
-		<p><c:out value="${current}" /></p>
-	</c:forEach>
-
+<table border="1">
+			<tr>
+				<th>Datos seleccionados en el formulario</th>
+			</tr>
+			<tr>
+			<td>
+				<c:forEach items="${evaluacion.solicitud.formulario}" var="current">
+					<p><c:out value="${current}" /></p>
+				</c:forEach>
+			</td>
+			</tr>
+</table>
 <h3>Descarga de la memoria</h3>
 	<form action = "DescargarMemoriaServlet" method = "post">		
 		<button type = "submit">Descargar Memoria</button>
@@ -47,26 +53,26 @@ No tienes permiso para ver el contenido de esta página
 	</td>
 	<td>
 		<c:if test="${evaluacion.solicitud.estado != 5 and evaluacion.isResultado() == 'Sin evaluar' }" >
-			<p>Aquí puedes aceptar el proyecto</p>
+			<p></p>
 			<form action="AceptarServlet" method = "post">
+			Si crees que el proyecto cumple el RGPD, aquí puedes aceptar el proyecto
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<p><button type="submit">Aceptar</button></p>
+				<button type="submit">Aceptar</button>
 			</form>
 			</c:if>
 	</td>
 		<td>
 		<c:if test="${evaluacion.solicitud.estado != 5 and evaluacion.isResultado() == 'Sin evaluar' }" >
-		<p>Aquí puedes rechazar el proyecto</p>
+			<p></p>
 			<form action="DenegarServlet" method = "post">
+			Si crees que el proyecto no cumple el RGPD, aquí puedes rechazar el proyecto
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<p><button type="submit">Rechazar</button></p>
+				<button type="submit">Rechazar</button>
 			</form>
 		</c:if>	
 	</td>
-	
-	
-	
 </tr>
+<hr>
 		<form action="EvaluadorServlet" method="get">
 			<input type = "hidden" name = "email" value ="${evaluacion.evaluador.email}" />	
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
