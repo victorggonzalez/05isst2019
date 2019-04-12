@@ -129,7 +129,7 @@
 		<h3>Crear una nueva solicitud</h3>
 			<form action="SolicitarServlet" method="post">
 				<input type="hidden" name="emailInvestigador" value="${investigador.email}" />
-				<p>Título: <input type="text" name="titulo" /></p>
+				Título: <input type="text" name="titulo" />
 				<button type="submit">Crear solicitud</button>
 			</form>
 	

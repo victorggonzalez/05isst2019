@@ -50,7 +50,7 @@
 					<input type = "hidden" name = "id" value ="${id}" />
 					<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
 					<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
-					<p>Pulsa para enviar tu solicitud <button type="submit">Enviar Solicitud</button></p>
+					<p>Pulsa para enviar tu solicitud <button type="submit">Enviar solicitud</button></p>
 				</form>
 			</c:if>
  			<c:if test="${no_suficientes_investigadores}">
@@ -63,7 +63,9 @@
 			<h2>Solicitud enviada para evaluar.</h2>
 		</c:if>
 		<c:if test="${solicitud.estado == 5}">
-			<h4>Hay una petición de ampliación. Los datos solicitados se muestran a continuación:</h4>
+			<h2>Hay una petición de ampliación para esta solicitud</h2>
+			<h4>Los datos solicitados se muestran a continuación:</h4>
+			
 			<p>${solicitud.faltanDatos} </p>
 			<h4>Sube un archivo con los datos indicados. </h4>
 			<form action="AmpliacionServlet" method="post" enctype = "multipart/form-data">

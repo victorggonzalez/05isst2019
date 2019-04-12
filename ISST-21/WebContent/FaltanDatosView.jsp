@@ -21,7 +21,7 @@
 	<shiro:hasRole name="evaluador">
 	
 	<h2>Has solicitado una ampliación de la solicitud: ${titulo}</h2>
-	<h3>Indique a continuación los datos que el investigador debe añadir</h3>
+	<p>Indique a continuación los datos que el investigador debe añadir</p>
 	<form action="EvaluacionIncompletaServlet" method="post">
 		<textarea name="faltandatos" rows="10" cols="40" placeholder="Escribe aqui tus comentarios"></textarea>
 		<input type="hidden" name="id" value="${id}"/>

@@ -14,19 +14,9 @@ public class AdminServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		  //getServletContext().getRequestDispatcher( "/LoginView.jsp" ).forward( req,
 		
-		/*
-		 * ProfessorDAO pdao = ProfessorDAOImplementation.getInstance();
-		 * req.getSession().setAttribute( "professor_list", pdao.readAll() ); TFGDAO
-		 * tdao = TFGDAOImplementation.getInstance(); req.getSession().setAttribute(
-		 * "tfg_list", tdao.readAll() );
-<<<<<<< HEAD
-		 *
-
-		 * 
-		 * getServletContext().getRequestDispatcher( "/AdminView.jsp" ).forward( req,
-		 * resp );
-		 */
 
 	}
 }

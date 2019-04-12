@@ -38,24 +38,27 @@ No tienes permiso para ver el contenido de esta página
 		
 <tr>
 	<td>
-		<c:if test="${evaluacion.solicitud.estado == 4}">
-			<p>Aquí puedes indicar que faltan datos en el proyecto</p>
+		<p></p><c:if test="${evaluacion.solicitud.estado == 4}">
 			<form action="CompletarServlet" method = "post">
+			Si crees que faltan datos para poder evaluar el proyecto, pulsa aquí
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<p><button type="submit">Completar</button></p>
+				<button type="submit">Completar</button>
 			</form>
 		</c:if>
 	</td>
 	<td>
+		
+	</td>
+
+	
+	<td><h2>Realizar evaluación</h2>
 		<c:if test="${evaluacion.solicitud.estado ==5}">
 			<p>Esperando a la ampliación</p>
 		</c:if>
-	</td>
-	<td>
 		<c:if test="${evaluacion.solicitud.estado != 5 and evaluacion.isResultado() == 'Sin evaluar' }" >
 			<p></p>
 			<form action="AceptarServlet" method = "post">
-			Si crees que el proyecto cumple el RGPD, aquí puedes aceptar el proyecto
+			Si crees que el proyecto cumple el RGPD, pulsa aquí para aceptar el proyecto
 				<input type="hidden" name="id" value="${evaluacion.id}" />
 				<button type="submit">Aceptar</button>
 			</form>
@@ -65,7 +68,7 @@ No tienes permiso para ver el contenido de esta página
 		<c:if test="${evaluacion.solicitud.estado != 5 and evaluacion.isResultado() == 'Sin evaluar' }" >
 			<p></p>
 			<form action="DenegarServlet" method = "post">
-			Si crees que el proyecto no cumple el RGPD, aquí puedes rechazar el proyecto
+			Si crees que el proyecto no cumple el RGPD, pulsa aquí para rechazar el proyecto
 				<input type="hidden" name="id" value="${evaluacion.id}" />
 				<button type="submit">Rechazar</button>
 			</form>
