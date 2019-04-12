@@ -17,7 +17,7 @@
 No tienes permiso para ver el contenido de esta página
 </shiro:lacksRole>
 <shiro:hasRole name="evaluador">
-
+<hr>
 <h2>Resumen de la solicitud</h2>
 <h3>Formulario de datos a tratar</h3>
 
@@ -32,7 +32,7 @@ No tienes permiso para ver el contenido de esta página
 		
 <tr>
 	<td>
-		<c:if test="${evaluacion.solicitud.estado != 6}">
+		<c:if test="${evaluacion.solicitud.estado == 4}">
 			<p>Aquí puedes indicar que faltan datos en el proyecto</p>
 			<form action="CompletarServlet" method = "post">
 				<input type="hidden" name="id" value="${evaluacion.id}" />
@@ -41,7 +41,12 @@ No tienes permiso para ver el contenido de esta página
 		</c:if>
 	</td>
 	<td>
-		<c:if test="${evaluacion.solicitud.estado != 5}">
+		<c:if test="${evaluacion.solicitud.estado ==5}">
+			<p>Esperando a la ampliación</p>
+		</c:if>
+	</td>
+	<td>
+		<c:if test="${evaluacion.solicitud.estado != 5 and evaluacion.isResultado() == 'Sin evaluar' }" >
 			<p>Aquí puedes aceptar el proyecto</p>
 			<form action="AceptarServlet" method = "post">
 				<input type="hidden" name="id" value="${evaluacion.id}" />
@@ -50,7 +55,7 @@ No tienes permiso para ver el contenido de esta página
 			</c:if>
 	</td>
 		<td>
-		<c:if test="${evaluacion.solicitud.estado != 5}">
+		<c:if test="${evaluacion.solicitud.estado != 5 and evaluacion.isResultado() == 'Sin evaluar' }" >
 		<p>Aquí puedes rechazar el proyecto</p>
 			<form action="DenegarServlet" method = "post">
 				<input type="hidden" name="id" value="${evaluacion.id}" />
@@ -62,7 +67,11 @@ No tienes permiso para ver el contenido de esta página
 	
 	
 </tr>
-
+		<form action="EvaluadorServlet" method="get">
+			<input type = "hidden" name = "email" value ="${evaluacion.evaluador.email}" />	
+			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
+			<p><button type="submit">Atrás</button></p>
+		</form>
 	
 
  </shiro:hasRole>

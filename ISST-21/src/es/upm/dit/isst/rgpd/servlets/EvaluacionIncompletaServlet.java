@@ -35,12 +35,14 @@ import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 		solicitud.setEstado(5);
 		solicitud.setFaltanDatos(datos);
 		sdao.update(solicitud);
+		edao.update(evaluacion);
 		
 		String email = evaluacion.getEvaluador().getEmail();
 		
 		req.getSession().setAttribute("emailEvaluador", email);
 		req.getSession().setAttribute("id", id);
-		getServletContext().getRequestDispatcher("/EvaluadorView.jsp").forward(req, resp);
+		resp.sendRedirect(req.getContextPath() + "/EvaluadorServlet?email=" + email);
+	
 	}
 }	
 

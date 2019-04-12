@@ -73,9 +73,10 @@
 				<button type="submit">Subir ampliación</button>
 			</form>
 		</c:if>
-		<c:if test="${solicitud.estado == 6}">
+		<c:if test="${solicitud.estado > 5}">
 			<h2>Has actualizado la solicitud correctamente.</h2>
 		</c:if>
+		
 		
 		<form action="InvestigadorServlet" method="get">
 			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	

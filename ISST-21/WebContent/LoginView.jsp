@@ -12,6 +12,8 @@
 </head>
 <body>
 	<shiro:guest>
+	<h1>Reglamento General de Protección de Datos</h1>
+	<hr>
 		<h2>Login</h2>
 		<form action="LoginServlet" method="post">
 			Email: <input type="text" name="email" placeholder="Email" />

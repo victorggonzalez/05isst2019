@@ -93,6 +93,7 @@
 						<c:if test="${solicitudi.estado < 5}"> No </c:if>
 						<c:if test="${solicitudi.estado == 5}"> Si</c:if>
 						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion != null}"> Datos actualizados </c:if>
+						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion == null}"> No</c:if>
 						
 					</td>
 					<td>
@@ -108,14 +109,18 @@
 						<button type="submit">Descargar ampliacion</button>
 						</form>
 						</c:if>
+						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion == null}"> 
+						 Ampliación no requerida 
+						</c:if>
 					</td>
-					<td>
+					<td><c:if test="${solicitudi.estado < 8}"> 
 						<form action="SolicitarServlet" method="get">
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="solicitudes_list" value="${solicitudes_list}" />
 						<input type="hidden" name="email" value="${investigador.email}" />
 						<button type="submit">Ver</button>
 						</form>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>

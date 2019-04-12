@@ -46,7 +46,7 @@
 						En evaluación
 						</c:if>
 						<c:if test="${evaluacioni.solicitud.estado  > 6}">
-						${evaluacioni.resultado}
+						${evaluacioni.isResultado()}
 						</c:if>
 					</td>
 					<td><c:if test="${evaluacioni.solicitud.estado > 2}">
@@ -56,6 +56,7 @@
 					<td><c:if test="${evaluacioni.solicitud.estado > 3}">
 						<form action="ServeFileServlet">
 						<input type="hidden" name="id" value="${evaluacioni.solicitud.id}" />
+						<input type="hidden" name="tipoDocumento" value="memoria" />
 						<button type="submit">Descargar</button>
 						</form>
 						</c:if>
@@ -71,6 +72,8 @@
 						<button type="submit">Descargar ampliacion</button>
 						</form>
 						</c:if>
+						<c:if test="${evaluacioni.solicitud.estado > 5 && evaluacioni.solicitud.ampliacion == null}"> 
+						 Ampliación no requerida </c:if>
 					</td>
 					
 					
@@ -81,7 +84,8 @@
 						<button type="submit">Evaluar</button>
 						</form>
 						</c:if>
-						
+						<c:if test="${evaluacioni.isResultado() != 'Sin evaluar'}">Ya evaluado
+						</c:if>
 					</td>
 					<td>${evaluacioni.isResultado()}</td>
 						

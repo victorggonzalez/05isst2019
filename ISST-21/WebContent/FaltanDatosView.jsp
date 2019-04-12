@@ -25,6 +25,7 @@
 	<form action="EvaluacionIncompletaServlet" method="post">
 		<textarea name="faltandatos" rows="10" cols="40" placeholder="Escribe aqui tus comentarios"></textarea>
 		<input type="hidden" name="id" value="${id}"/>
+	
 		<p><button type="submit">Enviar</button></p>
 	</form>	
 	

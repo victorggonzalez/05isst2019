@@ -24,7 +24,7 @@
              física?</p>
 			<p><input type="checkbox" name="seleccion" value="Consentimiento de los individuos">¿Se ha obtenido el consentimiento explícito de los individuos
 			cuyos datos arriba mencionados se tratan?</p>
-            <p><input type="checkbox" name="seleccion" value="Datos públicos">¿El individuo cuyos datos se tratan ha hecho públicos 
+            <p><input type="checkbox" name="seleccion" value="Datos publicos">¿El individuo cuyos datos se tratan ha hecho públicos 
             estos datos?</p>
             <p><input type="checkbox" name="seleccion" value="Datos de menores">¿Se tratan datos de menores de 16 años?</p>
             <p><input type="checkbox" name="seleccion" value="Consentimiento del tutor">En caso afirmativo, ¿se ha obtenido el consentimiento del tutor legal?</p>

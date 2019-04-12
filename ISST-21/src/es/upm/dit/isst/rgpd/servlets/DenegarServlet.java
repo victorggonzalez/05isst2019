@@ -56,11 +56,13 @@ public class DenegarServlet extends HttpServlet{
 		}
 		//actualizo las tablas
 		edao.update(evaluacion);
-		sdao.update(solicitud);
+		sdao.update(solicitud);	
+
+		String email = evaluacion.getEvaluador().getEmail();
 		
 		//mando datos que necesita la siguiente vista
-		req.getSession().setAttribute( "id", id );		
-		getServletContext().getRequestDispatcher( "/EvaluadorView.jsp" ).forward( req, resp );
+		req.getSession().setAttribute( "id", id );
+		resp.sendRedirect(req.getContextPath() + "/EvaluadorServlet?email=" + email);
 	}
 		
 }

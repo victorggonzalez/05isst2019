@@ -48,15 +48,17 @@ public class AceptarServlet extends HttpServlet{
 			evaluacion.setResultado("Aprobado");
 		//incompleto
 		}else {
-			solicitud.setEstado(solicitud.getEstado());
+			//solicitud.setEstado(solicitud.getEstado());
 		}
 		//actualizo las tablas
 		edao.update(evaluacion);
 		sdao.update(solicitud);
+
+		String email = evaluacion.getEvaluador().getEmail();
 		
 		//mando datos que necesita la siguiente vista
-		req.getSession().setAttribute( "id", id );		
-		getServletContext().getRequestDispatcher( "/EvaluadorView.jsp" ).forward( req, resp );
+		req.getSession().setAttribute( "id", id );
+		resp.sendRedirect(req.getContextPath() + "/EvaluadorServlet?email=" + email);
 	
 	
 	}
