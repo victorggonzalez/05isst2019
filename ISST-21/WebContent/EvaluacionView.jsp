@@ -14,6 +14,11 @@
     Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
 </shiro:user>
 
+<shiro:lacksRole name="evaluador">
+No tienes permiso para ver el contenido de esta página
+</shiro:lacksRole>
+<shiro:hasRole name="evaluador">
+
 <h2>Resumen de la solicitud</h2>
 <h3>Formulario de datos a tratar</h3>
 
@@ -23,31 +28,36 @@
 
 <h3>Descarga de la memoria</h3>
 	<form action = "DescargarMemoriaServlet" method = "post">		
-		<button type = "submit" >Descargar Memoria</button>
+		<button type = "submit">Descargar Memoria</button>
 	</form>
 		
 <tr>
 	<td>
-		<c:if test="${solicitudi.estado != 6}">
+		<c:if test="${evaluacion.solicitud.estado != 6}">
+			<p>Aquí puedes indicar que faltan datos en el proyecto</p>
 			<form action="CompletarServlet" method = "post">
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<button type="submit">Completar</button>
+				<p><button type="submit">Completar</button></p>
 			</form>
 		</c:if>
 	</td>
 	<td>
-	
+		<c:if test="${evaluacion.solicitud.estado != 5}">
+			<p>Aquí puedes aceptar el proyecto</p>
 			<form action="AceptarServlet" method = "post">
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<button type="submit">Aceptar</button>
+				<p><button type="submit">Aceptar</button></p>
 			</form>
+			</c:if>
 	</td>
 		<td>
-	
+		<c:if test="${evaluacion.solicitud.estado != 5}">
+		<p>Aquí puedes rechazar el proyecto</p>
 			<form action="DenegarServlet" method = "post">
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<button type="submit">Rechazar</button>
+				<p><button type="submit">Rechazar</button></p>
 			</form>
+		</c:if>	
 	</td>
 	
 	
@@ -56,7 +66,7 @@
 
 	
 
- 
+ </shiro:hasRole>
 
 </body>
 </html>
