@@ -34,22 +34,25 @@ public class AceptarServlet extends HttpServlet{
 		
 		EvaluacionDAO edao = EvaluacionDAOImplementation.getInstance();
 		Evaluacion evaluacion = edao.read(id);
-		
+		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
+		Solicitud solicitud = evaluacion.getSolicitud();
+	
 		
 		//primer evaluador
 		if(evaluacion.getSolicitud().getEstado()==4 || evaluacion.getSolicitud().getEstado()==6) {
-			evaluacion.getSolicitud().setEstado(7);
+			solicitud.setEstado(7);
 			evaluacion.setResultado("Aprobado");
 		//segundo evaluador
 		}else if(evaluacion.getSolicitud().getEstado()==7) {
-			evaluacion.getSolicitud().setEstado(8);
+			solicitud.setEstado(8);
 			evaluacion.setResultado("Aprobado");
 		//incompleto
 		}else {
-			evaluacion.getSolicitud().setEstado(evaluacion.getSolicitud().getEstado());
+			solicitud.setEstado(solicitud.getEstado());
 		}
 		//actualizo las tablas
 		edao.update(evaluacion);
+		sdao.update(solicitud);
 		
 		//mando datos que necesita la siguiente vista
 		req.getSession().setAttribute( "id", id );		
