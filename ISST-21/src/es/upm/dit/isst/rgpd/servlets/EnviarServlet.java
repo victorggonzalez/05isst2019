@@ -28,13 +28,14 @@ public class EnviarServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String idString = req.getParameter("id");
+		String idString = req.getParameter( "id" );
 		Long id = Long.parseLong(idString);
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		Solicitud solicitud = sdao.read(id);
 
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		Collection<Evaluador> evaluadores = edao.readAll();
+
 		Object[] evaluadoresArray = evaluadores.toArray();
 
 		if (evaluadoresArray.length < 2) {
@@ -51,12 +52,12 @@ public class EnviarServlet extends HttpServlet {
 			  Evaluacion evaluacion1 = new Evaluacion();
 			  evaluacion1.setEvaluador((Evaluador) evaluadoresArray[0]);
 			  evaluacion1.setSolicitud(solicitud);
-			  evaluacion1.setResultado("sinEvaluar");
+			  evaluacion1.setResultado("Sin evaluar");
 			  
 			  Evaluacion evaluacion2 = new Evaluacion();
 			  evaluacion2.setEvaluador((Evaluador) evaluadoresArray[1]);
 			  evaluacion2.setSolicitud(solicitud);
-			  evaluacion2.setResultado("sinEvaluar");
+			  evaluacion2.setResultado("Sin evaluar");
 			  
 			  EvaluacionDAO evdao = EvaluacionDAOImplementation.getInstance();
 			  evdao.create(evaluacion1); 
@@ -70,6 +71,7 @@ public class EnviarServlet extends HttpServlet {
 			Investigador investigador = idao.read(email);
 			req.getSession().setAttribute("investigador", investigador);
 			req.getSession().setAttribute("solicitudes_list", investigador.getSolicitudesPropias());
+
 
 			resp.sendRedirect(req.getContextPath() + "/InvestigadorServlet?email=" + req.getParameter("email"));
 		}
