@@ -14,6 +14,11 @@ import org.apache.shiro.subject.Subject;
 
 import es.upm.dit.isst.rgpd.dao.EvaluadorDAO;
 import es.upm.dit.isst.rgpd.dao.EvaluadorDAOImplementation;
+import es.upm.dit.isst.rgpd.dao.InvestigadorDAO;
+import es.upm.dit.isst.rgpd.dao.InvestigadorDAOImplementation;
+import es.upm.dit.isst.rgpd.model.Investigador;
+import es.upm.dit.isst.rgpd.model.Evaluador;
+
 
 @WebServlet({ "/EvaluadorServlet"})
 public class EvaluadorServlet extends HttpServlet {
@@ -21,8 +26,11 @@ public class EvaluadorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String email = req.getParameter("email");
-		//EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
-		//req.getSession().setAttribute("evaluador", edao.read(email));
+		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();		
+		Evaluador evaluador = edao.read(email);
+		req.getSession().setAttribute( "evaluador", evaluador);		
+		req.getSession().setAttribute( "evaluaciones_list", evaluador.getEvaluaciones());
+		
 		getServletContext().getRequestDispatcher("/EvaluadorView.jsp").forward(req,resp);
 
 	}

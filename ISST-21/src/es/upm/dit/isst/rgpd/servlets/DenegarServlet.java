@@ -21,29 +21,44 @@ import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.model.Evaluacion;
 import es.upm.dit.isst.rgpd.model.Investigador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
+import es.upm.dit.isst.rgpd.model.EvaluacionKey;
 
-@WebServlet( "/CompletarServlet")
+@WebServlet( "/DenegarServlet")
 
-public class CompletarServlet extends HttpServlet{
+public class DenegarServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		String idsString = req.getParameter("id");
-		Long id = Long.parseLong(idsString);
+		//String idsString = req.getParameter( "ids" );
+		String ideString = req.getParameter("id");
+		Long id = Long.parseLong(ideString);
+		//Long ids = Long.parseLong(idsString);
+		
 		EvaluacionDAO edao = EvaluacionDAOImplementation.getInstance();
 		Evaluacion evaluacion = edao.read(id);
-		
-		
-		
+		//SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
+		//Solicitud solicitud = sdao.read(ids);
 		//primer evaluador
-		evaluacion.getSolicitud().setEstado(5);
+		if(evaluacion.getSolicitud().getEstado()==4 || evaluacion.getSolicitud().getEstado()==6) {
+			evaluacion.getSolicitud().setEstado(7);
+			evaluacion.setResultado("Denegado");
+		//segundo evaluador
+		}else if(evaluacion.getSolicitud().getEstado()==7) {
+			evaluacion.getSolicitud().setEstado(8);
+			evaluacion.setResultado("Denegado");
+		//incompleto
+		}else {
+			evaluacion.getSolicitud().setEstado(evaluacion.getSolicitud().getEstado());
+		}
+		//actualizo las tablas
+		//sdao.update(solicitud);
 		edao.update(evaluacion);
-
 		
 		//mando datos que necesita la siguiente vista
-		req.getSession().setAttribute("id", id);		
-		getServletContext().getRequestDispatcher( "/FaltanDatosView.jsp" ).forward( req, resp );
+		//req.getSession().setAttribute( "ids", ids );
+		req.getSession().setAttribute( "id", id );		
+		getServletContext().getRequestDispatcher( "/EvaluadorView.jsp" ).forward( req, resp );
 	
 	
 	}

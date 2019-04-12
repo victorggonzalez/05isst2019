@@ -54,6 +54,7 @@
 						<c:if test="${solicitudi.estado == 4}">
 						Enviada
 						</c:if>
+
 						<c:if test="${solicitudi.estado == 5}">
 						Falta ampliacion
 						</c:if>
