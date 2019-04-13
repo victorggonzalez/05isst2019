@@ -29,19 +29,19 @@
 				<th>Cantidad</th>
 			</tr>
 			<tr>
-					<td><a href="">Incompletas</a></td>
+					<td>Incompletas</td>
 					<td>${solicitudes_vacias}</td>
 				</tr>
 				<tr>
-					<td><a href="">En evaluación</a></td>
+					<td>En evaluación</td>
 					<td>${solicitudes_encurso}</td>
 				</tr>
 				<tr>
-					<td><a href="">Pendiente de ampliación</a></td>
+					<td>Pendiente de ampliación</td>
 					<td>${solicitudes_actualizar}</td>
 				</tr>
 				<tr>
-					<td><a href="">Cerradas</a></td>
+					<td>Cerradas</td>
 					<td>${solicitudes_cerradas}</td>
 				</tr>
 		</table>
