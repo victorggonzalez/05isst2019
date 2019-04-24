@@ -8,8 +8,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Investigador View</title>
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
+	<header id="header">
+					<h1>INVESTIGADOR</h1>
+					<nav id="nav">
+						<ul>	
+							<li><a href="LogoutServlet" class="button">Log Out</a></li>
+						</ul>
+					</nav>
+				</header>
 <shiro:user>
      Pulsa <a href="LogoutServlet">aqui</a> para salir.
 </shiro:user>
@@ -20,9 +29,10 @@
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="investigador">
-	<h2>¡Bienvenido investigador <shiro:principal />!</h2>
+
+	<h2><b>&nbsp;¡Bienvenido investigador <shiro:principal/>!</b></h2>
 	
-	<h3>Tus solicitudes</h3>
+	<h3>&nbsp;Información de tus solicitudes:<br><br></h3>
 		<table border="1">
 			<tr>
 				<th>Solicitudes</th>
@@ -50,16 +60,15 @@
 
 		<table border="1">
 			<tr>
-				<th>Título</th>
-				<th>id</th>
-				<th>Estado</th>
-				
-				<th>Formulario</th>
-				<th>Memoria</th>
-				<th>Enviado</th>
-				<th>Faltan datos</th>
-				<th>Ampliación</th>
-				<th>Ver solicitud</th>
+				<th><h4><b>Título</b></h4></th>
+				<th><h4><b>id</b></h4></th>
+				<th><h4><b>Estado</b></h4></th>
+				<th><h4><b>Formulario</b></h4></th>
+				<th><h4><b>Memoria</b></h4></th>
+				<th><h4><b>Enviado</b></h4></th>
+				<th><h4><b>Faltan datos</b></h4></th>
+				<th><h4><b>Ampliación</b></h4></th>
+				<th><h4><b>Ver solicitud</b></h4></th>
 			</tr>
 				<c:forEach items="${solicitudes_list}" var="solicitudi">
 				<tr>
@@ -104,11 +113,11 @@
 						<form action="ServeFileServlet">
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="tipoDocumento" value="memoria" />
-						<button type="submit">Descargar memoria</button>
+						<button type="submit" class="button small">Descargar memoria</button>
 						</form>
 						</c:if>
 					</td>
-					
+
 					<td>
 						<c:if test="${solicitudi.estado > 3}"> Si </c:if>
 						<c:if test="${solicitudi.estado < 4}"> No </c:if>
@@ -142,7 +151,7 @@
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="solicitudes_list" value="${solicitudes_list}" />
 						<input type="hidden" name="email" value="${investigador.email}" />
-						<button type="submit">Ver</button>
+						<button type="submit" class="button small">Ver</button>
 						</form>
 						</c:if>
 					</td>
@@ -150,11 +159,12 @@
 			</c:forEach>
 		</table>
 		
-		<h3>Crear una nueva solicitud</h3>
+		<h3><b>&nbsp;Crear una nueva solicitud</b></h3>
 			<form action="SolicitarServlet" method="post">
 				<input type="hidden" name="emailInvestigador" value="${investigador.email}" />
-				Título: <input type="text" name="titulo" />
-				<button type="submit">Crear solicitud</button>
+
+				<h3>&nbsp;Título: <input type="text" name="titulo" /></h3>
+				<button type="submit" class="button">Crear solicitud</button>
 			</form>
 	
 	
