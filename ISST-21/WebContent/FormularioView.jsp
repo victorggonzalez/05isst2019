@@ -12,6 +12,7 @@
 </head>
  
 <body>
+<<<<<<< HEAD
 <header id="header">
 					<h1>INVESTIGADOR</h1>
 					<nav id="nav">
@@ -98,5 +99,6 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 
 		</form>
 	</shiro:hasRole>
+
 </body>
 </html>
