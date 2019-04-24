@@ -6,18 +6,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
-<title>Faltan Datos View</title>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Faltan Datos</title>
+	<link rel="stylesheet" type="text/css" href="ISST-21/WebContent/CSS/estilos.css">
 </head>
-
 <body>
+<shiro:user> Pulsa <a href="LogoutServlet">aqui</a> para salir.
+</shiro:user>
+<hr>
+	<shiro:lacksRole name="evaluador">
+	No tienes permiso para ver el contenido de esta página
+	</shiro:lacksRole>
+	<shiro:hasRole name="evaluador">
 	
-	<h1>Indique los datos que el investigador debe añadir</h1>
+	<h2>Has solicitado una ampliación de la solicitud: ${titulo}</h2>
+	<p>Indique a continuación los datos que el investigador debe añadir</p>
 	<form action="EvaluacionIncompletaServlet" method="post">
-		<input type="text" name="faltandatos">
+		<textarea name="faltandatos" rows="10" cols="40" placeholder="Escribe aqui tus comentarios"></textarea>
 		<input type="hidden" name="id" value="${id}"/>
-		<button type="submit">Enviar</button>
+	
+		<p><button type="submit">Enviar</button></p>
 	</form>	
 	
+	</shiro:hasRole>
 </body>
 
 </html>

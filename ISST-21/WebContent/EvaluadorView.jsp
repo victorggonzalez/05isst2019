@@ -21,7 +21,7 @@
 				</header>
 				
 <shiro:user>
-    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
+    Pulsa <a href="LogoutServlet">aquí</a> para salir.
 </shiro:user>
 
 
@@ -30,7 +30,8 @@
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="evaluador">
-	<h2><b>&nbsp;¡Bienvenido <shiro:principal/>!</b></h2>
+
+	<h2><b>&nbsp;¡Bienvenido evaluador <shiro:principal/>!</b></h2>
 	
 	<h3>&nbsp;Información de tus evaluaciones:<br><br></h3>
 		
@@ -53,24 +54,40 @@
 					
 					<td>${evaluacioni.solicitud.titulo }</td>
 					<td>${evaluacioni.solicitud.id }</td>
-					<td>${evaluacioni.solicitud.estado}</td>
-				
-					
-					
+					<td><c:if test="${evaluacioni.solicitud.estado < 7}">
+						En evaluación
+						</c:if>
+						<c:if test="${evaluacioni.solicitud.estado  > 6}">
+						${evaluacioni.isResultado()}
+						</c:if>
+					</td>
 					<td><c:if test="${evaluacioni.solicitud.estado > 2}">
 						Formulario relleno
 						</c:if>
 					</td>
 					<td><c:if test="${evaluacioni.solicitud.estado > 3}">
 						<form action="ServeFileServlet">
-						<input type="hidden" name="id" value="${evaluacioni.id}" />
+
+						<input type="hidden" name="id" value="${evaluacioni.solicitud.id}" />
+						<input type="hidden" name="tipoDocumento" value="memoria" />
 						<button type="submit" class="button small">Descargar</button>
+
 						</form>
 						</c:if>
 					</td>
-					
-					
-					<td>Ampliación
+					<td><c:if test="${evaluacioni.solicitud.estado < 5}"> Ampliación no requerida </c:if>
+						<c:if test="${evaluacioni.solicitud.estado == 5}"> 
+						Esperando ampliación
+						</c:if>
+						<c:if test="${evaluacioni.solicitud.estado > 5 && evaluacioni.solicitud.ampliacion != null}"> 
+						<form action="ServeFileServlet">
+						<input type="hidden" name="id" value="${evaluacioni.solicitud.id}" />
+						<input type="hidden" name="tipoDocumento" value="ampliacion" />
+						<button type="submit" class="button small">Descargar ampliación</button>
+						</form>
+						</c:if>
+						<c:if test="${evaluacioni.solicitud.estado > 5 && evaluacioni.solicitud.ampliacion == null}"> 
+						 Ampliación no requerida </c:if>
 					</td>
 					
 					
@@ -81,7 +98,9 @@
 						<button type="submit" class="button small">Evaluar</button>
 						</form>
 						</c:if>
-						
+
+						<c:if test="${evaluacioni.isResultado() != 'Sin evaluar'}">Ya evaluado
+						</c:if>
 					</td>
 					<td>${evaluacioni.isResultado()}</td>
 						
