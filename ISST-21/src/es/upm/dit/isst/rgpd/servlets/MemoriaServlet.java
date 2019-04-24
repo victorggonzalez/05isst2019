@@ -3,6 +3,7 @@ package es.upm.dit.isst.rgpd.servlets;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,8 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import es.upm.dit.isst.rgpd.dao.EvaluadorDAO;
+import es.upm.dit.isst.rgpd.dao.EvaluadorDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
+import es.upm.dit.isst.rgpd.model.Evaluador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
 @MultipartConfig
 @WebServlet( "/MemoriaServlet")
@@ -35,6 +39,17 @@ public class MemoriaServlet extends HttpServlet {
 		solicitud.setMemoria(output.toByteArray());
 		solicitud.setEstado(3);
 		sdao.update(solicitud);
+		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
+		Collection<Evaluador> evaluadores = edao.readAll();
+
+		Object[] evaluadoresArray = evaluadores.toArray();
+
+		if (evaluadoresArray.length < 2) {
+			req.getSession().setAttribute("id", id);
+			req.getSession().setAttribute("solicitud", solicitud);
+			req.getSession().setAttribute("no_suficientes_investigadores", true);
+			getServletContext().getRequestDispatcher("/SolicitudView.jsp").forward(req, resp);
+		}
 		req.getSession().setAttribute( "id", id );
 		req.getSession().setAttribute( "solicitud", solicitud );
 		req.getSession().setAttribute( "emailInvestigador", req.getParameter("emailInvestigador") );

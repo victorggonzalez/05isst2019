@@ -1,6 +1,7 @@
 package es.upm.dit.isst.rgpd.servlets;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +13,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
+import es.upm.dit.isst.rgpd.dao.EvaluadorDAO;
+import es.upm.dit.isst.rgpd.dao.EvaluadorDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.InvestigadorDAO;
 import es.upm.dit.isst.rgpd.dao.InvestigadorDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
+import es.upm.dit.isst.rgpd.model.Evaluador;
 import es.upm.dit.isst.rgpd.model.Investigador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
 
@@ -60,7 +64,15 @@ public class SolicitarServlet extends HttpServlet {
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		sdao.create(solicitud);
 		Long id = solicitud.getId();
+		
+		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
+		Collection<Evaluador> evaluadores = edao.readAll();
 
+		Object[] evaluadoresArray = evaluadores.toArray();
+
+		if (evaluadoresArray.length < 2) {
+			req.getSession().setAttribute("no_suficientes_investigadores", true);
+		}
 		req.getSession().setAttribute("id", id);
 		req.getSession().setAttribute("solicitud", solicitud);
 		req.setAttribute("emailInvestigador", emailInvestigador);
