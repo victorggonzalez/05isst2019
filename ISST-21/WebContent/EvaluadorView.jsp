@@ -70,7 +70,7 @@
 
 						<input type="hidden" name="id" value="${evaluacioni.solicitud.id}" />
 						<input type="hidden" name="tipoDocumento" value="memoria" />
-						<button type="submit" class="button small">Descargar</button>
+						<button type="submit" class="button icon fa-download">Descargar</button>
 
 						</form>
 						</c:if>
@@ -83,7 +83,7 @@
 						<form action="ServeFileServlet">
 						<input type="hidden" name="id" value="${evaluacioni.solicitud.id}" />
 						<input type="hidden" name="tipoDocumento" value="ampliacion" />
-						<button type="submit" class="button small">Descargar ampliación</button>
+						<button type="submit" class="button icon fa-download">Descargar ampliación</button>
 						</form>
 						</c:if>
 						<c:if test="${evaluacioni.solicitud.estado > 5 && evaluacioni.solicitud.ampliacion == null}"> 
