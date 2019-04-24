@@ -32,7 +32,7 @@
 
 	<h2><b>&nbsp;¡Bienvenido investigador <shiro:principal/>!</b></h2>
 	
-	<h3>&nbsp;Información de tus solicitudes:<br><br></h3>
+	<h3>&nbsp;Tus solicitudes:<br><br></h3>
 		<table border="1">
 			<tr>
 				<th>Solicitudes</th>
@@ -113,7 +113,7 @@
 						<form action="ServeFileServlet">
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="tipoDocumento" value="memoria" />
-						<button type="submit" class="button small">Descargar memoria</button>
+						<button type="submit" class="button icon fa-download">Descargar memoria</button>
 						</form>
 						</c:if>
 					</td>
@@ -139,7 +139,7 @@
 						<form action="ServeFileServlet">
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="tipoDocumento" value="ampliacion" />
-						<button type="submit">Descargar ampliacion</button>
+						<button type="submit" class="button icon fa-download">Descargar ampliación</button>
 						</form>
 						</c:if>
 						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion == null}"> 
