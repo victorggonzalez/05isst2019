@@ -32,12 +32,11 @@ public class EnviarServlet extends HttpServlet {
 		Long id = Long.parseLong(idString);
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		Solicitud solicitud = sdao.read(id);
-
+		
+		//Comprobar si hay evaluadores suficientes
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		Collection<Evaluador> evaluadores = edao.readAll();
-
 		Object[] evaluadoresArray = evaluadores.toArray();
-
 		if (evaluadoresArray.length < 2) {
 			req.getSession().setAttribute("id", id);
 			req.getSession().setAttribute("solicitud", solicitud);

@@ -45,8 +45,8 @@
 				<th><h4><b>Formulario</b></h4></th>
 				<th><h4><b>Memoria</b></h4></th>
 				<th><h4><b>Ampliación</b></h4></th>
-				<th><h4><b>Evaluar solic.</b></h4></th>
 				<th><h4><b>Tu valoración</b></h4></th>
+				<th><h4><b></b></h4></th>
 				
 			</tr>
 				<c:forEach items="${evaluaciones_list}" var="evaluacioni">
@@ -90,19 +90,19 @@
 						 Ampliación no requerida </c:if>
 					</td>
 					
+					<td>${evaluacioni.isResultado()}</td>
 					
 					<td><c:if test="${evaluacioni.isResultado() == 'Sin evaluar'}">
 						<form action="EvaluarServlet" method="post">
 						<input type="hidden" name="id" value="${evaluacioni.id}" />
 						<input type="hidden" name="email" value="${evaluador.email}" />
-						<button type="submit" class="button small">Evaluar</button>
+						<button type="submit" class="button small">Evaluar solicitud</button>
 						</form>
 						</c:if>
 
 						<c:if test="${evaluacioni.isResultado() != 'Sin evaluar'}">Ya evaluado
 						</c:if>
 					</td>
-					<td>${evaluacioni.isResultado()}</td>
 						
 				</tr>
 			</c:forEach>

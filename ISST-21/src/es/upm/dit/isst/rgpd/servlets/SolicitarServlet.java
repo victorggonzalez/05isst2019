@@ -38,6 +38,15 @@ public class SolicitarServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		Investigador investigador = idao.read(email);
+		
+		//Comprobar si hay evaluadores suficientes
+		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
+		Collection<Evaluador> evaluadores = edao.readAll();
+		Object[] evaluadoresArray = evaluadores.toArray();
+		if (evaluadoresArray.length < 2) {
+			req.getSession().setAttribute("no_suficientes_investigadores", true);
+		}
+		
 		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudesPropias());
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 
@@ -65,14 +74,14 @@ public class SolicitarServlet extends HttpServlet {
 		sdao.create(solicitud);
 		Long id = solicitud.getId();
 		
+		//Comprobar si hay evaluadores suficientes
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		Collection<Evaluador> evaluadores = edao.readAll();
-
 		Object[] evaluadoresArray = evaluadores.toArray();
-
 		if (evaluadoresArray.length < 2) {
 			req.getSession().setAttribute("no_suficientes_investigadores", true);
 		}
+		
 		req.getSession().setAttribute("id", id);
 		req.getSession().setAttribute("solicitud", solicitud);
 		req.setAttribute("emailInvestigador", emailInvestigador);

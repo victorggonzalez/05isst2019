@@ -66,7 +66,7 @@ public class InvestigadorServlet extends HttpServlet {
 			else if(s.getEstado() == 8){
 				nSolCerrado++;
 			}
-			}
+		}
 		
 		req.getSession().setAttribute( "solicitudes_list", sinRepetir);
 		req.getSession().setAttribute( "solicitudes_vacias", nSolVacia);

@@ -31,28 +31,26 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 	<shiro:hasRole name="investigador">
 			
 		<c:if test="${solicitud.estado < 3}">
-		<h2><b>Sigue los pasos para completar tu solicitud</b></h2>
+		<h2><b>Siga los pasos para completar su solicitud</b></h2>
 		</c:if>
 		<c:if test="${solicitud.estado == 3}">
 		<h2><b>Has completado la solicitud correctamente.</b></h2>
 		</c:if>
-		<c:if test="${solicitud.estado < 3}">
+		<c:if test="${solicitud.estado < 4 }">
 		<h3>Rellena el siguiente formulario</h3>
 			<c:if test="${solicitud.estado == 1}">
 				<form action="FormularioServlet" method="get">
 					<input type="hidden" name="id" value="${id}" />
-					<button type="submit" class="button small">Rellenar
-						Formulario</button>
+					<button type="submit" class="button small">Rellenar Formulario</button>
 				</form>
 			</c:if>
 			<c:if test="${solicitud.estado > 1 && solicitud.estado < 4 }">
-				<button type="submit" class="button alt icon fa-check small" disabled>
-					Formulario relleno</button>
+				<button type="submit" class="button small" disabled>Rellenar Formulario</button>
+				Ha rellenado el formulario correctamente
 			</c:if>
 		<h3>Sube la memoria de tu trabajo</h3>
 			<c:if test="${solicitud.estado == 1}">
-				<button type="submit" disabled class="button small">Subir
-					memoria</button>
+				<button type="submit" class="button small" disabled >Subir memoria</button>
 			</c:if>
 			<c:if test="${solicitud.estado == 2}">
 				<form action="MemoriaServlet" method="post" enctype="multipart/form-data">
@@ -69,7 +67,7 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 				</form>
 			</c:if>
 			<c:if test="${solicitud.estado == 3}">
-				<button type = "submit"  class="button alt icon fa-check small" disabled> Memoria entregada </button>
+				<button type="submit" class="button small" disabled >Subir memoria</button> Ha entregado la memoria correctamente
 			</c:if>
 		
 		<h3>Para terminar el proceso, envía tu solicitud al Comité de Ética.</h3>
@@ -88,6 +86,7 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 						</form>
 					</c:if>
 					<c:if test="${no_suficientes_investigadores}">
+						<button type="submit" class="button small" disabled>Enviar solicitud</button>
 						<p>Aún no hay suficientes evaluadores, inténtalo más tarde.</p>
 					</c:if>
 				</c:if>
@@ -116,7 +115,7 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 			<p>${solicitud.faltanDatos} </p>
 			<h4>Sube un archivo con los datos requeridos. </h4>
 			<form action="AmpliacionServlet" method="post" enctype = "multipart/form-data">
-				<input type = "file" name = "ampliacion"  required/>
+				<input type = "file" name = "ampliacion" accept=".pdf"   required/>
 				<input type="hidden" name="id" value="${id}" />
 				<input type = "hidden" name = "emailInvestigador" value ="${emailInvestigador}" />	
 				<button type="submit" class="button small">Subir ampliación</button>
@@ -126,14 +125,14 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 			<h2><b>Has actualizado la solicitud correctamente.</b></h2>
 		</c:if>
 		
-<hr>
+<hr>	
+
 		<form action="InvestigadorServlet" method="get">
 			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
 			<p><button type="submit" class="button alt small">Atrás</button></p>
-
 		</form>
-		
+
 		</shiro:hasRole>
 		</body>
 </html>

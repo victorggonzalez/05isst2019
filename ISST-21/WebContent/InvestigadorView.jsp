@@ -32,11 +32,11 @@
 
 	<h2><b>&nbsp;¡Bienvenido investigador <shiro:principal/>!</b></h2>
 	
-	<h3>&nbsp;Tus solicitudes:<br><br></h3>
+	<h3>&nbsp;Tus solicitudes:<br></h3>
 		<table border="1">
 			<tr>
-				<th>Solicitudes</th>
-				<th>Cantidad</th>
+				<th><h4><b>Solicitudes</b></h4></th>
+				<th><h4><b>Cantidad</b></h4></th>
 			</tr>
 			<tr>
 					<td>Incompletas</td>
@@ -68,7 +68,7 @@
 				<th><h4><b>Enviado</b></h4></th>
 				<th><h4><b>Faltan datos</b></h4></th>
 				<th><h4><b>Ampliación</b></h4></th>
-				<th><h4><b>Ver solicitud</b></h4></th>
+				<th><h4><b></b></h4></th>
 			</tr>
 				<c:forEach items="${solicitudes_list}" var="solicitudi">
 				<tr>
@@ -133,7 +133,8 @@
 						
 						<c:if test="${solicitudi.estado < 5}"> Ampliación no requerida </c:if>
 						<c:if test="${solicitudi.estado == 5}"> 
-						Ampliación requerida. Pulsa en VER para enviar tu ampliación
+						Ampliación requerida. 
+						<p>Pulsa en Completar solicitud y envía la ampliación</p>
 						</c:if>
 						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion != null}"> 
 						<form action="ServeFileServlet">
@@ -151,7 +152,7 @@
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="solicitudes_list" value="${solicitudes_list}" />
 						<input type="hidden" name="email" value="${investigador.email}" />
-						<button type="submit" class="button small">Ver</button>
+						<button type="submit" class="button small">Completar solicitud</button>
 						</form>
 						</c:if>
 					</td>
@@ -163,7 +164,7 @@
 			<form action="SolicitarServlet" method="post">
 				<input type="hidden" name="emailInvestigador" value="${investigador.email}" />
 
-				<h3>&nbsp;Título: <input type="text" name="titulo" /></h3>
+				<h3>&nbsp;Título: <input type="text" name="titulo" required/></h3>
 				<button type="submit" class="button">Crear solicitud</button>
 			</form>
 	
