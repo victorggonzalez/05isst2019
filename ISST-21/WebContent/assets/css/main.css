@@ -11,7 +11,6 @@
 
 /* Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain) */
 
-
 	html, body, div, span, applet, object,
 	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 	pre, a, abbr, acronym, address, big, cite,
@@ -124,7 +123,8 @@
 		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		border-bottom: dotted 1px;
-		color: #e89980;
+
+		color: #2f78c6;
 		text-decoration: none;
 	}
 
@@ -142,7 +142,8 @@
 	}
 
 	p {
-		margin: 0 0 2em 0;
+
+		margin: 0 0 1em 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -2110,8 +2111,13 @@
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
+<<<<<<< HEAD
 			border-color: #e89980;
 			box-shadow: 0 0 0 2px #e89980;
+=======
+			border-color: #2f78c6;
+			box-shadow: 0 0 0 2px #2f78c6;
+>>>>>>> f2aea99751e549d4749caeea5978e648e8801276
 		}
 
 	select {
@@ -2211,8 +2217,13 @@
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
+<<<<<<< HEAD
 			border-color: #e89980;
 			box-shadow: 0 0 0 1px #e89980;
+=======
+			border-color: #2f78c6;
+			box-shadow: 0 0 0 1px #2f78c6;
+>>>>>>> f2aea99751e549d4749caeea5978e648e8801276
 		}
 
 	input[type="checkbox"] + label:before {
@@ -2247,10 +2258,11 @@
 
 	.box {
 		background: #fff;
-		border-radius: 6px;
+
+		border-radius: 4px;
 		box-shadow: 0 2px 0 0 #e5e5e5;
 		margin: 0 0 2em 0;
-		padding: 3em;
+		padding: 2em;
 	}
 
 		.box > :last-child {
@@ -2402,7 +2414,8 @@
 			}
 
 			.icon.major.accent2 {
-				background: #e89980;
+
+				background: #2f78c6;
 				color: #ffffff;
 			}
 
@@ -2828,7 +2841,8 @@
 		input[type="reset"].primary,
 		input[type="button"].primary,
 		.button.primary {
-			background-color: #e89980;
+
+			background-color: #2f78c6;
 			color: #ffffff !important;
 		}
 
@@ -3109,7 +3123,8 @@
 			}
 
 			.dropotron li.active > a, .dropotron li.active > span, .dropotron li:hover > a, .dropotron li:hover > span {
-				background: #e89980;
+
+				background: #2f78c6;
 				color: #ffffff;
 			}
 
@@ -3283,7 +3298,11 @@
 /* CTA */
 
 	#cta {
+<<<<<<< HEAD
 		background: #e89980;
+=======
+		background: #2f78c6;
+>>>>>>> f2aea99751e549d4749caeea5978e648e8801276
 		color: #f9e6df;
 		padding: 3.5em 0 4em 0;
 		text-align: center;
@@ -3305,7 +3324,8 @@
 		#cta .button {
 			box-shadow: none;
 			background: #fff;
-			color: #e89980;
+
+			color: #2f78c6;
 		}
 
 		#cta input[type="text"],
@@ -3439,7 +3459,8 @@
 		/* Box */
 
 			.box {
-				padding: 3em 2em;
+
+				padding: 2em 1em;
 			}
 
 				.box.features > section {
