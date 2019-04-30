@@ -97,7 +97,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-<hr>	
+
 
 		
 		

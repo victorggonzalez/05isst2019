@@ -17,11 +17,8 @@
 		<h1>INVESTIGADOR</h1>
 		<nav id="nav">
 		<ul>
-		<li><form action="InvestigadorServlet" method="get">
-			<input type = "hidden" name = "email" value ="${investigador.email}" />	
-			<p><button type="submit" class="button alt small">Inicio</button></p>
-		</form></li>
-			<li><a href="LogoutServlet" class="button">Log Out</a></li>
+		<li><a href="InvestigadorServlet?email=${investigador.email}" class="button">Inicio</a></li>
+			<li><a href="LogoutServlet" class="button">Log out</a></li>
 		</ul>
 		</nav>
 </header>
@@ -134,11 +131,26 @@
 		
 <hr>	
 
-		<form action="VerSolicitudServlet" method="get">
-			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
+		<form action="InvestigadorServlet" method="get">
+			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
-			<p><button type="submit" class="button alt small">Inicio</button></p>
+			<c:if test="${solicitud.estado < 4}">	
+				<input type = "hidden" name = "volverincompletas" value ="true" />
+			</c:if>
+			<c:if test="${solicitud.estado == 4}">	
+				<input type = "hidden" name = "volverencurso" value ="true" />
+			</c:if>
+			<c:if test="${solicitud.estado == 5}">	
+				<input type = "hidden" name = "volverampliacion" value ="true" />
+			</c:if>
+			<c:if test="${solicitud.estado > 5 && solicitud.estado < 8}">	
+				<input type = "hidden" name = "volverencurso" value ="true" />
+			</c:if>
+			<p><button type="submit" class="button alt small">Atrás</button></p>
 		</form>
+
+
+
 		</div>
 	</section>
 		<!-- Footer -->

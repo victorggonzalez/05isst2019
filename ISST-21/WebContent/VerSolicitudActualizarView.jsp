@@ -124,13 +124,8 @@
 				</tr>
 			</c:forEach>
 		</table>
-<hr>	
 
-		<form action="InvestigadorServlet" method="get">
-			<input type = "hidden" name = "email" value ="${investigador.email}" />	
-			<p><button type="submit" class="button alt small">Inicio</button></p>
-		</form>
-		
+
 	</div>
 	</section>
 <!-- Footer -->

@@ -17,7 +17,7 @@
 	<h1>INVESTIGADOR</h1>
 	<nav id="nav">
 		<ul>	
-			<li><a href="LogoutServlet" class="button">Log Out</a></li>
+			<li><a href="LogoutServlet" class="button">Log out</a></li>
 		</ul>
 	</nav>
 </header>

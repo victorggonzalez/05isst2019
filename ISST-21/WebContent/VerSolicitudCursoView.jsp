@@ -106,14 +106,14 @@
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="solicitudes_list" value="${solicitudes_list}" />
 						<input type="hidden" name="email" value="${investigador.email}" />
-						<button type="submit" class="button small">Completar solicitud</button>
+						<button type="submit" class="button small">Ver solicitud</button>
 						</form>
 						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
-<hr>	
+	
 
 		
 	</div>
