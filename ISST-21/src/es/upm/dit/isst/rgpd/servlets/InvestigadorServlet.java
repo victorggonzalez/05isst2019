@@ -42,6 +42,10 @@ public class InvestigadorServlet extends HttpServlet {
 		
 		Collection <Solicitud> solicitudesPropias = investigador.getSolicitudesPropias(); 
 		Collection <Solicitud> sinRepetir = new ArrayList <Solicitud>(); 
+		Collection <Solicitud> vacias = new ArrayList <Solicitud>(); 
+		Collection <Solicitud> curso = new ArrayList <Solicitud>(); 
+		Collection <Solicitud> ampliacion = new ArrayList <Solicitud>(); 
+		Collection <Solicitud> cerradas = new ArrayList <Solicitud>(); 
 		for(Solicitud s : solicitudesPropias) {
 			if(s != null) { 
 				if (!sinRepetir.contains(s)) { 
@@ -53,26 +57,36 @@ public class InvestigadorServlet extends HttpServlet {
 		for(Solicitud s : sinRepetir) {
 			if(s.getEstado()  < 4) { 
 				nSolVacia++;
+				vacias.add(s);
 			} 
 			else if(s.getEstado() == 4){
 				nSolCurso++;
+				curso.add(s);
 			}
 			else if(s.getEstado() == 5){
 				nSolActualiz++;
+				ampliacion.add(s);
 			}
 			else if(s.getEstado() > 5 && s.getEstado() < 8){
 				nSolCurso++;
+				curso.add(s);
 			}
 			else if(s.getEstado() == 8){
 				nSolCerrado++;
+				cerradas.add(s);
 			}
 		}
 		
 		req.getSession().setAttribute( "solicitudes_list", sinRepetir);
-		req.getSession().setAttribute( "solicitudes_vacias", nSolVacia);
-		req.getSession().setAttribute( "solicitudes_encurso", nSolCurso);
-		req.getSession().setAttribute( "solicitudes_actualizar", nSolActualiz);
-		req.getSession().setAttribute( "solicitudes_cerradas", nSolCerrado);
+		req.getSession().setAttribute( "solicitudes_vacias", vacias);
+		req.getSession().setAttribute( "solicitudes_encurso", curso);
+		req.getSession().setAttribute( "solicitudes_actualizar", ampliacion);
+		req.getSession().setAttribute( "solicitudes_cerradas", cerradas);
+		req.getSession().setAttribute( "n_solicitudes_vacias", nSolVacia);
+		req.getSession().setAttribute( "n_solicitudes_encurso", nSolCurso);
+		req.getSession().setAttribute( "n_solicitudes_actualizar", nSolActualiz);
+		req.getSession().setAttribute( "n_solicitudes_cerradas", nSolCerrado);
+		
 		 
 		
 		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);

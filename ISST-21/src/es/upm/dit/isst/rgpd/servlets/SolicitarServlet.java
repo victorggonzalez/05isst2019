@@ -43,7 +43,23 @@ public class SolicitarServlet extends HttpServlet {
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		Collection<Evaluador> evaluadores = edao.readAll();
 		Object[] evaluadoresArray = evaluadores.toArray();
-		if (evaluadoresArray.length < 2) {
+		
+
+		//Variable para comprobar la existencia de evaluadores suficientes
+		int evaluadoresDelAreaPosibles = 0;
+
+		
+		//Comprueba los evaluadores disponibles del mismo area que el investigador
+		for (int i=0; i<evaluadoresArray.length; i++) {
+			if( ((Evaluador) evaluadoresArray[i]).getArea() ==  solicitud.getInvestigador().getArea()
+					&&
+					((Evaluador) evaluadoresArray[i]).getGrupo() != solicitud.getInvestigador().getGrupo()) {
+				evaluadoresDelAreaPosibles++;
+			}
+		}
+		
+		//Comprueba que dentro de ese area los evaluadores son 2 o más
+		if (evaluadoresDelAreaPosibles < 2) {
 			req.getSession().setAttribute("no_suficientes_investigadores", true);
 		}
 		
@@ -84,7 +100,7 @@ public class SolicitarServlet extends HttpServlet {
 		
 		req.getSession().setAttribute("id", id);
 		req.getSession().setAttribute("solicitud", solicitud);
-		req.setAttribute("emailInvestigador", emailInvestigador);
+		req.getSession().setAttribute("emailInvestigador", emailInvestigador);
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 		
 	}

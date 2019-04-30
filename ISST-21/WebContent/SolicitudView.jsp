@@ -9,37 +9,46 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Solicitud View</title>
 	<link rel="stylesheet" href="assets/css/main.css">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="assets/css/w3.css">
 </head>
 <body>
+<!-- Header -->
 <header id="header">
-					<h1>INVESTIGADOR</h1>
-					<nav id="nav">
-						<ul>	
-							<li><a href="LogoutServlet" class="button">Salir</a></li>
-						</ul>
-					</nav>
-				</header>
+		<h1>INVESTIGADOR</h1>
+		<nav id="nav">
+		<ul>
+		<li><form action="InvestigadorServlet" method="get">
+			<input type = "hidden" name = "email" value ="${investigador.email}" />	
+			<p><button type="submit" class="button alt small">Inicio</button></p>
+		</form></li>
+			<li><a href="LogoutServlet" class="button">Log Out</a></li>
+		</ul>
+		</nav>
+</header>
 <shiro:user>
-Pulsa <a href="LogoutServlet">aqui</a> para salir.
 </shiro:user>
 
-<hr>
 	<shiro:lacksRole name="investigador">
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="investigador">
-			
-		<c:if test="${solicitud.estado < 3}">
+		
+	<!-- Main -->	
+	<section id="main" class="container">
+	<header     style="margin: 0 0 2em 0">
+		<c:if test="${solicitud.estado < 4}">
 		<h2><b>Siga los pasos para completar su solicitud</b></h2>
 		</c:if>
-		<c:if test="${solicitud.estado == 3}">
-		<h2><b>Has completado la solicitud correctamente.</b></h2>
+		<c:if test="${solicitud.estado == 5}">
+			<h2><b>Hay una petición de ampliación para esta solicitud</b></h2>
 		</c:if>
+		
+	</header>
+	<div class="box">
 		<c:if test="${solicitud.estado < 4 }">
-		<h3>Rellena el siguiente formulario</h3>
+		<h3><b>Rellene el siguiente formulario</b></h3>
 			<c:if test="${solicitud.estado == 1}">
-				<form action="FormularioServlet" method="get">
+				<form action="FormularioServlet" method="get" style="margin:0">
 					<input type="hidden" name="id" value="${id}" />
 					<button type="submit" class="button small">Rellenar Formulario</button>
 				</form>
@@ -48,29 +57,28 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 				<button type="submit" class="button small" disabled>Rellenar Formulario</button>
 				Ha rellenado el formulario correctamente
 			</c:if>
-		<h3>Sube la memoria de tu trabajo</h3>
+		<h3><b>Suba la memoria de su trabajo</b></h3>
 			<c:if test="${solicitud.estado == 1}">
 				<button type="submit" class="button small" disabled >Subir memoria</button>
 			</c:if>
 			<c:if test="${solicitud.estado == 2}">
-				<form action="MemoriaServlet" method="post" enctype="multipart/form-data">
+				<form action="MemoriaServlet" method="post" enctype="multipart/form-data"  style="margin:0">
 					<div>
-						<label for="file"><b>Elige un archivo (PDF)</b></label> 
 						<input type="file" name="file" id="file" accept=".pdf" class="inputfile" required/>
 					</div>
 					<input type="hidden" name="id" value="${id}" /> 
 					<input type="hidden" name="emailInvestigador" value="${emailInvestigador}" />
 					<div>
 					<p></p>
-					<p><button type="submit" class="button small">Subir memoria</button>
-					</p></div>
+					<button type="submit" class="button small">Subir memoria</button>
+					</div>
 				</form>
 			</c:if>
 			<c:if test="${solicitud.estado == 3}">
 				<button type="submit" class="button small" disabled >Subir memoria</button> Ha entregado la memoria correctamente
 			</c:if>
 		
-		<h3>Para terminar el proceso, envía tu solicitud al Comité de Ética.</h3>
+		<h3><b>Para terminar el proceso, envíe su solicitud al Comité de Ética.</b></h3>
 				<c:if test="${solicitud.estado < 3}">
 					<button type="submit" class="button small" disabled>Enviar solicitud</button>
 				</c:if>
@@ -109,11 +117,10 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 			<h2><b>Solicitud enviada para evaluar.</b></h2>
 		</c:if>
 		<c:if test="${solicitud.estado == 5}">
-			<h2><b>Hay una petición de ampliación para esta solicitud</b></h2>
-			<h4>Los datos solicitados se muestran a continuación:</h4>
+			<h3><b>Los datos solicitados se muestran a continuación:</b></h3>
 			
 			<p>${solicitud.faltanDatos} </p>
-			<h4>Sube un archivo con los datos requeridos. </h4>
+			<h3><b>Sube un archivo con los datos requeridos.</b></h3>
 			<form action="AmpliacionServlet" method="post" enctype = "multipart/form-data">
 				<input type = "file" name = "ampliacion" accept=".pdf"   required/>
 				<input type="hidden" name="id" value="${id}" />
@@ -127,12 +134,19 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 		
 <hr>	
 
-		<form action="InvestigadorServlet" method="get">
+		<form action="VerSolicitudServlet" method="get">
 			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
-			<p><button type="submit" class="button alt small">Atrás</button></p>
+			<p><button type="submit" class="button alt small">Inicio</button></p>
 		</form>
-
+		</div>
+	</section>
+		<!-- Footer -->
+	<footer id="footer">
+				<ul class="copyright">
+					<li>&copy; Proyecto RGPD. All rights reserved.</li><li>Design: Grupo 21</li>
+				</ul>
+	</footer>
 		</shiro:hasRole>
 		</body>
 </html>

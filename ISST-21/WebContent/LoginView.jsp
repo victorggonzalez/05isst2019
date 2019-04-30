@@ -6,59 +6,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login View</title>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link href="CSS/estilos.css" rel="stylesheet" type="text/css">
-<link href="CSS/login.css" rel="stylesheet" type="text/css">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Login View</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 </head>
 
 <body>
 	<shiro:guest>
-	<div class="bgimg">
-		<h1>Reglamento General de Protección de Datos</h1>
-		<hr>
-		<div class="row">
-			<div class="column" >
-			<h2>Login</h2>
-			<form action="LoginServlet" method="post">
-				<p><input type="text" name="email" placeholder="Email" /></p>
-				<p><input type="password" name="password"
-					placeholder="Password" /></p>
-				<button type="submit">Login</button>
-			</form>
+
+<!-- Header -->
+	<header id="header">
+		<h1><a href="index.html">Proyecto RGPD</a> by Grupo 21</h1>
+	</header>
+<!-- Main -->
+		<section id="main" class="container medium">
+			<header     style="margin: 0 0 2em 0">
+			
+			<img src="images/logoUpm.jpg" alt="" style="border-radius:8px">
+			<h2>Reglamento General de Protección de Datos</h2>
+			</header>
+			<div class="box">
+				<h3>Login</h3>
+				<form action="LoginServlet" method="post">
+					<p>
+					Email: <input type="text" name="email" placeholder="Email" />
+					</p>
+					<p>
+					Password: <input type="password" name="password"
+						placeholder="Password" />
+					</p>
+					<button type="submit" class="button special" style="margin:1em">Login</button>
+					<a href="RegisterView.jsp" >Pincha aqui si no estás registrado.</a>
+				</form>
 			</div>
-			<div class="column" >
-				<div class="login-main-text row">
-					<h2 class="col-8">Register</h2>
-				</div>
-				<div class="login-form">
-					<form action="RegisterServlet" method="post">
-						<div class="form-group"><p>Nombre: <input type="text" name="name" />
-						</p></div>
-						<div class="form-group"><p>Email: <input type="text" name="email" />
-						</p></div>
-						<div class="form-group"><p>Password: <input type="password" name="password" />
-						</p></div>
-						<div class="form-group"><p>Área de investigación: <input type="text" name="area" />
-						</p></div>
-						<div class="form-group"><p>Grupo de investigación: <input type="text" name="grupo" />
-						</p></div>
-						<div class="form-group"><p>Rol: <select name="roll">
-								<option value="" disabled selected>Elija un rol</option>
-								<option value="investigador">Investigador</option>
-								<option value="evaluador">Evaluador</option>
-							</select>
-						</p></div>
-						<button type="submit" class="col-12 btn btn-black">Registrar</button>
-						<span class="col-12"></span>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>	
+		</section>
+
+		<!-- Footer -->
+	<footer id="footer">
+				<ul class="copyright">
+					<li>&copy; Proyecto RGPD. All rights reserved.</li><li>Design: Grupo 21</li>
+				</ul>
+	</footer>
+
 	</shiro:guest>
 
 	<shiro:user>
