@@ -27,7 +27,7 @@ public class EnviarServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		String idString = req.getParameter( "id" );
 		Long id = Long.parseLong(idString);
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
@@ -37,26 +37,79 @@ public class EnviarServlet extends HttpServlet {
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		Collection<Evaluador> evaluadores = edao.readAll();
 		Object[] evaluadoresArray = evaluadores.toArray();
-		if (evaluadoresArray.length < 2) {
+		
+		//Variable para comprobar la existencia de evaluadores suficientes
+		int evaluadoresDelArea = 0;
+		
+		//Colección de evaluadores del mismo area
+		Collection<Evaluador> evaluadoresPosibles = evaluadores;
+		
+		//Comprueba los evaluadores disponibles del mismo area que el investigador
+		for (int i=0; i<evaluadoresArray.length; i++) {
+			if( ((Evaluador) evaluadoresArray[i]).getArea() ==  solicitud.getInvestigador().getArea() 
+					&&
+					((Evaluador) evaluadoresArray[i]).getGrupo() != solicitud.getInvestigador().getGrupo()) {
+				evaluadoresDelArea++;
+			} else {
+				evaluadoresPosibles.remove((Evaluador) evaluadoresArray[i]);
+			}
+		}
+		
+		//Comprueba que no son menos de 2
+		if(evaluadoresDelArea < 2){
+			req.getSession().setAttribute("id", id);
+			req.getSession().setAttribute("solicitud", solicitud);
+			req.getSession().setAttribute("no_suficientes_investigadores", true);
+			getServletContext().getRequestDispatcher("/SolicitudView.jsp").forward(req, resp);
+		}
+		
+		/*if (evaluadoresArray.length < 2) {
 			req.getSession().setAttribute("id", id);
 			req.getSession().setAttribute("solicitud", solicitud);
 			req.getSession().setAttribute("no_suficientes_investigadores", true);
 			getServletContext().getRequestDispatcher("/SolicitudView.jsp").forward(req, resp);
 
-		} else {
+		} */
+			
+			else { 
 
 			solicitud.setEstado(4);
 			sdao.update(solicitud);
 			
+			//Selección del primer evaluador entre todos los posibles
+			Object[] evaluadoresPosiblesArray = evaluadoresPosibles.toArray();
+			Evaluador evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[0];
+			for (int i=0; i<evaluadoresPosiblesArray.length; i++) {
+				if(((Evaluador) evaluadoresPosiblesArray[i]).getEvaluaciones().toArray().length < evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
+					evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[i];
+				}
+			}
+			
+			evaluadoresPosibles.remove(evaluadorConMenosCarga1);
+			
+			//Nuevo array de evaluadores posibles sin el seleccionado anteriormente
+			Object[] evaluadoresPosiblesArray2 = evaluadoresPosibles.toArray();
+			Evaluador evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[0];
+			for (int i=0; i<evaluadoresPosiblesArray2.length; i++) {
+				if(((Evaluador) evaluadoresPosiblesArray2[i]).getEvaluaciones().toArray().length < evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
+					evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[i];
+				}
+			}
+			
+			
+			
+			//Asignación del primer evaluador
 			  Evaluacion evaluacion1 = new Evaluacion();
-			  evaluacion1.setEvaluador((Evaluador) evaluadoresArray[0]);
+			  evaluacion1.setEvaluador(evaluadorConMenosCarga1);
 			  evaluacion1.setSolicitud(solicitud);
 			  evaluacion1.setResultado("Sin evaluar");
 			  
+			//Asignación del segundo evaluador
 			  Evaluacion evaluacion2 = new Evaluacion();
-			  evaluacion2.setEvaluador((Evaluador) evaluadoresArray[1]);
+			  evaluacion2.setEvaluador(evaluadorConMenosCarga2);
 			  evaluacion2.setSolicitud(solicitud);
 			  evaluacion2.setResultado("Sin evaluar");
+			  
 			  
 			  EvaluacionDAO evdao = EvaluacionDAOImplementation.getInstance();
 			  evdao.create(evaluacion1); 

@@ -51,7 +51,9 @@ No tienes permiso para ver el contenido de esta página
 				<td>${n_solicitudes_actualizar}</td>
 			</tr>
 			<tr>
+
 				<td><a href="VerSolicitudCerradaView.jsp">Cerradas</a></td>
+
 				<td>${n_solicitudes_cerradas}</td>
 			</tr>
 		</table>

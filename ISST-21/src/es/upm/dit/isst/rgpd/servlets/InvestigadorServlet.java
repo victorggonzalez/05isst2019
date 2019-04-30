@@ -86,6 +86,7 @@ public class InvestigadorServlet extends HttpServlet {
 		req.getSession().setAttribute( "n_solicitudes_encurso", nSolCurso);
 		req.getSession().setAttribute( "n_solicitudes_actualizar", nSolActualiz);
 		req.getSession().setAttribute( "n_solicitudes_cerradas", nSolCerrado);
+
 		
 		if (req.getParameter("volverincompletas") != null) {
 			getServletContext().getRequestDispatcher("/VerSolicitudVaciaView.jsp").forward(req,resp);
