@@ -19,6 +19,7 @@
 		<ul>
 		<li><a href="InvestigadorServlet?email=${investigador.email}" class="button">Inicio</a></li>
 			<li><a href="LogoutServlet" class="button">Log out</a></li>
+
 		</ul>
 		</nav>
 </header>
@@ -131,6 +132,7 @@
 		
 <hr>	
 
+<<<<<<< HEAD
 		<form action="InvestigadorServlet" method="get">
 			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
@@ -151,6 +153,13 @@
 
 
 
+=======
+		<form action="VerSolicitudServlet" method="get">
+			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
+			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
+			<p><button type="submit" class="button alt small">Inicio</button></p>
+		</form>
+>>>>>>> 1f66a443e348565321da34b8ce79e017850590e4
 		</div>
 	</section>
 		<!-- Footer -->
