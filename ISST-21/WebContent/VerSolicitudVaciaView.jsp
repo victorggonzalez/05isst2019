@@ -25,17 +25,22 @@
 </shiro:user>
 
 
-	<shiro:lacksRole name="investigador">
-	No tienes permiso para ver el contenido de esta página
-	</shiro:lacksRole>
-	<shiro:hasRole name="investigador">
+<shiro:lacksRole name="investigador">
+No tienes permiso para ver el contenido de esta página
+</shiro:lacksRole>
+
+<shiro:hasRole name="investigador">
+	
 	<!-- Main -->
 	<section id="main" class="container">
 	<header     style="margin: 0 0 2em 0">
 	<h2><b>Información de tus solicitudes incompletas</b></h2>
 	</header>
 	<div class="box">
-	
+	<c:if test="${empty solicitudes_vacias}">
+	<h3><b><center>No hay elementos para mostrar</center></b></h3>
+	</c:if>
+	<c:if test="${!empty solicitudes_vacias}">
 		<table border="1">
 			<tr>
 				<th><h4><b>Título</b></h4></th>
@@ -100,7 +105,7 @@
 
 
 		
-		
+	</c:if>
 	</div>
 	</section>
 <!-- Footer -->

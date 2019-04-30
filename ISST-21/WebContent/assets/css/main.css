@@ -2110,20 +2110,9 @@
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		select:focus,
-<<<<<<< HEAD
 		textarea:focus {	
 			border-color: #2f78c6;
 			box-shadow: 0 0 0 2px #2f78c6;
-=======
-		textarea:focus {
-<<<<<<< HEAD
-			border-color: #e89980;
-			box-shadow: 0 0 0 2px #e89980;
-=======
-			border-color: #2f78c6;
-			box-shadow: 0 0 0 2px #2f78c6;
->>>>>>> f2aea99751e549d4749caeea5978e648e8801276
->>>>>>> 1f66a443e348565321da34b8ce79e017850590e4
 		}
 
 	select {
@@ -2223,19 +2212,10 @@
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-<<<<<<< HEAD
+
 
 			border-color: #2f78c6;
 			box-shadow: 0 0 0 1px #2f78c6;
-=======
-<<<<<<< HEAD
-			border-color: #e89980;
-			box-shadow: 0 0 0 1px #e89980;
-=======
-			border-color: #2f78c6;
-			box-shadow: 0 0 0 1px #2f78c6;
->>>>>>> f2aea99751e549d4749caeea5978e648e8801276
->>>>>>> 1f66a443e348565321da34b8ce79e017850590e4
 		}
 
 	input[type="checkbox"] + label:before {
@@ -3324,11 +3304,8 @@
 /* CTA */
 
 	#cta {
-<<<<<<< HEAD
-		background: #e89980;
-=======
+
 		background: #2f78c6;
->>>>>>> f2aea99751e549d4749caeea5978e648e8801276
 		color: #f9e6df;
 		padding: 3.5em 0 4em 0;
 		text-align: center;
