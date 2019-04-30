@@ -6,12 +6,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Evaluacion</title>
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<shiro:user> Pulsa <a href="LogoutServlet">aqui</a> para salir.
+
+	<header id="header">
+					<h1>EVALUADOR</h1>
+					<nav id="nav">
+						<ul>	
+							<li><a href="LogoutServlet" class="button">Log Out</a></li>
+						</ul>
+					</nav>
+				</header>
+<shiro:user>
+     Pulsa <a href="LogoutServlet">aqui</a> para salir.
 </shiro:user>
+
+
 
 <shiro:lacksRole name="evaluador">
 No tienes permiso para ver el contenido de esta página
@@ -31,9 +44,12 @@ No tienes permiso para ver el contenido de esta página
 			</td>
 			</tr>
 </table>
-<h3>Descarga de la memoria</h3>
-	<form action = "DescargarMemoriaServlet" method = "post">		
-		<button type = "submit">Descargar Memoria</button>
+<h2>Descarga de la memoria</h2>
+	
+	<form action = "DescargarMemoriaServlet" method = "post">	
+		<center>	
+		<button type = "submit" class="button icon fa-download">Descargar Memoria</button>
+		</center>
 	</form>
 		
 <tr>
@@ -41,8 +57,11 @@ No tienes permiso para ver el contenido de esta página
 		<p></p><c:if test="${evaluacion.solicitud.estado == 4}">
 			<form action="CompletarServlet" method = "post">
 			Si crees que faltan datos para poder evaluar el proyecto, pulsa aquí
+			<p></p>
+			<center>
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<button type="submit">Completar</button>
+				<button type="submit" class="button small">Completar</button>
+			</center>
 			</form>
 		</c:if>
 	</td>
@@ -59,8 +78,11 @@ No tienes permiso para ver el contenido de esta página
 			<p></p>
 			<form action="AceptarServlet" method = "post">
 			Si crees que el proyecto cumple el RGPD, pulsa aquí para aceptar el proyecto
+			<p></p>
+			<center>
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<button type="submit">Aceptar</button>
+				<button type="submit" class="button small">Aceptar</button>
+			</center>
 			</form>
 			</c:if>
 	</td>
@@ -69,8 +91,11 @@ No tienes permiso para ver el contenido de esta página
 			<p></p>
 			<form action="DenegarServlet" method = "post">
 			Si crees que el proyecto no cumple el RGPD, pulsa aquí para rechazar el proyecto
+			<p></p>
+			<center>
 				<input type="hidden" name="id" value="${evaluacion.id}" />
-				<button type="submit">Rechazar</button>
+				<button type="submit" class="button small">Rechazar</button>
+			</center>
 			</form>
 		</c:if>	
 	</td>
@@ -79,7 +104,7 @@ No tienes permiso para ver el contenido de esta página
 		<form action="EvaluadorServlet" method="get">
 			<input type = "hidden" name = "email" value ="${evaluacion.evaluador.email}" />	
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
-			<p><button type="submit">Atrás</button></p>
+			<p><button type="submit" class="button alt small">Atrás</button></p>	
 		</form>
 	
 
