@@ -12,32 +12,33 @@
 </head>
  
 <body>
-<<<<<<< HEAD
+<!-- Header -->
 <header id="header">
-					<h1>INVESTIGADOR</h1>
-					<nav id="nav">
-						<ul>	
-							<li><a href="LogoutServlet" class="button">Log Out</a></li>
-						</ul>
-					</nav>
-				</header>
+	<h1>INVESTIGADOR</h1>
+	<nav id="nav">
+		<ul>	
+			<li><a href="LogoutServlet" class="button">Log Out</a></li>
+		</ul>
+	</nav>
+</header>
 <shiro:user>
-Pulsa <a href="LogoutServlet">aqui</a> para salir.
+
 </shiro:user>
 <hr>
-
 	<shiro:lacksRole name="investigador">
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="investigador">
-		<h2><b>Rellene el formulario con los aspectos relacionados con su
+		
+	<!-- Main -->	
+	<section id="main" class="container">
+		<header     style="margin: 0 0 2em 0">
+			<h2><b>Rellene el formulario con los aspectos relacionados con su
 			solicitud</b></h2>
-
+		</header>
+		<div class="box">
+		<h3>Marque los campos que considere:</h3>
 		<form action="FormularioServlet" method="post">
-
-
-			<h3>Marque los campos que considere:</h3>
-
 			<p><input type="checkbox" id="seleccion1" name="seleccion" value="Datos personales reveladores ">
 			<label for="seleccion1">¿Se tratan datos
 				personales que revelen el origen étnico o racial, las opiniones
@@ -92,12 +93,15 @@ Pulsa <a href="LogoutServlet">aqui</a> para salir.
 
 			<input type="hidden" name="id" value="${id}"> 
 			<input type="hidden" name="solicitud" value="${solicitud}">
-
-
-
-
-
 		</form>
+</div>
+</section>
+<!-- Footer -->
+	<footer id="footer">
+				<ul class="copyright">
+					<li>&copy; Proyecto RGPD. All rights reserved.</li><li>Design: Grupo 21</li>
+				</ul>
+	</footer>
 	</shiro:hasRole>
 
 </body>
