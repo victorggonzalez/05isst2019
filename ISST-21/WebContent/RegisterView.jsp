@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Login View</title>
+	<title>Proyecto RGPD</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
@@ -22,24 +22,29 @@
 					</nav>
 	</header>
 <!-- Main -->
+
 		<section id="main" class="container">
 			<div class="box">
 				<h2>Registro</h2>
+				<c:if test="${repetido != null}">
+					<h7  style = "color: #FC8080;">El email indicado ya está registrado</h7>
+				</c:if>
 				<form action="RegisterServlet" method="post">
 					<p>
-					Nombre: <input type="text" name="name" placeholder="Nombre" />
+					Nombre: <input type="text" name="name" placeholder="Nombre" required/>
 					</p>
 					<p>
-					Email: <input type="text" name="email" placeholder="Email" />
+					Email: <input type="text" name="email" placeholder="Email  @upm.es  @alumnos.upm.es" 
+					pattern=".+@upm.es|.+@alumnos.upm.es" title="Email @upm.es @alumnos.upm.es" required/>
 					</p>
 					<p>
-					Password: <input type="password" name="password" placeholder="Password" /> 
+					Password: <input type="password" name="password" placeholder="Password" required /> 
 					</p>
 					<p>
-					Área de investigación: <input type="text" name="area" placeholder="Área" /> 
+					Área de investigación: <input type="text" name="area" placeholder="Área"  required/> 
 					</p>
 					<p>
-					Grupo de investigación: <input type="text" name="grupo" placeholder="Grupo" />
+					Grupo de investigación: <input type="text" name="grupo" placeholder="Grupo" required />
 					</p>
 					
 					<p style="margin:0 0 0 0">
