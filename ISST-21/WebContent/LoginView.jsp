@@ -39,7 +39,7 @@
 				</c:if>
 				<form action="LoginServlet" method="post">
 					<p>
-					Email: <input type="text" name="email" placeholder="Email" required />
+					Email: <input type="text" name="email" placeholder="Email  @upm.es  @alumnos.upm.es"  required />
 					</p>
 					<p>
 					Password: <input type="password" name="password"
