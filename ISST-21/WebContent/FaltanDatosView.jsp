@@ -9,27 +9,61 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Faltan Datos</title>
-	<link rel="stylesheet" type="text/css" href="ISST-21/WebContent/CSS/estilos.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
-<shiro:user> Pulsa <a href="LogoutServlet">aqui</a> para salir.
-</shiro:user>
+	<shiro:user>
+	<header id="header">
+		<h1>EVALUADOR</h1>
+		<nav id="nav">
+			<ul>				
+			  <li>
+			    <form action="LogoutServlet" method="get">
+			    	<p><a class="button">Log Out</a></p>
+			    </form>
+			  </li>			  
+			  <li>
+			  	<form action="EvaluarServlet" method="post">
+					<input type="hidden" name="id" value="${id}"/>
+					<input type = "hidden" name = "email" value ="${email}" />	
+					<p><a class="button">Back</a></p>
+				</form>
+			  </li>
+			</ul>
+		</nav>
+	</header>
+	</shiro:user>
+
 <hr>
 	<shiro:lacksRole name="evaluador">
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="evaluador">
-	
-	<h2>Has solicitado una ampliación de la solicitud: ${titulo}</h2>
-	<p>Indique a continuación los datos que el investigador debe añadir</p>
-	<form action="EvaluacionIncompletaServlet" method="post">
-		<textarea name="faltandatos" rows="10" cols="40" placeholder="Escribe aqui tus comentarios"></textarea>
-		<input type="hidden" name="id" value="${id}"/>
-	
-		<p><button type="submit">Enviar</button></p>
-	</form>	
+	<section id="main" class="container medium">
+		<header>
+			<h2>Has solicitado una ampliación de la solicitud: ${titulo}</h2>
+			<p>Indique a continuación los datos que el investigador debe añadir</p>
+		</header>
+		<div>
+			<form action="EvaluacionIncompletaServlet" method="post">
+				<textarea name="faltandatos" rows="10" cols="40" placeholder="Escribe aqui tus comentarios"></textarea>
+				<input type="hidden" name="id" value="${id}"/>
+				<p>
+				<ul class="actions special">
+					<button type="submit" class="button special big" style="width:150px; height:50px; font-size: 12pt;">Enviar</button>
+				</ul>
+			</form>	
+		</div>
+	</section>
 	
 	</shiro:hasRole>
+	<footer id="footer">
+		<ul class="copyright">
+			<li>&copy; Proyecto RGPD. All rigths reserved.</li>
+			<li>Design: Grupo 21</li>
+		</ul>
+	</footer>
+
 </body>
 
 </html>

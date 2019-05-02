@@ -16,8 +16,19 @@
 <header id="header">
 	<h1>INVESTIGADOR</h1>
 	<nav id="nav">
-		<ul>
-			<li><a href="LogoutServlet" class="button">Log out</a></li>
+		<ul>	
+			<li>
+			    <form action="LogoutServlet" method="get">
+			    	<p><button type="submit" class="button">Log Out</button></p>
+			    </form>
+			</li>			  
+			<li>
+			  	<form action="SolicitarServlet" method="post">
+					<input type="hidden" name="id" value="${id}"/>
+					<input type="hidden" name="email" value="${email}"/>	
+					<p><button type="submit" class="button">Back</button></p>
+				</form>
+			</li>
 		</ul>
 	</nav>
 </header>
@@ -25,19 +36,20 @@
 
 </shiro:user>
 <hr>
+<div class="margen">
 	<shiro:lacksRole name="investigador">
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="investigador">
 		
 	<!-- Main -->	
-	<section id="main" class="container">
+	<section id="main" class="container medium">
 		<header     style="margin: 0 0 2em 0">
 			<h2><b>Rellene el formulario con los aspectos relacionados con su
 			solicitud</b></h2>
+			<p>Marque los campos que considere:</p>
 		</header>
-		<div class="box">
-		<h3>Marque los campos que considere:</h3>
+		<div>
 		<form action="FormularioServlet" method="post">
 			<p><input type="checkbox" id="seleccion1" name="seleccion" value="Datos personales reveladores ">
 			<label for="seleccion1">¿Se tratan datos
@@ -86,9 +98,9 @@
 				autoridades públicas o ha sido autorizado por el derecho de la
 				unión?</label>
 			</p>
-			<p>
-				<input type="submit" name="submit" value="Enviar">
-			</p>
+			<ul class="actions special">
+					<button type="submit" class="button special big" style="width:150px; height:50px; font-size: 12pt;">Enviar</button>
+			</ul>
 
 
 			<input type="hidden" name="id" value="${id}"> 
@@ -96,13 +108,15 @@
 		</form>
 </div>
 </section>
+</shiro:hasRole>
+</div>
 <!-- Footer -->
 	<footer id="footer">
 				<ul class="copyright">
 					<li>&copy; Proyecto RGPD. All rights reserved.</li><li>Design: Grupo 21</li>
 				</ul>
 	</footer>
-	</shiro:hasRole>
+
 
 </body>
 </html>
