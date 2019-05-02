@@ -1,6 +1,7 @@
 package es.upm.dit.isst.rgpd.servlets;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,16 +21,26 @@ import es.upm.dit.isst.rgpd.dao.EvaluadorDAOImplementation;
 public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// Para en el LoginView saber si hay ya suficietes evaluadores
+		//Ver si se acaba de registrar
+		String registrado = req.getParameter("registrado");
+		if(Objects.equals(registrado, "true")) {
+			System.out.println("Alerta: Te has registrado correctamente");
+			//Cambiar por un alert de verdad
+			req.getSession().setAttribute( "registrado", registrado);
+		} else {
+			req.getSession().setAttribute("registrado", null);
+		}
 		
-		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
-
-		//req.getSession().setAttribute("lista_evaluadores", edao.readAll());
+		//Ver si ha puesto un usuario pass incorrecto
+		String incorrecto = req.getParameter("incorrecto");
+		if(Objects.equals(incorrecto, "true")) {
+			req.getSession().setAttribute("incorrecto", incorrecto);
+		} else {
+			req.getSession().setAttribute("incorrecto", null);
+		}
 		
 		getServletContext().getRequestDispatcher( "/LoginView.jsp" ).forward( req,resp );
-
-
-		
+	
 	}
 	
 	@Override
@@ -48,9 +59,12 @@ public class LoginServlet extends HttpServlet {
 					  resp.sendRedirect( req.getContextPath() + "/InvestigadorServlet?email=" + currentUser.getPrincipal() ); 
 				  else resp.sendRedirect( req.getContextPath() + "/EvaluadorServlet?email=" + currentUser.getPrincipal() );
 				  } catch ( Exception e ){ 
-					  resp.sendRedirect( req.getContextPath() + "/LoginServlet" );
+					  boolean incorrecto = true;
+					  resp.sendRedirect( req.getContextPath() + "/LoginServlet?incorrecto=" + incorrecto );
 					  } 
-			  } else
-				  resp.sendRedirect( req.getContextPath() + "/LoginServlet" );
+			  } else { 
+				  resp.sendRedirect( req.getContextPath() + "/LoginServlet");
+			  }
+
 	}
 }
