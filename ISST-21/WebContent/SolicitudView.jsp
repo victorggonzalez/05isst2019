@@ -48,6 +48,7 @@
 			<c:if test="${solicitud.estado == 1}">
 				<form action="FormularioServlet" method="get" style="margin:0">
 					<input type="hidden" name="id" value="${id}" />
+					<input type="hidden" name="id" value="${email}" />
 					<button type="submit" class="button small">Rellenar Formulario</button>
 				</form>
 			</c:if>

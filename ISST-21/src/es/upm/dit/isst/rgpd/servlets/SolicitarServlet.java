@@ -63,6 +63,7 @@ public class SolicitarServlet extends HttpServlet {
 			req.getSession().setAttribute("no_suficientes_investigadores", true);
 		}
 		
+		req.getSession().setAttribute("email", email);
 		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudesPropias());
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 
@@ -72,10 +73,10 @@ public class SolicitarServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String emailInvestigador = req.getParameter( "emailInvestigador" );
+		String email = req.getParameter( "emailInvestigador" );
 		
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
-		Investigador investigador = idao.read(emailInvestigador);
+		Investigador investigador = idao.read(email);
 		String titulo = req.getParameter("titulo");
 		
 		//Aplicar logica
@@ -100,7 +101,7 @@ public class SolicitarServlet extends HttpServlet {
 		
 		req.getSession().setAttribute("id", id);
 		req.getSession().setAttribute("solicitud", solicitud);
-		req.getSession().setAttribute("emailInvestigador", emailInvestigador);
+		req.getSession().setAttribute("email", email);
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 		
 	}
