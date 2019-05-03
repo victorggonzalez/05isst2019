@@ -10,12 +10,11 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
-
   <servlet-mapping>
-  <servlet-name>default</servlet-name>
-  <url-pattern>*.css</url-pattern>
-  <url-pattern>*.jpg</url-pattern>
-  <url-pattern>/images/*</url-pattern>
-  <url-pattern>/assets/*</url-pattern>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>/images/*</url-pattern>
+    <url-pattern>/assets/*</url-pattern>
   </servlet-mapping>
 </web-app>

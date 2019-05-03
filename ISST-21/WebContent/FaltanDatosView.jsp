@@ -16,19 +16,10 @@
 	<header id="header">
 		<h1>EVALUADOR</h1>
 		<nav id="nav">
-			<ul>				
-			  <li>
-			    <form action="LogoutServlet" method="get">
-			    	<p><a class="button">Log Out</a></p>
-			    </form>
-			  </li>			  
-			  <li>
-			  	<form action="EvaluarServlet" method="post">
-					<input type="hidden" name="id" value="${id}"/>
-					<input type = "hidden" name = "email" value ="${email}" />	
-					<p><a class="button">Back</a></p>
-				</form>
-			  </li>
+			<ul>						  
+			  
+			  <li><a href="EvaluadorServlet?email=${evaluador.email}" class="button">Inicio</a></li>
+			  <li><a href="LogoutServlet" class="button">Log out</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -41,10 +32,10 @@
 	<shiro:hasRole name="evaluador">
 	<section id="main" class="container medium">
 		<header>
-			<h2>Has solicitado una ampliación de la solicitud: ${titulo}</h2>
+			<h2>Ha solicitado una ampliación de la solicitud: ${titulo}</h2>
 			<p>Indique a continuación los datos que el investigador debe añadir</p>
 		</header>
-		<div>
+		<div class="box">
 			<form action="EvaluacionIncompletaServlet" method="post">
 				<textarea name="faltandatos" rows="10" cols="40" placeholder="Escribe aqui tus comentarios"></textarea>
 				<input type="hidden" name="id" value="${id}"/>
@@ -52,6 +43,12 @@
 				<ul class="actions special">
 					<button type="submit" class="button special big" style="width:150px; height:50px; font-size: 12pt;">Enviar</button>
 				</ul>
+				<hr>	
+				<form action="EvaluarServlet" method="post">
+					<input type="hidden" name="id" value="${id}"/>
+					<input type = "hidden" name = "email" value ="${evaluador.email}" />	
+					<p><button type="submit" class="button alt small">Atrás</button></p>
+		</form>
 			</form>	
 		</div>
 	</section>

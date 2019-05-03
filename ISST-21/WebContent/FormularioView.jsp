@@ -16,12 +16,7 @@
 <header id="header">
 	<h1>INVESTIGADOR</h1>
 	<nav id="nav">
-		<ul>	
-			<li>
-			    <form action="LogoutServlet" method="get">
-			    	<p><button type="submit" class="button">Log Out</button></p>
-			    </form>
-			</li>			  
+		<ul>			  
 			<li>
 			  	<form action="SolicitarServlet" method="post">
 					<input type="hidden" name="id" value="${id}"/>
@@ -29,28 +24,33 @@
 					<p><button type="submit" class="button">Back</button></p>
 				</form>
 			</li>
+			<li><a href="LogoutServlet" class="button">Log out</a></li>
+				
 		</ul>
 	</nav>
 </header>
 <shiro:user>
 
 </shiro:user>
-<hr>
+
 <div class="margen">
 	<shiro:lacksRole name="investigador">
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
-	<shiro:hasRole name="investigador">
-		
+	
+	<shiro:hasRole name="investigador">		
 	<!-- Main -->	
-	<section id="main" class="container medium">
-		<header     style="margin: 0 0 2em 0">
-			<h2><b>Rellene el formulario con los aspectos relacionados con su
-			solicitud</b></h2>
-			<p>Marque los campos que considere:</p>
-		</header>
-		<div>
+<section id="main" class="container">
+<header     style="margin: 0 0 2em 0" style = "padding-bottom:0px">
+	<h2><b>Rellene el formulario con los aspectos relacionados con su
+	solicitud</b></h2>
+	<p>Marque los campos que considere:</p>
+</header>
+
+<div class="box">
 		<form action="FormularioServlet" method="post">
+		<input type="hidden" name="id" value="${id}"> 
+		<input type="hidden" name="solicitud" value="${solicitud}">
 			<p><input type="checkbox" id="seleccion1" name="seleccion" value="Datos personales reveladores ">
 			<label for="seleccion1">¿Se tratan datos
 				personales que revelen el origen étnico o racial, las opiniones
@@ -99,12 +99,11 @@
 				unión?</label>
 			</p>
 			<ul class="actions special">
-					<button type="submit" class="button special big" style="width:150px; height:50px; font-size: 12pt;">Enviar</button>
+					<button type="submit" class="button special big" style="width:150px;  font-size: 12pt;">Enviar</button>
 			</ul>
 
 
-			<input type="hidden" name="id" value="${id}"> 
-			<input type="hidden" name="solicitud" value="${solicitud}">
+			
 		</form>
 </div>
 </section>

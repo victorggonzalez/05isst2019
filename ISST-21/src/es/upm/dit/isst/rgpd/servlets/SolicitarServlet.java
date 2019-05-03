@@ -101,7 +101,7 @@ public class SolicitarServlet extends HttpServlet {
 		
 		req.getSession().setAttribute("id", id);
 		req.getSession().setAttribute("solicitud", solicitud);
-		req.getSession().setAttribute("email", email);
+		req.getSession().setAttribute("emailInvestigador", email);
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 		
 	}
