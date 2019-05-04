@@ -28,7 +28,7 @@ No tienes permiso para ver el contenido de esta página
 	<!-- Main -->
 		<section id="main" class="container medium" style = "padding-bottom:0px">
 		<header     style="margin: 0 0 2em 0">
-		<h2><b>¡Bienvenido investigador ${investigador.name}!</b></h2>
+		<h2><b>¡Bienvenido investigador/a ${investigador.name}!</b></h2>
 		</header>
 		<div class="box">
 		<h2><b>Tus solicitudes:</b></h2>
@@ -69,17 +69,7 @@ No tienes permiso para ver el contenido de esta página
 			</form>
 		</div>
 	</section>
-	<section id="third" class="container medium">
-		<div class="box">
-	<form action="mail" method="post">
-  To:<input type="text" name="to"  /><br/>
-  Subject:<input type="text" name="subject"  /><br/>
-  Message:<input type="text" name="message"  /><br/>
-  Your Email id:<input type="text" name="user" ><br/>
-  Password<input type="password" name="pass"   /><br/>
-  <input type="submit" value="send" />
-</form>
-</div></section>
+	
 <!-- Footer -->
 <footer id="footer">
 			<ul class="copyright">
