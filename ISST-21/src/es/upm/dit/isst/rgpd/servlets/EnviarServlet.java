@@ -130,29 +130,48 @@ public class EnviarServlet extends HttpServlet {
 			  evdao.create(evaluacion1); 
 			  evdao.create(evaluacion2);
 			 
-			
-
 			String email = req.getParameter("email");
 
 			InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 			Investigador investigador = idao.read(email);
 			req.getSession().setAttribute("investigador", investigador);
 			req.getSession().setAttribute("solicitudes_list", investigador.getSolicitudesPropias());
-			// reads form fields
+			
+			
+			//Codigo para enviar email al investigador
 			String recipient = req.getParameter("email");
 			String subject = "[RGPD] Solicitud creada: " +  solicitud.getTitulo();
 			String content = "Hola investigador/a.\r\n\r\n"
 					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluación.\r\n\r\n"
-					+ "----------------------------------------------------------------------\r\n"
+					+ "-----------------------------------------------\r\n"
+					+ "Este correo ha sido generado automáticamente.\r\n" 
+					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
+			//Codigo para enviar email al investigador
+			String recipient2 = evaluadorConMenosCarga1.getEmail();
+			String subject2 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
+			String content2 = "Hola evaluador/a.\r\n\r\n"
+					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +".\r\n"
+					+ "Acceda al portal web para proceder con su evaluación.\r\n\r\n"
+					+ "-----------------------------------------------\r\n"
+					+ "Este correo ha sido generado automáticamente.\r\n" 
+					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
+			String recipient3 = evaluadorConMenosCarga2.getEmail();
+			String subject3 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
+			String content3 = "Hola evaluador/a.\r\n\r\n"
+					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +"\r\n"
+					+ "Acceda al portal web para proceder con su evaluación.\r\n\r\n"
+					+ "-----------------------------------------------\r\n"
 					+ "Este correo ha sido generado automáticamente.\r\n" 
 					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
 					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
 
 			String resultMessage = "";
-
 			try {
-				EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
-						content);
+				EmailUtility.sendEmail(host, port, user, pass, recipient, subject, content);
+				EmailUtility.sendEmail(host, port, user, pass, recipient2, subject2, content2);
+				EmailUtility.sendEmail(host, port, user, pass, recipient3, subject3, content3);
 				resultMessage = "The e-mail was sent successfully";
 			} catch (Exception ex) {
 				ex.printStackTrace();
