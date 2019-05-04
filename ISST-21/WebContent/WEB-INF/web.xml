@@ -10,10 +10,31 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet-mapping>
-  <servlet-name>default</servlet-name>
-  <url-pattern>*.css</url-pattern>
-  <url-pattern>*.jpg</url-pattern>
-  <url-pattern>/images/*</url-pattern>
-  <url-pattern>/assets/*</url-pattern>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>/images/*</url-pattern>
+    <url-pattern>/assets/*</url-pattern>
   </servlet-mapping>
+  
+   <!-- SMTP settings -->
+    <context-param>
+        <param-name>host</param-name>
+        <param-value>smtp.gmail.com</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>port</param-name>
+        <param-value>587</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>proyectorgpd10@gmail.com</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>pass</param-name>
+        <param-value>scrumcracks</param-value>
+    </context-param>
 </web-app>

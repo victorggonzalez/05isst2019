@@ -1,6 +1,7 @@
 package es.upm.dit.isst.rgpd.servlets;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +13,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
+import es.upm.dit.isst.rgpd.dao.EvaluadorDAO;
+import es.upm.dit.isst.rgpd.dao.EvaluadorDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.InvestigadorDAO;
 import es.upm.dit.isst.rgpd.dao.InvestigadorDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
+import es.upm.dit.isst.rgpd.model.Evaluador;
 import es.upm.dit.isst.rgpd.model.Investigador;
 import es.upm.dit.isst.rgpd.model.Solicitud;
 
@@ -34,6 +38,32 @@ public class SolicitarServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		Investigador investigador = idao.read(email);
+		
+		//Comprobar si hay evaluadores suficientes
+		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
+		Collection<Evaluador> evaluadores = edao.readAll();
+		Object[] evaluadoresArray = evaluadores.toArray();
+		
+
+		//Variable para comprobar la existencia de evaluadores suficientes
+		int evaluadoresDelAreaPosibles = 0;
+
+		
+		//Comprueba los evaluadores disponibles del mismo area que el investigador
+		for (int i=0; i<evaluadoresArray.length; i++) {
+			if( ((Evaluador) evaluadoresArray[i]).getArea() ==  solicitud.getInvestigador().getArea()
+					&&
+					((Evaluador) evaluadoresArray[i]).getGrupo() != solicitud.getInvestigador().getGrupo()) {
+				evaluadoresDelAreaPosibles++;
+			}
+		}
+		
+		//Comprueba que dentro de ese area los evaluadores son 2 o más
+		if (evaluadoresDelAreaPosibles < 2) {
+			req.getSession().setAttribute("no_suficientes_investigadores", true);
+		}
+		
+		req.getSession().setAttribute("email", email);
 		req.getSession().setAttribute( "solicitudes_list", investigador.getSolicitudesPropias());
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 
@@ -43,10 +73,10 @@ public class SolicitarServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String emailInvestigador = req.getParameter( "emailInvestigador" );
+		String email = req.getParameter( "emailInvestigador" );
 		
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
-		Investigador investigador = idao.read(emailInvestigador);
+		Investigador investigador = idao.read(email);
 		String titulo = req.getParameter("titulo");
 		
 		//Aplicar logica
@@ -60,10 +90,18 @@ public class SolicitarServlet extends HttpServlet {
 		SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();
 		sdao.create(solicitud);
 		Long id = solicitud.getId();
-
+		
+		//Comprobar si hay evaluadores suficientes
+		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
+		Collection<Evaluador> evaluadores = edao.readAll();
+		Object[] evaluadoresArray = evaluadores.toArray();
+		if (evaluadoresArray.length < 2) {
+			req.getSession().setAttribute("no_suficientes_investigadores", true);
+		}
+		
 		req.getSession().setAttribute("id", id);
 		req.getSession().setAttribute("solicitud", solicitud);
-		req.setAttribute("emailInvestigador", emailInvestigador);
+		req.getSession().setAttribute("emailInvestigador", email);
 		getServletContext().getRequestDispatcher( "/SolicitudView.jsp" ).forward( req, resp );
 		
 	}

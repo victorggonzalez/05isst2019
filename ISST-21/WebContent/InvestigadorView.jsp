@@ -8,128 +8,74 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Investigador View</title>
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<shiro:user>
-    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
-</shiro:user>
+<shiro:lacksRole name="investigador">
+No tienes permiso para ver el contenido de esta página
+</shiro:lacksRole>
 
-
-<hr>
-	<shiro:lacksRole name="investigador">
-	No tienes permiso para ver el contenido de esta página
-	</shiro:lacksRole>
-	<shiro:hasRole name="investigador">
-	<h2>¡Bienvenido investigador <shiro:principal />!</h2>
+<shiro:hasRole name="investigador">
+<header id="header">
+	<h1><a href="index.html">Proyecto RGPD</a> by Grupo 21</h1>
+				<nav id="nav">
+					<ul>	
+						<li><a href="LogoutServlet" class="button">Log out</a></li>
+					</ul>
+				</nav>
+			</header>
 	
-	<h3>Información de tus solicitudes</h3>
-
+	<!-- Main -->
+		<section id="main" class="container medium" style = "padding-bottom:0px">
+		<header     style="margin: 0 0 2em 0">
+		<h2><b>¡Bienvenido investigador/a ${investigador.name}!</b></h2>
+		</header>
+		<div class="box">
+		<h2><b>Tus solicitudes:</b></h2>
+		
 		<table border="1">
 			<tr>
-				<th>Título</th>
-				<th>id</th>
-				<th>Estado</th>
-				
-				<th>Formulario</th>
-				<th>Memoria</th>
-				<th>Enviado</th>
-				<th>Faltan datos</th>
-				<th>Ampliación</th>
-				<th>Ver solicitud</th>
+				<th><h3><b>Solicitudes</b></h3></th>
+				<th><h3><b>Cantidad</b></h3></th>
 			</tr>
-				<c:forEach items="${solicitudes_list}" var="solicitudi">
-				<tr>
-					
-					<td>${solicitudi.titulo }</td>
-					<td>${solicitudi.id }</td>
-					<td><c:if test="${solicitudi.estado == 1}">
-						Solicitud vacía
-						</c:if>
-						<c:if test="${solicitudi.estado == 2}">
-						Falta memoria
-						</c:if>
-						<c:if test="${solicitudi.estado == 3}">
-						Lista para enviar
-						</c:if>
-						<c:if test="${solicitudi.estado == 4}">
-						Enviada
-						</c:if>
+			<tr>
+				<td><a href="VerSolicitudVaciaView.jsp">Incompletas</a></td>
+				<td>${n_solicitudes_vacias}</td>
+			</tr>
+			<tr> 
+				<td><a href="VerSolicitudCursoView.jsp">En evaluación</a></td>
+				<td>${n_solicitudes_encurso}</td>
+			</tr>
+			<tr>
+				<td><a href="VerSolicitudActualizarView.jsp">Pendiente de ampliación</a></td>
+				<td>${n_solicitudes_actualizar}</td>
+			</tr>
+			<tr>
 
-						<c:if test="${solicitudi.estado == 5}">
-						Falta ampliacion
-						</c:if>
-						<c:if test="${solicitudi.estado > 5 && solicitudi.estado < 8}">
-						En evaluación
-						</c:if>
-						<c:if test="${solicitudi.estado == 8}">
-							<c:if test="${solicitudi.evaluaciones[0].isResultado() == 'Aprobado'}">
-								<c:if test="${solicitudi.evaluaciones[1].isResultado() == 'Aprobado'}">
-									Aprobado
-								</c:if>
-							</c:if>
-							<c:if test="${solicitudi.evaluaciones[0].isResultado() == 'Denegado' || solicitudi.evaluaciones[1].isResultado() == 'Denegado'}">
-								Denegado
-							</c:if>
-						</c:if>
-					</td>
-					<td><c:if test="${solicitudi.estado > 1}">
-						Formulario relleno
-						</c:if>
-					</td>
-					<td><c:if test="${solicitudi.estado > 2}">
-						<form action="ServeFileServlet">
-						<input type="hidden" name="id" value="${solicitudi.id}" />
-						<input type="hidden" name="tipoDocumento" value="memoria" />
-						<button type="submit">Descargar memoria</button>
-						</form>
-						</c:if>
-					</td>
-					
-					<td>
-						<c:if test="${solicitudi.estado > 3}"> Si </c:if>
-						<c:if test="${solicitudi.estado < 4}"> No </c:if>
-					</td>
-					<td>
-						<c:if test="${solicitudi.estado < 5}"> No </c:if>
-						<c:if test="${solicitudi.estado == 5}"> Si</c:if>
-						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion != null}"> Datos actualizados </c:if>
-						
-					</td>
-					<td>
-						
-						<c:if test="${solicitudi.estado < 5}"> Ampliación no requerida </c:if>
-						<c:if test="${solicitudi.estado == 5}"> 
-						Ampliación requerida. Pulsa en VER para enviar tu ampliación
-						</c:if>
-						<c:if test="${solicitudi.estado > 5 && solicitudi.ampliacion != null}"> 
-						<form action="ServeFileServlet">
-						<input type="hidden" name="id" value="${solicitudi.id}" />
-						<input type="hidden" name="tipoDocumento" value="ampliacion" />
-						<button type="submit">Descargar ampliacion</button>
-						</form>
-						</c:if>
-					</td>
-					<td>
-						<form action="SolicitarServlet" method="get">
-						<input type="hidden" name="id" value="${solicitudi.id}" />
-						<input type="hidden" name="solicitudes_list" value="${solicitudes_list}" />
-						<input type="hidden" name="email" value="${investigador.email}" />
-						<button type="submit">Ver</button>
-						</form>
-					</td>
-				</tr>
-			</c:forEach>
+				<td><a href="VerSolicitudCerradaView.jsp">Cerradas</a></td>
+
+				<td>${n_solicitudes_cerradas}</td>
+			</tr>
 		</table>
-		
-		<h3>Crear una nueva solicitud</h3>
+		</div>
+	</section>
+	<section id="second" class="container medium">
+		<div class="box">
+		<h2><b>Crear una nueva solicitud</b></h2>
 			<form action="SolicitarServlet" method="post">
 				<input type="hidden" name="emailInvestigador" value="${investigador.email}" />
-				<p>Título: <input type="text" name="titulo" /></p>
-				<button type="submit">Crear solicitud</button>
+				<h3>Título: <input type="text" name="titulo" required/></h3>
+				<button type="submit" class="button">Crear solicitud</button>
 			</form>
+		</div>
+	</section>
 	
-	
-	
+<!-- Footer -->
+<footer id="footer">
+			<ul class="copyright">
+				<li>&copy; Proyecto RGPD. All rights reserved.</li><li>Design: Grupo 21</li>
+			</ul>
+</footer>
 	
 	</shiro:hasRole>
 

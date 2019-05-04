@@ -1,14 +1,14 @@
 package es.upm.dit.isst.rgpd.servlets;
 
 
-	import java.io.IOException;
-	import javax.servlet.ServletException;
-	import javax.servlet.annotation.WebServlet;
-	import javax.servlet.http.HttpServlet;
-	import javax.servlet.http.HttpServletRequest;
-	import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-	import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import es.upm.dit.isst.rgpd.model.Evaluacion;
 import es.upm.dit.isst.rgpd.model.Solicitud;
@@ -35,12 +35,14 @@ import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 		solicitud.setEstado(5);
 		solicitud.setFaltanDatos(datos);
 		sdao.update(solicitud);
+		edao.update(evaluacion);
 		
 		String email = evaluacion.getEvaluador().getEmail();
 		
 		req.getSession().setAttribute("emailEvaluador", email);
 		req.getSession().setAttribute("id", id);
-		getServletContext().getRequestDispatcher("/EvaluadorView.jsp").forward(req, resp);
+		resp.sendRedirect(req.getContextPath() + "/EvaluadorServlet?email=" + email);
+	
 	}
 }	
 
