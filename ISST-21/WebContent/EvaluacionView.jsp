@@ -16,7 +16,8 @@
 					<h1>EVALUADOR</h1>
 					<nav id="nav">
 						<ul>	
-						 <li><a href="LogoutServlet" class="button">Log out</a></li>	
+
+						
 						 <li>
 						 	<form action="EvaluadorServlet" method="get">
 								<input type = "hidden" name = "email" value ="${evaluacion.evaluador.email}" />	
@@ -24,6 +25,7 @@
 								<button type="submit" class="button">Back</button>
 							</form>	
 						 </li>
+						 <li><a href="LogoutServlet" class="button">Log out</a></li>	
 						</ul>
 						
 					</nav>

@@ -147,10 +147,12 @@ public class EnviarServlet extends HttpServlet {
 					+ "Este correo ha sido generado automáticamente.\r\n" 
 					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
 					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
+
 			
 			//Codigo para enviar email a los evaluadores
 			String recipient2 = evaluadorConMenosCarga1.getEmail();
 			String recipient3 = evaluadorConMenosCarga2.getEmail();
+
 			String subject2 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
 			String content2 = "Hola evaluador/a.\r\n\r\n"
 					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +".\r\n"
@@ -159,15 +161,13 @@ public class EnviarServlet extends HttpServlet {
 					+ "Este correo ha sido generado automáticamente.\r\n" 
 					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
 					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
-			
-			
-			
 
 			String resultMessage = "";
 			try {
 				EmailUtility.sendEmail(host, port, user, pass, recipient, subject, content);
 				EmailUtility.sendEmail(host, port, user, pass, recipient2, subject2, content2);
 				EmailUtility.sendEmail(host, port, user, pass, recipient3, subject2, content2);
+
 				resultMessage = "The e-mail was sent successfully";
 			} catch (Exception ex) {
 				ex.printStackTrace();

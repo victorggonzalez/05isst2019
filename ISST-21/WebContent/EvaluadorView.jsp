@@ -30,12 +30,14 @@
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="evaluador">
+<<<<<<< HEAD
 	<h2><b>¡Bienvenido evaluador ${evaluador.name}!</b></h2>
 	<section id="main" class="container medium" style = "padding-bottom:0px">
 		<header     style="margin: 0 0 2em 0"></header>
 		<div class="box">
 		<h2><b>Tus evaluaciones:</b></h2>
 				<table border="1">
+
 			<tr>
 				<th><h3><b>Evaluaciones</b></h3></th>
 				<th><h3><b>Cantidad</b></h3></th>
