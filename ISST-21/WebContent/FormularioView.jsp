@@ -17,12 +17,12 @@
 	<h1>INVESTIGADOR</h1>
 	<nav id="nav">
 		<ul>	
-			<li><a href="LogoutServlet" class="button">Log out</a></li>
 			<li>
 			  	<form action="SolicitarServlet" method="post">
 					<input type="hidden" name="id" value="${id}"/>
 					<input type="hidden" name="email" value="${email}"/>	
-					<p><input type="submit" value="back" class="button"></input></p>
+					<p><input type="submit" value="back" class="button">Back</input></p>
+
 				</form>
 			</li>
 			<li><a href="LogoutServlet" class="button">Log out</a></li>
@@ -39,7 +39,7 @@
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	
-	<shiro:hasRole name="investigador">		
+	<shiro:hasRole name="investigador">	
 	<!-- Main -->
 <section id="main" class="container">
 <header     style="margin: 0 0 2em 0" style = "padding-bottom:0px">
