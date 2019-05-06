@@ -17,9 +17,16 @@
 		<h1>EVALUADOR</h1>
 		<nav id="nav">
 			<ul>						  
-			  
+			   <li>
+			  	<form action="EvaluarServlet" method="post">
+					<input type="hidden" name="id" value="${id}"/>
+					<input type = "hidden" name = "email" value ="${email}" />	
+					<a class="button">Back</a>
+				</form>
+			  </li>
 			  <li><a href="EvaluadorServlet?email=${evaluador.email}" class="button">Inicio</a></li>
 			  <li><a href="LogoutServlet" class="button">Log out</a></li>
+
 			</ul>
 		</nav>
 	</header>
