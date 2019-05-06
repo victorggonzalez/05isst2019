@@ -34,7 +34,10 @@
 	<h2><b>Información de tus solicitudes pendientes de ampliación</b></h2>
 	</header>
 	<div class="box">
-	
+		<c:if test="${empty solicitudes_actualizar}">
+		<h3><b><center>No hay elementos para mostrar</center></b></h3>
+		</c:if>
+		<c:if test="${!empty solicitudes_actualizar}">
 		<table border="1">
 			<tr>
 				<th><h4><b>Título</b></h4></th>
@@ -124,13 +127,9 @@
 				</tr>
 			</c:forEach>
 		</table>
-<hr>	
-
-		<form action="InvestigadorServlet" method="get">
-			<input type = "hidden" name = "email" value ="${investigador.email}" />	
-			<p><button type="submit" class="button alt small">Inicio</button></p>
-		</form>
-		
+	
+	
+	</c:if>
 	</div>
 	</section>
 <!-- Footer -->

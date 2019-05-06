@@ -35,6 +35,10 @@
 	<h2><b>Información de tus solicitudes en evaluación</b></h2>
 	</header>
 	<div class="box">
+	<c:if test="${empty solicitudes_encurso}">
+	<h3><b><center>No hay elementos para mostrar</center></b></h3>
+	</c:if>
+	<c:if test="${!empty solicitudes_encurso}">
 		<table border="1">
 			<tr>
 				<th><h4><b>Título</b></h4></th>
@@ -106,16 +110,14 @@
 						<input type="hidden" name="id" value="${solicitudi.id}" />
 						<input type="hidden" name="solicitudes_list" value="${solicitudes_list}" />
 						<input type="hidden" name="email" value="${investigador.email}" />
-						<button type="submit" class="button small">Completar solicitud</button>
-						</form>
-						</c:if>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-<hr>	
 
-		
+						<button type="submit" class="button small">Ver solicitud</button>
+					</form>
+					</c:if>
+					</td>
+					</tr></c:forEach></table>
+
+	</c:if>
 	</div>
 	</section>
 <!-- Footer -->

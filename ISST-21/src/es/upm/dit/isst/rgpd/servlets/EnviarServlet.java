@@ -3,6 +3,7 @@ package es.upm.dit.isst.rgpd.servlets;
 import java.io.IOException;
 import java.util.Collection;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +25,23 @@ import es.upm.dit.isst.rgpd.model.Solicitud;
 
 @WebServlet("/EnviarServlet")
 public class EnviarServlet extends HttpServlet {
+	private String host;
+	private String port;
+	private String user;
+	private String pass;
+
+	public void init() {
+		// reads SMTP server setting from web.xml file
+		ServletContext context = getServletContext();
+		host = context.getInitParameter("host");
+		port = context.getInitParameter("port");
+		user = context.getInitParameter("user");
+		pass = context.getInitParameter("pass");
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		
 		String idString = req.getParameter( "id" );
 		Long id = Long.parseLong(idString);
@@ -76,7 +91,7 @@ public class EnviarServlet extends HttpServlet {
 			solicitud.setEstado(4);
 			sdao.update(solicitud);
 			
-			//Selecci√≥n del primer evaluador entre todos los posibles
+			//Seleccion del primer evaluador entre todos los posibles
 			Object[] evaluadoresPosiblesArray = evaluadoresPosibles.toArray();
 			Evaluador evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[0];
 			for (int i=0; i<evaluadoresPosiblesArray.length; i++) {
@@ -115,17 +130,58 @@ public class EnviarServlet extends HttpServlet {
 			  evdao.create(evaluacion1); 
 			  evdao.create(evaluacion2);
 			 
-			
-
 			String email = req.getParameter("email");
 
 			InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 			Investigador investigador = idao.read(email);
 			req.getSession().setAttribute("investigador", investigador);
 			req.getSession().setAttribute("solicitudes_list", investigador.getSolicitudesPropias());
+			
+			
+			//Codigo para enviar email al investigador
+			String recipient = req.getParameter("email");
+			String subject = "[RGPD] Solicitud creada: " +  solicitud.getTitulo();
+			String content = "Hola investigador/a.\r\n\r\n"
+					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluaciÛn.\r\n\r\n"
+					+ "-----------------------------------------------\r\n"
+					+ "Este correo ha sido generado autom·ticamente.\r\n" 
+					+"No responda a este correo, este buzÛn autom·tico no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revÌselas vÌa web.";
+			//Codigo para enviar email al investigador
+			String recipient2 = evaluadorConMenosCarga1.getEmail();
+			String subject2 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
+			String content2 = "Hola evaluador/a.\r\n\r\n"
+					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +".\r\n"
+					+ "Acceda al portal web para proceder con su evaluaciÛn.\r\n\r\n"
+					+ "-----------------------------------------------\r\n"
+					+ "Este correo ha sido generado autom·ticamente.\r\n" 
+					+"No responda a este correo, este buzÛn autom·tico no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revÌselas vÌa web.";
+			String recipient3 = evaluadorConMenosCarga2.getEmail();
+			String subject3 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
+			String content3 = "Hola evaluador/a.\r\n\r\n"
+					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +"\r\n"
+					+ "Acceda al portal web para proceder con su evaluaciÛn.\r\n\r\n"
+					+ "-----------------------------------------------\r\n"
+					+ "Este correo ha sido generado autom·ticamente.\r\n" 
+					+"No responda a este correo, este buzÛn autom·tico no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revÌselas vÌa web.";
 
-
-			resp.sendRedirect(req.getContextPath() + "/InvestigadorServlet?email=" + req.getParameter("email"));
+			String resultMessage = "";
+			try {
+				EmailUtility.sendEmail(host, port, user, pass, recipient, subject, content);
+				EmailUtility.sendEmail(host, port, user, pass, recipient2, subject2, content2);
+				EmailUtility.sendEmail(host, port, user, pass, recipient3, subject3, content3);
+				resultMessage = "The e-mail was sent successfully";
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				resultMessage = "There were an error: " + ex.getMessage();
+			} finally {
+				req.setAttribute("Message", resultMessage);
+				resp.sendRedirect(req.getContextPath() + "/InvestigadorServlet?email=" + req.getParameter("email"));
+				//getServletContext().getRequestDispatcher("/Result.jsp").forward(req, resp);
+			}
+			
 		}
 	}
 

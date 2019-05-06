@@ -28,7 +28,7 @@ No tienes permiso para ver el contenido de esta página
 	<!-- Main -->
 		<section id="main" class="container medium" style = "padding-bottom:0px">
 		<header     style="margin: 0 0 2em 0">
-		<h2><b>¡Bienvenido investigador <shiro:principal/>!</b></h2>
+		<h2><b>¡Bienvenido investigador/a ${investigador.name}!</b></h2>
 		</header>
 		<div class="box">
 		<h2><b>Tus solicitudes:</b></h2>
@@ -51,7 +51,9 @@ No tienes permiso para ver el contenido de esta página
 				<td>${n_solicitudes_actualizar}</td>
 			</tr>
 			<tr>
-				<td><a href="VerSolicitudServlet?estado=cerrada">Cerradas</a></td>
+
+				<td><a href="VerSolicitudCerradaView.jsp">Cerradas</a></td>
+
 				<td>${n_solicitudes_cerradas}</td>
 			</tr>
 		</table>
@@ -67,6 +69,7 @@ No tienes permiso para ver el contenido de esta página
 			</form>
 		</div>
 	</section>
+	
 <!-- Footer -->
 <footer id="footer">
 			<ul class="copyright">

@@ -17,11 +17,9 @@
 		<h1>INVESTIGADOR</h1>
 		<nav id="nav">
 		<ul>
-		<li><form action="InvestigadorServlet" method="get">
-			<input type = "hidden" name = "email" value ="${investigador.email}" />	
-			<p><button type="submit" class="button alt small">Inicio</button></p>
-		</form></li>
-			<li><a href="LogoutServlet" class="button">Log Out</a></li>
+		<li><a href="InvestigadorServlet?email=${investigador.email}" class="button">Inicio</a></li>
+			<li><a href="LogoutServlet" class="button">Log out</a></li>
+
 		</ul>
 		</nav>
 </header>
@@ -50,11 +48,11 @@
 			<c:if test="${solicitud.estado == 1}">
 				<form action="FormularioServlet" method="get" style="margin:0">
 					<input type="hidden" name="id" value="${id}" />
-					<button type="submit" class="button small">Rellenar Formulario</button>
+					<button type="submit" class="button small">Rellenar formulario</button>
 				</form>
 			</c:if>
 			<c:if test="${solicitud.estado > 1 && solicitud.estado < 4 }">
-				<button type="submit" class="button small" disabled>Rellenar Formulario</button>
+				<button type="submit" class="button small" disabled>Rellenar formulario</button>
 				Ha rellenado el formulario correctamente
 			</c:if>
 		<h3><b>Suba la memoria de su trabajo</b></h3>
@@ -63,15 +61,14 @@
 			</c:if>
 			<c:if test="${solicitud.estado == 2}">
 				<form action="MemoriaServlet" method="post" enctype="multipart/form-data"  style="margin:0">
-					<div>
-						<input type="file" name="file" id="file" accept=".pdf" class="inputfile" required/>
-					</div>
 					<input type="hidden" name="id" value="${id}" /> 
 					<input type="hidden" name="emailInvestigador" value="${emailInvestigador}" />
-					<div>
-					<p></p>
+					
+					
 					<button type="submit" class="button small">Subir memoria</button>
-					</div>
+					
+						<input type="file" name="file" id="file" accept=".pdf" class="inputfile" required/>
+					
 				</form>
 			</c:if>
 			<c:if test="${solicitud.estado == 3}">
@@ -95,7 +92,7 @@
 					</c:if>
 					<c:if test="${no_suficientes_investigadores}">
 						<button type="submit" class="button small" disabled>Enviar solicitud</button>
-						<p>Aún no hay suficientes evaluadores, inténtalo más tarde.</p>
+						Aún no hay suficientes evaluadores, inténtalo más tarde.
 					</c:if>
 				</c:if>
 			<p></p>
@@ -134,11 +131,24 @@
 		
 <hr>	
 
-		<form action="VerSolicitudServlet" method="get">
-			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />	
+		<form action="InvestigadorServlet" method="get">
+			<input type = "hidden" name = "email" value ="${solicitud.investigador.email}" />
 			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
-			<p><button type="submit" class="button alt small">Inicio</button></p>
+			<c:if test="${solicitud.estado < 4}">	
+				<input type = "hidden" name = "volverincompletas" value ="true" />
+			</c:if>
+			<c:if test="${solicitud.estado == 4}">	
+				<input type = "hidden" name = "volverencurso" value ="true" />
+			</c:if>
+			<c:if test="${solicitud.estado == 5}">	
+				<input type = "hidden" name = "volverampliacion" value ="true" />
+			</c:if>
+			<c:if test="${solicitud.estado > 5 && solicitud.estado < 8}">	
+				<input type = "hidden" name = "volverencurso" value ="true" />
+			</c:if>
+			<p><button type="submit" class="button alt small">Atrás</button></p>
 		</form>
+
 		</div>
 	</section>
 		<!-- Footer -->

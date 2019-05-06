@@ -86,11 +86,23 @@ public class InvestigadorServlet extends HttpServlet {
 		req.getSession().setAttribute( "n_solicitudes_encurso", nSolCurso);
 		req.getSession().setAttribute( "n_solicitudes_actualizar", nSolActualiz);
 		req.getSession().setAttribute( "n_solicitudes_cerradas", nSolCerrado);
-		
-		 
-		
-		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);
 
+		
+		if (req.getParameter("volverincompletas") != null) {
+			getServletContext().getRequestDispatcher("/VerSolicitudVaciaView.jsp").forward(req,resp);
+		}
+		else if (req.getParameter("volverencurso") != null) {
+			getServletContext().getRequestDispatcher("/VerSolicitudCursoView.jsp").forward(req,resp);
+		}
+		else if (req.getParameter("volverampliacion") != null) {
+			getServletContext().getRequestDispatcher("/VerSolicitudActualizarView.jsp").forward(req,resp);
+		}
+		else if (req.getParameter("volvercerradas") != null) {
+			getServletContext().getRequestDispatcher("/VerSolicitudCerradaView.jsp").forward(req,resp);
+		}
+		else {
+		getServletContext().getRequestDispatcher("/InvestigadorView.jsp").forward(req,resp);
+		}
 	}
 
 }

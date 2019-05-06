@@ -45,12 +45,14 @@ public class FormularioServlet extends HttpServlet{
 	    	campos.add("ampo5");*/
 	    	req.getSession().setAttribute("formulario", formulario);
 	    	String idString = req.getParameter("id");
+	    	String email = req.getParameter("email");
 	    	Long id = Long.parseLong(idString);
 	    	
 			SolicitudDAO sdao = SolicitudDAOImplementation.getInstance();	
 	    	Solicitud solicitud = sdao.read(id);
 	    	req.getSession().setAttribute("solicitud", solicitud);
 	    	req.getSession().setAttribute("id", id);
+	    	req.getSession().setAttribute("email", email);
 			getServletContext().getRequestDispatcher( "/FormularioView.jsp" ).forward( req, resp );
 	}
 	

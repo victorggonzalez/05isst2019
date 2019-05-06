@@ -15,7 +15,7 @@
 					<h1>EVALUADOR</h1>
 					<nav id="nav">
 						<ul>	
-							<li><a href="LogoutServlet" class="button">Log Out</a></li>
+							<li><a href="LogoutServlet" class="button">Log out</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -31,7 +31,7 @@
 	</shiro:lacksRole>
 	<shiro:hasRole name="evaluador">
 
-	<h2><b>&nbsp;¡Bienvenido evaluador <shiro:principal/>!</b></h2>
+	<h2><b>&nbsp;¡Bienvenido evaluador ${evaluador.name}!</b></h2>
 	
 	<h3>&nbsp;Información de tus evaluaciones:<br><br></h3>
 		
