@@ -18,15 +18,13 @@
 		<nav id="nav">
 			<ul>				
 			  <li>
-			    <form action="LogoutServlet" method="get">
-			    	<p><a class="button">Log Out</a></p>
-			    </form>
+			    <a href="LogoutServlet" class="button">Log out</a>
 			  </li>			  
 			  <li>
 			  	<form action="EvaluarServlet" method="post">
 					<input type="hidden" name="id" value="${id}"/>
 					<input type = "hidden" name = "email" value ="${email}" />	
-					<p><a class="button">Back</a></p>
+					<a class="button">Back</a>
 				</form>
 			  </li>
 			</ul>

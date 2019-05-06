@@ -18,15 +18,13 @@
 	<nav id="nav">
 		<ul>	
 			<li>
-			    <form action="LogoutServlet" method="get">
-			    	<p><button type="submit" class="button">Log Out</button></p>
-			    </form>
+			    <a href="LogoutServlet" class="button">Log out</a>
 			</li>			  
 			<li>
 			  	<form action="SolicitarServlet" method="post">
 					<input type="hidden" name="id" value="${id}"/>
 					<input type="hidden" name="email" value="${email}"/>	
-					<p><button type="submit" class="button">Back</button></p>
+					<p><input type="submit" value="back" class="button"></input></p>
 				</form>
 			</li>
 		</ul>
@@ -49,7 +47,7 @@
 			solicitud</b></h2>
 			<p>Marque los campos que considere:</p>
 		</header>
-		<div>
+		<div class="box">
 		<form action="FormularioServlet" method="post">
 			<p><input type="checkbox" id="seleccion1" name="seleccion" value="Datos personales reveladores ">
 			<label for="seleccion1">¿Se tratan datos

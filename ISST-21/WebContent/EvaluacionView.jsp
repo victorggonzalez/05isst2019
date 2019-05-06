@@ -11,15 +11,26 @@
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-
+<shiro:user>
 	<header id="header">
 					<h1>EVALUADOR</h1>
 					<nav id="nav">
 						<ul>	
-							<li><a href="LogoutServlet" class="button">Log Out</a></li>
+						 <li>
+			    			<a href="LogoutServlet" class="button">Log out</a>
+			  			</li>	
+						 <li>
+						 	<form action="EvaluadorServlet" method="get">
+								<input type = "hidden" name = "email" value ="${evaluacion.evaluador.email}" />	
+								<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
+								<button type="submit" class="button">Back</button>
+							</form>	
+						 </li>	
 						</ul>
+						
 					</nav>
 				</header>
+</shiro:user>				
 <shiro:user>
      Pulsa <a href="LogoutServlet">aqui</a> para salir.
 </shiro:user>
@@ -30,11 +41,15 @@
 No tienes permiso para ver el contenido de esta página
 </shiro:lacksRole>
 <shiro:hasRole name="evaluador">
-<hr>
-<h2>Resumen de la solicitud</h2>
+
+<section id="main" class="container medium">
+	<header style="margin: 0 0 2em 0">
+		<h2>Resumen de la solicitud</h2>
+	</header>
+	<div class="box">
 <table border="1">
 			<tr>
-				<th>Datos seleccionados en el formulario</th>
+				<th><h2>Datos seleccionados en el formulario</h2></th>
 			</tr>
 			<tr>
 			<td>
@@ -100,14 +115,10 @@ No tienes permiso para ver el contenido de esta página
 		</c:if>	
 	</td>
 </tr>
-<hr>
-		<form action="EvaluadorServlet" method="get">
-			<input type = "hidden" name = "email" value ="${evaluacion.evaluador.email}" />	
-			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
-			<p><button type="submit" class="button alt small">Atrás</button></p>	
-		</form>
-	
 
+</div>
+</section>
+		
  </shiro:hasRole>
 
 </body>
