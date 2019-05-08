@@ -32,7 +32,7 @@
 	<shiro:hasRole name="evaluador">
 <<<<<<< HEAD
 	<h2><b>¡Bienvenido evaluador ${evaluador.name}!</b></h2>
-	<section id="main" class="container medium" style = "padding-bottom:0px">
+	<section id="main" class="container medium">
 		<header     style="margin: 0 0 2em 0"></header>
 		<div class="box">
 		<h2><b>Tus evaluaciones:</b></h2>
