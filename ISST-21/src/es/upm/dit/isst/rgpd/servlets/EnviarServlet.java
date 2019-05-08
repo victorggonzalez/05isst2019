@@ -152,9 +152,9 @@ public class EnviarServlet extends HttpServlet {
 			String content = "Hola investigador/a.\r\n\r\n"
 					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluaciï¿½n.\r\n\r\n"
 					+ "-----------------------------------------------\r\n"
-					+ "Este correo ha sido generado automï¿½ticamente.\r\n" 
-					+"No responda a este correo, este buzï¿½n automï¿½tico no es revisado.\r\n" 
-					+"Para revisar sus solicitudes, por favor, revï¿½selas vï¿½a web.";
+					+ "Este correo ha sido generado automáticamente.\r\n" 
+					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
 
 			
 			//Codigo para enviar email a los evaluadores
@@ -166,9 +166,9 @@ public class EnviarServlet extends HttpServlet {
 					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +".\r\n"
 					+ "Acceda al portal web para proceder con su evaluaciï¿½n.\r\n\r\n"
 					+ "-----------------------------------------------\r\n"
-					+ "Este correo ha sido generado automï¿½ticamente.\r\n" 
-					+"No responda a este correo, este buzï¿½n automï¿½tico no es revisado.\r\n" 
-					+"Para revisar sus solicitudes, por favor, revï¿½selas vï¿½a web.";
+					+ "Este correo ha sido generado automáticamente.\r\n" 
+					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
 
 			String resultMessage = "";
 			try {

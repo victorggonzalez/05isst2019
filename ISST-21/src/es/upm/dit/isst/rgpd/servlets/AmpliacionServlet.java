@@ -117,8 +117,8 @@ public class AmpliacionServlet extends HttpServlet{
 			resultMessage = "There were an error: " + ex.getMessage();
 		} finally {
 			req.setAttribute("Message", resultMessage);
-			//resp.sendRedirect(req.getContextPath() + "/InvestigadorServlet?email=" + currentUser.getPrincipal());
-			getServletContext().getRequestDispatcher("/Result.jsp").forward(req, resp);
+			resp.sendRedirect(req.getContextPath() + "/InvestigadorServlet?email=" + currentUser.getPrincipal());
+			//getServletContext().getRequestDispatcher("/Result.jsp").forward(req, resp);
 		}
 		
 	}

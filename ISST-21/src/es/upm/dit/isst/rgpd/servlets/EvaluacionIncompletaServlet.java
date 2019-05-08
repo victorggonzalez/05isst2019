@@ -92,12 +92,11 @@ import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 			resultMessage = "There were an error: " + ex.getMessage();
 		} finally {
 			req.setAttribute("Message", resultMessage);
-			resp.sendRedirect(req.getContextPath() + "/InvestigadorServlet?email=" + req.getParameter("email"));
 			//getServletContext().getRequestDispatcher("/Result.jsp").forward(req, resp);
-		
 			req.getSession().setAttribute("emailEvaluador", email);
-		req.getSession().setAttribute("id", id);
-		resp.sendRedirect(req.getContextPath() + "/EvaluadorServlet?email=" + email);
+			req.getSession().setAttribute("id", id);
+			resp.sendRedirect(req.getContextPath() + "/EvaluadorServlet?email=" + email);
+		
 	
 	}
 }	
