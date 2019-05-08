@@ -1,6 +1,7 @@
 package es.upm.dit.isst.rgpd.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.ServletContext;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import antlr.collections.List;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.EvaluacionDAO;
 import es.upm.dit.isst.rgpd.dao.EvaluacionDAOImplementation;
@@ -125,6 +127,12 @@ public class EnviarServlet extends HttpServlet {
 			  evaluacion2.setSolicitud(solicitud);
 			  evaluacion2.setResultado("Sin evaluar");
 			  
+			  //List lista = (List) new ArrayList<Evaluacion>();
+			  //lista.add(evaluacion1);
+			  //lista.add(evaluacion2);
+			  //Collection<Evaluacion> evaluaciones = (Collection<Evaluacion>) lista;
+			  //solicitud.setEvaluaciones(evaluaciones);
+			  //sdao.update(solicitud);
 			  
 			  EvaluacionDAO evdao = EvaluacionDAOImplementation.getInstance();
 			  evdao.create(evaluacion1); 
@@ -142,11 +150,11 @@ public class EnviarServlet extends HttpServlet {
 			String recipient = req.getParameter("email");
 			String subject = "[RGPD] Solicitud creada: " +  solicitud.getTitulo();
 			String content = "Hola investigador/a.\r\n\r\n"
-					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluación.\r\n\r\n"
+					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluaciï¿½n.\r\n\r\n"
 					+ "-----------------------------------------------\r\n"
-					+ "Este correo ha sido generado automáticamente.\r\n" 
-					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
-					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
+					+ "Este correo ha sido generado automï¿½ticamente.\r\n" 
+					+"No responda a este correo, este buzï¿½n automï¿½tico no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revï¿½selas vï¿½a web.";
 
 			
 			//Codigo para enviar email a los evaluadores
@@ -156,11 +164,11 @@ public class EnviarServlet extends HttpServlet {
 			String subject2 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
 			String content2 = "Hola evaluador/a.\r\n\r\n"
 					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +".\r\n"
-					+ "Acceda al portal web para proceder con su evaluación.\r\n\r\n"
+					+ "Acceda al portal web para proceder con su evaluaciï¿½n.\r\n\r\n"
 					+ "-----------------------------------------------\r\n"
-					+ "Este correo ha sido generado automáticamente.\r\n" 
-					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
-					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
+					+ "Este correo ha sido generado automï¿½ticamente.\r\n" 
+					+"No responda a este correo, este buzï¿½n automï¿½tico no es revisado.\r\n" 
+					+"Para revisar sus solicitudes, por favor, revï¿½selas vï¿½a web.";
 
 			String resultMessage = "";
 			try {
