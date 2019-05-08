@@ -16,6 +16,7 @@
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="evaluador">
+
 	<header id="header">
 	<h1><a href="index.html">Proyecto RGPD</a> by Grupo 21</h1>
 				<nav id="nav">
@@ -30,6 +31,7 @@
 		<header     style="margin: 0 0 2em 0">
 		<h2><b>¡Bienvenido evaluador ${evaluador.name}!</b></h2>
 		</header>
+
 		<div class="box">
 		<h2><b>Tus evaluaciones:</b></h2>
 				<table border="1">
