@@ -164,7 +164,7 @@ public class EnviarServlet extends HttpServlet {
 			String subject2 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
 			String content2 = "Hola evaluador/a.\r\n\r\n"
 					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +".\r\n"
-					+ "Acceda al portal web para proceder con su evaluaciï¿½n.\r\n\r\n"
+					+ "Acceda al portal web para proceder con su evaluacion.\r\n\r\n"
 					+ "-----------------------------------------------\r\n"
 					+ "Este correo ha sido generado automáticamente.\r\n" 
 					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
