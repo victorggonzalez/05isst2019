@@ -18,14 +18,6 @@
 		<nav id="nav">
 			<ul>						  
 
-			   <li>
-			  	<form action="EvaluarServlet" method="post">
-					<input type="hidden" name="id" value="${id}"/>
-					<input type = "hidden" name = "email" value ="${email}" />	
-					<a class="button">Back</a>
-				</form>
-			  </li>
-			  <li><a href="EvaluadorServlet?email=${evaluador.email}" class="button">Inicio</a></li>
 			  <li><a href="LogoutServlet" class="button">Log out</a></li>
 
 
@@ -53,11 +45,7 @@
 					<button type="submit" class="button special big" style="width:150px; height:50px; font-size: 12pt;">Enviar</button>
 				</ul>
 				<hr>	
-				<form action="EvaluarServlet" method="post">
-					<input type="hidden" name="id" value="${id}"/>
-					<input type = "hidden" name = "email" value ="${evaluador.email}" />	
-					<p><button type="submit" class="button alt small">Atrás</button></p>
-		</form>
+				
 			</form>	
 		</div>
 	</section>

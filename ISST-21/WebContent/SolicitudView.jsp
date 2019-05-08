@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Solicitud View</title>
+	<title>Proyecto RGPD</title>
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/w3.css">
 </head>
@@ -23,8 +23,6 @@
 		</ul>
 		</nav>
 </header>
-<shiro:user>
-</shiro:user>
 
 	<shiro:lacksRole name="investigador">
 	No tienes permiso para ver el contenido de esta página
@@ -53,7 +51,7 @@
 			</c:if>
 			<c:if test="${solicitud.estado > 1 && solicitud.estado < 4 }">
 				<button type="submit" class="button small" disabled>Rellenar formulario</button>
-				Ha rellenado el formulario correctamente
+				Ha rellenado el formulario co	rrectamente
 			</c:if>
 		<h3><b>Suba la memoria de su trabajo</b></h3>
 			<c:if test="${solicitud.estado == 1}">

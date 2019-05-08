@@ -17,14 +17,7 @@
 	<h1>INVESTIGADOR</h1>
 	<nav id="nav">
 		<ul>	
-			<li>
-			  	<form action="SolicitarServlet" method="post">
-					<input type="hidden" name="id" value="${id}"/>
-					<input type="hidden" name="email" value="${email}"/>	
-					<p><input type="submit" value="back" class="button">Back</input></p>
-
-				</form>
-			</li>
+		
 			<li><a href="LogoutServlet" class="button">Log out</a></li>
 				
 		</ul>

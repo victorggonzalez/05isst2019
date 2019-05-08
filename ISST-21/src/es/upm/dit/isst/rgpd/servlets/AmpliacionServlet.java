@@ -74,9 +74,9 @@ public class AmpliacionServlet extends HttpServlet{
 
 		//Codigo para enviar email al investigador
 		String recipient = req.getParameter("email");
-		String subject = "[RGPD] Ampliación enviada para la solicitud: " +  solicitud.getTitulo();
+		String subject = "[RGPD] Ampliaci�n enviada para la solicitud: " +  solicitud.getTitulo();
 		String content = "Hola investigador/a.\r\n\r\n"
-				+ "Has añadido a solicitud con id "+  req.getParameter("id") +" la ampliación requerida.\r\n\r\n"
+				+ "Has a�adido a solicitud con id "+  req.getParameter("id") +" la ampliacion requerida.\r\n\r\n"
 				+ "-----------------------------------------------\r\n"
 				+ "Este correo ha sido generado automáticamente.\r\n" 
 				+"No responda a este correo, este buzón automático no es revisado.\r\n" 

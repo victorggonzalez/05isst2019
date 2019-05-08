@@ -11,29 +11,25 @@
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-		<header id="header">
-					<h1>EVALUADOR</h1>
-					<nav id="nav">
-						<ul>	
-							<li><a href="LogoutServlet" class="button">Log out</a></li>
-						</ul>
-					</nav>
-				</header>
-				
-<shiro:user>
-    Pulsa <a href="LogoutServlet">aqui</a> para salir.
-</shiro:user>
 
-
-<hr>
 	<shiro:lacksRole name="evaluador">
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	<shiro:hasRole name="evaluador">
-<<<<<<< HEAD
-	<h2><b>¡Bienvenido evaluador ${evaluador.name}!</b></h2>
+	<header id="header">
+	<h1><a href="index.html">Proyecto RGPD</a> by Grupo 21</h1>
+				<nav id="nav">
+					<ul>	
+						<li><a href="LogoutServlet" class="button">Log out</a></li>
+					</ul>
+				</nav>
+			</header>
+			
+	<!-- Main -->	
 	<section id="main" class="container medium" style = "padding-bottom:0px">
-		<header     style="margin: 0 0 2em 0"></header>
+		<header     style="margin: 0 0 2em 0">
+		<h2><b>¡Bienvenido evaluador ${evaluador.name}!</b></h2>
+		</header>
 		<div class="box">
 		<h2><b>Tus evaluaciones:</b></h2>
 				<table border="1">
@@ -59,7 +55,14 @@
 	
 	</div>
 	</section>
+
+	<footer id="footer">
+				<ul class="copyright">
+					<li>&copy; Proyecto RGPD. All rights reserved.</li><li>Design: Grupo 21</li>
+				</ul>
+	</footer>
 	
+		
 	</shiro:hasRole>
 </body>
 </html>

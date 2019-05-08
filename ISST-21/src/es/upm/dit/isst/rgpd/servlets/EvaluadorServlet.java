@@ -77,8 +77,18 @@ public class EvaluadorServlet extends HttpServlet {
 		req.getSession().setAttribute( "n_evaluaciones_ampliacion", nEvAmpliacion);
 		req.getSession().setAttribute( "n_evaluaciones_cerradas", nEvCerrada);
 		
+		if (req.getParameter("volverpendientes") != null) {
+			getServletContext().getRequestDispatcher("/VerEvaluacionPendienteView.jsp").forward(req,resp);
+		}
+		else if (req.getParameter("volverampliacion") != null) {
+			getServletContext().getRequestDispatcher("/VerEvaluacionAmpliacionView.jsp").forward(req,resp);
+		}
+		else if (req.getParameter("volvercerradas") != null) {
+			getServletContext().getRequestDispatcher("/VerEvaluacionCerradaView.jsp").forward(req,resp);
+		}
+		else {
 		getServletContext().getRequestDispatcher("/EvaluadorView.jsp").forward(req,resp);
-
+		}
 	}
 
 }

@@ -15,9 +15,6 @@
 	No tienes permiso para ver el contenido de esta página
 </shiro:lacksRole>
 
-<shiro:user>
-</shiro:user>
-
 <shiro:hasRole name="evaluador">
 	
 <header id="header">
@@ -32,7 +29,7 @@
 
 
 
-<section id="main" class="container medium">
+<section id="main" class="container">
 	<header style="margin: 0 0 2em 0">
 		<h2><b>Información de tus evaluaciones cerradas</b></h2>
 	</header>
@@ -45,12 +42,10 @@
 			<tr>
 				<th><h4><b>Título</b></h4></th>
 				<th><h4><b>id</b></h4></th>
-				<th><h4><b>Estado</b></h4></th>
 				<th><h4><b>Formulario</b></h4></th>
 				<th><h4><b>Memoria</b></h4></th>
 				<th><h4><b>Ampliación</b></h4></th>
 				<th><h4><b>Tu valoración</b></h4></th>
-				<th><h4><b></b></h4></th>
 			</tr>
 				<c:forEach items="${evaluaciones_cerradas}" var="evaluacioni">
 				<tr>
@@ -58,13 +53,7 @@
 					
 					<td>${evaluacioni.solicitud.titulo }</td>
 					<td>${evaluacioni.solicitud.id }</td>
-					<td><c:if test="${evaluacioni.solicitud.estado < 7}">
-						En evaluación
-						</c:if>
-						<c:if test="${evaluacioni.solicitud.estado  > 6}">
-						${evaluacioni.isResultado()}
-						</c:if>
-					</td>
+					
 					<td><c:if test="${evaluacioni.solicitud.estado > 2}">
 						Formulario relleno
 						</c:if>
@@ -96,21 +85,9 @@
 					
 					<td>${evaluacioni.isResultado()}</td>
 					
-					<td><c:if test="${evaluacioni.isResultado() == 'Sin evaluar'}">
-						<form action="EvaluarServlet" method="post">
-						<input type="hidden" name="id" value="${evaluacioni.id}" />
-						<input type="hidden" name="email" value="${evaluador.email}" />
-						<button type="submit" class="button small">Evaluar solicitud</button>
-						</form>
-						</c:if>
-
-						<c:if test="${evaluacioni.isResultado() != 'Sin evaluar'}">Ya evaluado
-						</c:if>
-					</td>
 						
 				</tr>
 			</c:forEach>
-		</tbody>
 		</table>
 		</c:if>
 	</div>
