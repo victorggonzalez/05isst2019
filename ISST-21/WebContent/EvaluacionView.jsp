@@ -50,6 +50,7 @@ No tienes permiso para ver el contenido de esta página
 	<input type="hidden" name="id" value="${evaluacion.solicitud.id}" />	
 		<button type = "submit" class="button icon fa-download">Descargar memoria</button>
 
+
 	</form>
 		</div>
 	<div class = "box">
