@@ -58,7 +58,7 @@ public class EnviarServlet extends HttpServlet {
 		//Variable para comprobar la existencia de evaluadores suficientes
 		int evaluadoresDelArea = 0;
 		
-		//Colección de evaluadores del mismo area
+		//Colección de evaluadores
 		Collection<Evaluador> evaluadoresPosibles = evaluadores;
 		
 		//Comprueba los evaluadores disponibles del mismo area que el investigador
@@ -88,7 +88,7 @@ public class EnviarServlet extends HttpServlet {
 
 		} */
 			
-			else { 
+		else { 
 
 			solicitud.setEstado(4);
 			sdao.update(solicitud);

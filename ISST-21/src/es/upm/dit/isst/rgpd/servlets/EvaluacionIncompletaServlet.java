@@ -74,7 +74,7 @@ import es.upm.dit.isst.rgpd.dao.SolicitudDAO;
 		//Codigo para enviar email al investigador cuando se le pide una ampliación
 		String recipient = solicitud.getInvestigador().getEmail();
 		String subject = "[RGPD] Solicitud " +  solicitud.getTitulo() + " incompleta";
-		String content = "Hola" + solicitud.getInvestigador().getName() + ".\r\n\r\n"
+		String content = "Hola " + solicitud.getInvestigador().getName() + ".\r\n\r\n"
 				+ "A la solicitud con id "+  req.getParameter("id") +" le faltan los siguientes datos:\r\n"
 				+ req.getParameter("faltandatos") +"\r\n"
 				+ "Acceda al portal web para completar su solicitud.\r\n\r\n"
