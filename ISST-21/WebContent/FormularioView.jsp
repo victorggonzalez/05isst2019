@@ -16,14 +16,8 @@
 <header id="header">
 	<h1>INVESTIGADOR</h1>
 	<nav id="nav">
-		<ul>			  
-			<li>
-			  	<form action="SolicitarServlet" method="post">
-					<input type="hidden" name="id" value="${id}"/>
-					<input type="hidden" name="email" value="${email}"/>	
-					<p><button type="submit" class="button">Back</button></p>
-				</form>
-			</li>
+		<ul>	
+		
 			<li><a href="LogoutServlet" class="button">Log out</a></li>
 				
 		</ul>
@@ -38,8 +32,8 @@
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 	
-	<shiro:hasRole name="investigador">		
-	<!-- Main -->	
+	<shiro:hasRole name="investigador">	
+	<!-- Main -->
 <section id="main" class="container">
 <header     style="margin: 0 0 2em 0" style = "padding-bottom:0px">
 	<h2><b>Rellene el formulario con los aspectos relacionados con su

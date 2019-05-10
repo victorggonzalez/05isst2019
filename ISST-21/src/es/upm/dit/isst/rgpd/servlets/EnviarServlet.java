@@ -1,6 +1,7 @@
 package es.upm.dit.isst.rgpd.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.ServletContext;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import antlr.collections.List;
 import es.upm.dit.isst.rgpd.dao.SolicitudDAOImplementation;
 import es.upm.dit.isst.rgpd.dao.EvaluacionDAO;
 import es.upm.dit.isst.rgpd.dao.EvaluacionDAOImplementation;
@@ -91,25 +93,22 @@ public class EnviarServlet extends HttpServlet {
 			solicitud.setEstado(4);
 			sdao.update(solicitud);
 			
-			//Seleccion del primer evaluador entre todos los posibles
+			//Seleccion de los evaluadores entre todos los posibles
 			Object[] evaluadoresPosiblesArray = evaluadoresPosibles.toArray();
-			Evaluador evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[0];
-			for (int i=0; i<evaluadoresPosiblesArray.length; i++) {
-				if(((Evaluador) evaluadoresPosiblesArray[i]).getEvaluaciones().toArray().length < evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
-					evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[i];
+			Evaluador euno = (Evaluador) evaluadoresPosiblesArray[0];
+			Evaluador edos = (Evaluador) evaluadoresPosiblesArray[1];
+			for (int i=2; i<evaluadoresPosiblesArray.length; i++) {
+				if(euno.getEvaluaciones().size()<edos.getEvaluaciones().size()) {
+					Evaluador eaux = edos;
+					edos = euno;
+					euno = eaux;
+				}
+				if(((Evaluador) evaluadoresPosiblesArray[i]).getEvaluaciones().size()<euno.getEvaluaciones().size()) {
+					euno = (Evaluador) evaluadoresPosiblesArray[i];
 				}
 			}
-			
-			evaluadoresPosibles.remove(evaluadorConMenosCarga1);
-			
-			//Nuevo array de evaluadores posibles sin el seleccionado anteriormente
-			Object[] evaluadoresPosiblesArray2 = evaluadoresPosibles.toArray();
-			Evaluador evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[0];
-			for (int i=0; i<evaluadoresPosiblesArray2.length; i++) {
-				if(((Evaluador) evaluadoresPosiblesArray2[i]).getEvaluaciones().toArray().length < evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
-					evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[i];
-				}
-			}
+			Evaluador evaluadorConMenosCarga1 = edos;
+			Evaluador evaluadorConMenosCarga2 = euno;
 			
 			
 			
@@ -125,6 +124,12 @@ public class EnviarServlet extends HttpServlet {
 			  evaluacion2.setSolicitud(solicitud);
 			  evaluacion2.setResultado("Sin evaluar");
 			  
+			  //List lista = (List) new ArrayList<Evaluacion>();
+			  //lista.add(evaluacion1);
+			  //lista.add(evaluacion2);
+			  //Collection<Evaluacion> evaluaciones = (Collection<Evaluacion>) lista;
+			  //solicitud.setEvaluaciones(evaluaciones);
+			  //sdao.update(solicitud);
 			  
 			  EvaluacionDAO evdao = EvaluacionDAOImplementation.getInstance();
 			  evdao.create(evaluacion1); 
@@ -141,27 +146,22 @@ public class EnviarServlet extends HttpServlet {
 			//Codigo para enviar email al investigador
 			String recipient = req.getParameter("email");
 			String subject = "[RGPD] Solicitud creada: " +  solicitud.getTitulo();
-			String content = "Hola investigador/a.\r\n\r\n"
+			String content = "Hola " + investigador.getName() + ".\r\n\r\n"
 					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluación.\r\n\r\n"
 					+ "-----------------------------------------------\r\n"
 					+ "Este correo ha sido generado automáticamente.\r\n" 
 					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
 					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
-			//Codigo para enviar email al investigador
+
+			
+			//Codigo para enviar email a los evaluadores
 			String recipient2 = evaluadorConMenosCarga1.getEmail();
+			String recipient3 = evaluadorConMenosCarga2.getEmail();
+
 			String subject2 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
 			String content2 = "Hola evaluador/a.\r\n\r\n"
 					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +".\r\n"
-					+ "Acceda al portal web para proceder con su evaluación.\r\n\r\n"
-					+ "-----------------------------------------------\r\n"
-					+ "Este correo ha sido generado automáticamente.\r\n" 
-					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
-					+"Para revisar sus solicitudes, por favor, revíselas vía web.";
-			String recipient3 = evaluadorConMenosCarga2.getEmail();
-			String subject3 = "[RGPD] Solicitud asignada: " +  solicitud.getTitulo();
-			String content3 = "Hola evaluador/a.\r\n\r\n"
-					+ "Se le ha asignado la solicitud con id "+  req.getParameter("id") +"\r\n"
-					+ "Acceda al portal web para proceder con su evaluación.\r\n\r\n"
+					+ "Acceda al portal web para proceder con su evaluacion.\r\n\r\n"
 					+ "-----------------------------------------------\r\n"
 					+ "Este correo ha sido generado automáticamente.\r\n" 
 					+"No responda a este correo, este buzón automático no es revisado.\r\n" 
@@ -171,7 +171,8 @@ public class EnviarServlet extends HttpServlet {
 			try {
 				EmailUtility.sendEmail(host, port, user, pass, recipient, subject, content);
 				EmailUtility.sendEmail(host, port, user, pass, recipient2, subject2, content2);
-				EmailUtility.sendEmail(host, port, user, pass, recipient3, subject3, content3);
+				EmailUtility.sendEmail(host, port, user, pass, recipient3, subject2, content2);
+
 				resultMessage = "The e-mail was sent successfully";
 			} catch (Exception ex) {
 				ex.printStackTrace();

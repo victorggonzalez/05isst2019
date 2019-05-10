@@ -7,22 +7,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Evaluacion</title>
+<title>Proyecto RGPD</title>
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
-	<header id="header">
+<!-- Header -->
+<header id="header">
 					<h1>EVALUADOR</h1>
 					<nav id="nav">
 						<ul>	
-							<li><a href="LogoutServlet" class="button">Log out</a></li>
+						<li><a href="EvaluadorServlet?email=${evaluador.email}" class="button">Inicio</a></li>
+						 <li><a href="LogoutServlet" class="button">Log out</a></li>	
 						</ul>
+						
 					</nav>
-				</header>
-<shiro:user>
-     Pulsa <a href="LogoutServlet">aqui</a> para salir.
-</shiro:user>
+</header>
 
 
 
@@ -30,84 +30,87 @@
 No tienes permiso para ver el contenido de esta página
 </shiro:lacksRole>
 <shiro:hasRole name="evaluador">
-<hr>
-<h2>Resumen de la solicitud</h2>
-<table border="1">
-			<tr>
-				<th>Datos seleccionados en el formulario</th>
-			</tr>
-			<tr>
-			<td>
-				<c:forEach items="${evaluacion.solicitud.formulario}" var="current">
-					<p><c:out value="${current}" /></p>
-				</c:forEach>
-			</td>
-			</tr>
-</table>
-<h2>Descarga de la memoria</h2>
-	
-	<form action = "DescargarMemoriaServlet" method = "post">	
-		<center>	
+
+<!-- Main -->	
+<section id="main" class="container">
+	<header style="margin: 0 0 2em 0">
+		<h2><b>Va a evaluar la solicitud: ${evaluacion.solicitud.titulo}</b></h2>
+	</header>
+	<div class="box">
+	<h2><b>Resumen de la solicitud a evaluar:</b></h2>
+	<h3>Datos seleccionados por el investigador en el formulario</h3>
+		<c:forEach items="${evaluacion.solicitud.formulario}" var="current">
+			<ul>
+			<li><c:out value="${current}" /></li>
+			</ul>
+		</c:forEach>
+	<h3>Descarga de la memoria de la solicitud</h3>	
+	<form action = "DescargarMemoriaServlet" method = "post">		
 		<button type = "submit" class="button icon fa-download">Descargar Memoria</button>
-		</center>
+
 	</form>
-		
-<tr>
-	<td>
-		<p></p><c:if test="${evaluacion.solicitud.estado == 4}">
+		</div>
+	<div class = "box">
+	<h2><b>Realizar evaluación</b></h2>
+<c:if test="${evaluacion.solicitud.estado == 4}">
 			<form action="CompletarServlet" method = "post">
-			Si crees que faltan datos para poder evaluar el proyecto, pulsa aquí
-			<p></p>
-			<center>
+			<h3>Si crees que faltan datos para poder evaluar el proyecto, pulsa Completar</h3>
 				<input type="hidden" name="id" value="${evaluacion.id}" />
 				<button type="submit" class="button small">Completar</button>
-			</center>
 			</form>
-		</c:if>
-	</td>
-	<td>
-		
-	</td>
+</c:if>
 
-	
-	<td><h2>Realizar evaluación</h2>
+
 		<c:if test="${evaluacion.solicitud.estado ==5}">
-			<p>Esperando a la ampliación</p>
+		<h3>Esperando a la ampliación</h3>
 		</c:if>
 		<c:if test="${evaluacion.solicitud.estado != 5 and evaluacion.isResultado() == 'Sin evaluar' }" >
-			<p></p>
+
 			<form action="AceptarServlet" method = "post">
-			Si crees que el proyecto cumple el RGPD, pulsa aquí para aceptar el proyecto
-			<p></p>
-			<center>
+			<h3>Si crees que el proyecto cumple el RGPD, pulsa aquí para aceptar el proyecto</h3>
+
 				<input type="hidden" name="id" value="${evaluacion.id}" />
 				<button type="submit" class="button small">Aceptar</button>
-			</center>
+
 			</form>
 			</c:if>
-	</td>
-		<td>
+
 		<c:if test="${evaluacion.solicitud.estado != 5 and evaluacion.isResultado() == 'Sin evaluar' }" >
-			<p></p>
+
 			<form action="DenegarServlet" method = "post">
-			Si crees que el proyecto no cumple el RGPD, pulsa aquí para rechazar el proyecto
-			<p></p>
-			<center>
+			<h3>Si crees que el proyecto no cumple el RGPD, pulsa aquí para rechazar el proyecto</h3>
+
 				<input type="hidden" name="id" value="${evaluacion.id}" />
 				<button type="submit" class="button small">Rechazar</button>
-			</center>
+
 			</form>
 		</c:if>	
-	</td>
-</tr>
 <hr>
-		<form action="EvaluadorServlet" method="get">
-			<input type = "hidden" name = "email" value ="${evaluacion.evaluador.email}" />	
-			<input type = "hidden" name = "solicitudes_list" value ="${solicitudes_list}" />
-			<p><button type="submit" class="button alt small">Atrás</button></p>	
-		</form>
-	
+<form action="EvaluadorServlet" method="get">
+			<input type = "hidden" name = "email" value ="${evaluacion.evaluador.email}" />
+			<input type = "hidden" name = "evaluaciones_list" value ="${evaluaciones_list}" />
+			<c:if test="${evaluacion.solicitud.estado == 4 || evaluacion.solicitud.estado > 5}">	
+				<input type = "hidden" name = "volverpendientes" value ="true" />
+			</c:if>
+			<c:if test="${evaluacion.solicitud.estado == 5}">	
+				<input type = "hidden" name = "volverampliacion" value ="true" />
+			</c:if>
 
+			<c:if test="${evaluacion.solicitud.estado == 8 }">	
+				<input type = "hidden" name = "volvercerradas" value ="true" />
+			</c:if>
+			<p><button type="submit" class="button alt small">Atrás</button></p>
+		</form>
+</div>
+</section>
+
+	<footer id="footer">
+				<ul class="copyright">
+					<li>&copy; Proyecto RGPD. All rights reserved.</li><li>Design: Grupo 21</li>
+				</ul>
+	</footer>
+	
+		
  </shiro:hasRole>
 
 </body>
