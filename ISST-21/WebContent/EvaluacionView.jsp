@@ -45,6 +45,7 @@ No tienes permiso para ver el contenido de esta página
 			</ul>
 		</c:forEach>
 	<h3>Descarga de la memoria de la solicitud</h3>	
+	
 	<form action = "ServeFileServlet">	
 	<input type="hidden" name="tipoDocumento" value="memoria" />
 	<input type="hidden" name="id" value="${evaluacion.solicitud.id}" />	
