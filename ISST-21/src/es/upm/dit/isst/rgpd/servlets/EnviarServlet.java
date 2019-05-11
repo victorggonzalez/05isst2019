@@ -93,44 +93,24 @@ public class EnviarServlet extends HttpServlet {
 			solicitud.setEstado(4);
 			sdao.update(solicitud);
 			
-			/*
-			 * //Seleccion del primer evaluador entre todos los posibles Object[]
-			 * evaluadoresPosiblesArray = evaluadoresPosibles.toArray(); Evaluador
-			 * evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[0]; for (int
-			 * i=0; i<evaluadoresPosiblesArray.length; i++) { if(((Evaluador)
-			 * evaluadoresPosiblesArray[i]).getEvaluaciones().toArray().length <
-			 * evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
-			 * evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[i]; } }
-			 * 
-			 * evaluadoresPosibles.remove(evaluadorConMenosCarga1);
-			 * 
-			 * //Nuevo array de evaluadores posibles sin el seleccionado anteriormente
-			 * Object[] evaluadoresPosiblesArray2 = evaluadoresPosibles.toArray(); Evaluador
-			 * evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[0]; for (int
-			 * i=0; i<evaluadoresPosiblesArray2.length; i++) { if(((Evaluador)
-			 * evaluadoresPosiblesArray2[i]).getEvaluaciones().toArray().length <
-			 * evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
-			 * evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[i]; } }
-			 */
-			
-			//Seleccion del primer evaluador entre todos los posibles
-			Evaluador evaluadorConMenosCarga1 = null;
-			for(Evaluador eval1: evaluadoresPosibles) {
-				if (eval1.getEvaluaciones().size() < evaluadorConMenosCarga1.getEvaluaciones().size()) {
-					evaluadorConMenosCarga1 = eval1;
+
+			//Seleccion de los evaluadores entre todos los posibles
+			Object[] evaluadoresPosiblesArray = evaluadoresPosibles.toArray();
+			Evaluador euno = (Evaluador) evaluadoresPosiblesArray[0];
+			Evaluador edos = (Evaluador) evaluadoresPosiblesArray[1];
+			for (int i=2; i<evaluadoresPosiblesArray.length; i++) {
+				if(euno.getEvaluaciones().size()<edos.getEvaluaciones().size()) {
+					Evaluador eaux = edos;
+					edos = euno;
+					euno = eaux;
+				}
+				if(((Evaluador) evaluadoresPosiblesArray[i]).getEvaluaciones().size()<euno.getEvaluaciones().size()) {
+					euno = (Evaluador) evaluadoresPosiblesArray[i];
+
 				}
 			}
-			
-			evaluadoresPosibles.remove(evaluadorConMenosCarga1);
-			
-			
-			//Nuevo array de evaluadores posibles sin el seleccionado anteriormente
-			Evaluador evaluadorConMenosCarga2 = null;
-			for(Evaluador eval2: evaluadoresPosibles) {
-				if (eval2.getEvaluaciones().size() < evaluadorConMenosCarga2.getEvaluaciones().size()) {
-					evaluadorConMenosCarga2 = eval2;
-				}
-			}
+			Evaluador evaluadorConMenosCarga1 = edos;
+			Evaluador evaluadorConMenosCarga2 = euno;
 			
 			//AsignaciÃ³n del primer evaluador
 			  Evaluacion evaluacion1 = new Evaluacion();
@@ -166,8 +146,9 @@ public class EnviarServlet extends HttpServlet {
 			//Codigo para enviar email al investigador
 			String recipient = req.getParameter("email");
 			String subject = "[RGPD] Solicitud creada: " +  solicitud.getTitulo();
-			String content = "Hola investigador/a.\r\n\r\n"
-					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluaciï¿½n.\r\n\r\n"
+			String content = "Hola " + investigador.getName() + ".\r\n\r\n"
+					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluación.\r\n\r\n"
+
 					+ "-----------------------------------------------\r\n"
 					+ "Este correo ha sido generado automáticamente.\r\n" 
 					+"No responda a este correo, este buzón automático no es revisado.\r\n" 

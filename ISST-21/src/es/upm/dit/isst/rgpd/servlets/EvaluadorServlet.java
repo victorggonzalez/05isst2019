@@ -60,9 +60,11 @@ public class EvaluadorServlet extends HttpServlet {
 				nEvAmpliacion++;
 				faltaAmpliacion.add(e);
 			}
+
 			else if (e.isResultado().equals("Sin evaluar") && (e.getSolicitud().getEstado() == 7)) {
 					nEvPendiente++;
 					pendientes.add(e);
+
 			}	
 	
 			else if ((e.isResultado().equals("Aprobado"))|| (e.isResultado().equals("Denegado") )) {
