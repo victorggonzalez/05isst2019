@@ -93,27 +93,44 @@ public class EnviarServlet extends HttpServlet {
 			solicitud.setEstado(4);
 			sdao.update(solicitud);
 			
+			/*
+			 * //Seleccion del primer evaluador entre todos los posibles Object[]
+			 * evaluadoresPosiblesArray = evaluadoresPosibles.toArray(); Evaluador
+			 * evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[0]; for (int
+			 * i=0; i<evaluadoresPosiblesArray.length; i++) { if(((Evaluador)
+			 * evaluadoresPosiblesArray[i]).getEvaluaciones().toArray().length <
+			 * evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
+			 * evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[i]; } }
+			 * 
+			 * evaluadoresPosibles.remove(evaluadorConMenosCarga1);
+			 * 
+			 * //Nuevo array de evaluadores posibles sin el seleccionado anteriormente
+			 * Object[] evaluadoresPosiblesArray2 = evaluadoresPosibles.toArray(); Evaluador
+			 * evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[0]; for (int
+			 * i=0; i<evaluadoresPosiblesArray2.length; i++) { if(((Evaluador)
+			 * evaluadoresPosiblesArray2[i]).getEvaluaciones().toArray().length <
+			 * evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
+			 * evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[i]; } }
+			 */
+			
 			//Seleccion del primer evaluador entre todos los posibles
-			Object[] evaluadoresPosiblesArray = evaluadoresPosibles.toArray();
-			Evaluador evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[0];
-			for (int i=0; i<evaluadoresPosiblesArray.length; i++) {
-				if(((Evaluador) evaluadoresPosiblesArray[i]).getEvaluaciones().toArray().length < evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
-					evaluadorConMenosCarga1 = (Evaluador) evaluadoresPosiblesArray[i];
+			Evaluador evaluadorConMenosCarga1 = null;
+			for(Evaluador eval1: evaluadoresPosibles) {
+				if (eval1.getEvaluaciones().size() < evaluadorConMenosCarga1.getEvaluaciones().size()) {
+					evaluadorConMenosCarga1 = eval1;
 				}
 			}
 			
 			evaluadoresPosibles.remove(evaluadorConMenosCarga1);
 			
+			
 			//Nuevo array de evaluadores posibles sin el seleccionado anteriormente
-			Object[] evaluadoresPosiblesArray2 = evaluadoresPosibles.toArray();
-			Evaluador evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[0];
-			for (int i=0; i<evaluadoresPosiblesArray2.length; i++) {
-				if(((Evaluador) evaluadoresPosiblesArray2[i]).getEvaluaciones().toArray().length < evaluadorConMenosCarga1.getEvaluaciones().toArray().length) {
-					evaluadorConMenosCarga2 = (Evaluador) evaluadoresPosiblesArray2[i];
+			Evaluador evaluadorConMenosCarga2 = null;
+			for(Evaluador eval2: evaluadoresPosibles) {
+				if (eval2.getEvaluaciones().size() < evaluadorConMenosCarga2.getEvaluaciones().size()) {
+					evaluadorConMenosCarga2 = eval2;
 				}
 			}
-			
-			
 			
 			//Asignación del primer evaluador
 			  Evaluacion evaluacion1 = new Evaluacion();
