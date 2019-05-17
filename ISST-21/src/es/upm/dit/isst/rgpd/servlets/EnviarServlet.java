@@ -58,7 +58,7 @@ public class EnviarServlet extends HttpServlet {
 		//Variable para comprobar la existencia de evaluadores suficientes
 		int evaluadoresDelArea = 0;
 		
-		//Colecci√≥n de evaluadores del mismo area
+		//Colecci√≥n de evaluadores
 		Collection<Evaluador> evaluadoresPosibles = evaluadores;
 		
 		//Comprueba los evaluadores disponibles del mismo area que el investigador
@@ -88,11 +88,12 @@ public class EnviarServlet extends HttpServlet {
 
 		} */
 			
-			else { 
+		else { 
 
 			solicitud.setEstado(4);
 			sdao.update(solicitud);
 			
+
 			//Seleccion de los evaluadores entre todos los posibles
 			Object[] evaluadoresPosiblesArray = evaluadoresPosibles.toArray();
 			Evaluador euno = (Evaluador) evaluadoresPosiblesArray[0];
@@ -105,12 +106,11 @@ public class EnviarServlet extends HttpServlet {
 				}
 				if(((Evaluador) evaluadoresPosiblesArray[i]).getEvaluaciones().size()<euno.getEvaluaciones().size()) {
 					euno = (Evaluador) evaluadoresPosiblesArray[i];
+
 				}
 			}
 			Evaluador evaluadorConMenosCarga1 = edos;
 			Evaluador evaluadorConMenosCarga2 = euno;
-			
-			
 			
 			//Asignaci√≥n del primer evaluador
 			  Evaluacion evaluacion1 = new Evaluacion();
@@ -148,6 +148,7 @@ public class EnviarServlet extends HttpServlet {
 			String subject = "[RGPD] Solicitud creada: " +  solicitud.getTitulo();
 			String content = "Hola " + investigador.getName() + ".\r\n\r\n"
 					+ "La solicitud con id "+  req.getParameter("id") +" se ha abierto correctamente, y ha sido enviada para su evaluaciÛn.\r\n\r\n"
+
 					+ "-----------------------------------------------\r\n"
 					+ "Este correo ha sido generado autom·ticamente.\r\n" 
 					+"No responda a este correo, este buzÛn autom·tico no es revisado.\r\n" 

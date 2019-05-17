@@ -45,8 +45,12 @@ No tienes permiso para ver el contenido de esta página
 			</ul>
 		</c:forEach>
 	<h3>Descarga de la memoria de la solicitud</h3>	
-	<form action = "DescargarMemoriaServlet" method = "post">		
-		<button type = "submit" class="button icon fa-download">Descargar Memoria</button>
+	
+	<form action = "ServeFileServlet">	
+	<input type="hidden" name="tipoDocumento" value="memoria" />
+	<input type="hidden" name="id" value="${evaluacion.solicitud.id}" />	
+		<button type = "submit" class="button icon fa-download">Descargar memoria</button>
+
 
 	</form>
 		</div>

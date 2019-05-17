@@ -76,7 +76,9 @@ public class AmpliacionServlet extends HttpServlet{
 
 		String recipient = solicitud.getInvestigador().getEmail();
 		String subject = "[RGPD] Ampliacion enviada para la solicitud: " +  solicitud.getTitulo();
+
 		String content = "Hola " + solicitud.getInvestigador().getName() + ".\r\n\r\n"
+
 				+ "Has añadido a la solicitud con id "+  req.getParameter("id") +" la ampliacion requerida.\r\n\r\n"
 
 				+ "-----------------------------------------------\r\n"
@@ -97,7 +99,9 @@ public class AmpliacionServlet extends HttpServlet{
 		String recipientEv2 = evaluador2.getEmail();
 		String subjectEv = "[RGPD] Ampliacion realizada: " +  solicitud.getTitulo();
 		String contentEv = "Hola evaluador/a.\r\n\r\n"
+
 				+ "Ha sido añadida a la solicitud con id "+  req.getParameter("id") +" la ampliación requerida.\r\n\r\n"
+
 				+ "-----------------------------------------------\r\n"
 				+ "Este correo ha sido generado automáticamente.\r\n" 
 				+"No responda a este correo, este buzón automático no es revisado.\r\n" 
