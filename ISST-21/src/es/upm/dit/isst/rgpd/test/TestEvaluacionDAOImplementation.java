@@ -23,11 +23,6 @@ import es.upm.dit.isst.rgpd.model.Solicitud;
 class TestEvaluacionDAOImplementation {
 
 	private Evaluacion evaluacion= new Evaluacion();
-	private Evaluador evaluador = new Evaluador();
-	private Solicitud solicitud= new Solicitud();
-	private Investigador investigador = new Investigador();
-
-
 	@BeforeEach
 	void setUp() throws Exception {
 		evaluacion.setResultado("Sin evaluar");

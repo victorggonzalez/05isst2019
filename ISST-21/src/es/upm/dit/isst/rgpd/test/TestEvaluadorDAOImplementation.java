@@ -27,12 +27,10 @@ class TestEvaluadorDAOImplementation {
 	@BeforeEach
 	void setUp() throws Exception {
 		evaluador.setEmail("test2@alumnos.upm.es");
-		evaluador.setName("victor");
+		evaluador.setName("test");
 		evaluador.setPassword("pass");
 		evaluador.setArea("area");
 		evaluador.setGrupo("grupo");
-		evaluador.setEvaluaciones(evaluaciones);
-		
 	}
 
 	@AfterEach
@@ -46,7 +44,7 @@ class TestEvaluadorDAOImplementation {
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		edao.create(evaluador);
 		Evaluador evaluadorTest = edao.read("test2@alumnos.upm.es");
-		assertEquals("victor", evaluadorTest.getName(), "Error en metodo Read");
+		assertEquals("test", evaluadorTest.getName(), "Error en metodo Read");
 		assertEquals("pass", evaluadorTest.getPassword(), "Error en metodo Read");
 		assertEquals("area", evaluadorTest.getArea(), "Error en metodo Read");
 		assertEquals("grupo", evaluadorTest.getGrupo(), "Error en metodo Read");
@@ -76,7 +74,7 @@ class TestEvaluadorDAOImplementation {
 		EvaluadorDAO edao = EvaluadorDAOImplementation.getInstance();
 		edao.create(evaluador);
 		Evaluador evaluadorTest = edao.read("test2@alumnos.upm.es");
-		assertEquals("victor", evaluadorTest.getName(), "Error en metodo Create");
+		assertEquals("test", evaluadorTest.getName(), "Error en metodo Create");
 		assertEquals("pass", evaluadorTest.getPassword(), "Error en metodo Create");
 		assertEquals("area", evaluadorTest.getArea(), "Error en metodo Create");
 		assertEquals("grupo", evaluadorTest.getGrupo(), "Error en metodo Create");

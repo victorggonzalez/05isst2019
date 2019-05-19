@@ -39,10 +39,15 @@ public class SolicitudDAOImplementation implements SolicitudDAO{
 	@Override 
 	public void delete(Solicitud solicitud) { 
 		Session session = SessionFactoryService.get().openSession(); 
-		session.beginTransaction(); 
-		session.delete( solicitud ); 
-		session.getTransaction().commit(); 
-		session.close(); 
+		try {
+			session.beginTransaction(); 
+			session.delete(solicitud); 
+			session.getTransaction().commit(); 
+		}catch (Exception e) {
+		}
+		finally {
+			session.close();
+		}
 	}
 	
 	@Override 

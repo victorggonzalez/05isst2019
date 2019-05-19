@@ -18,17 +18,9 @@ import es.upm.dit.isst.rgpd.model.*;
 class TestSolicitudDAOImplementation {
 
 	private Solicitud solicitud= new Solicitud();
-	private Evaluacion evaluacion= new Evaluacion();
-	private Evaluador evaluador = new Evaluador();
-	private Investigador investigador = new Investigador();
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		investigador.setEmail("test@alumnos.upm.es");
-		investigador.setName("victor");
-		investigador.setPassword("pass");
-		investigador.setArea("area");
-		investigador.setGrupo("grupo");
 		solicitud.setTitulo("titulo");
 		solicitud.setEstado(1);
 		

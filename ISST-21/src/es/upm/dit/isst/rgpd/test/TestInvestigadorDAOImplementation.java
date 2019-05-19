@@ -44,11 +44,11 @@ class TestInvestigadorDAOImplementation {
 	void testCreate() {
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		idao.create(investigador);
-		Investigador investigador = idao.read("test@alumnos.upm.es");
-		assertEquals( "victor", investigador.getName(), "Error en metodo Create");
-		assertEquals( "pass", investigador.getPassword(), "Error en metodo Create");
-		assertEquals( "area", investigador.getArea(), "Error en metodo Create");
-		assertEquals( "grupo", investigador.getGrupo(), "Error en metodo Create");
+		Investigador investigadorTest = idao.read("test@alumnos.upm.es");
+		assertEquals( "victor", investigadorTest.getName(), "Error en metodo Create");
+		assertEquals( "pass", investigadorTest.getPassword(), "Error en metodo Create");
+		assertEquals( "area", investigadorTest.getArea(), "Error en metodo Create");
+		assertEquals( "grupo", investigadorTest.getGrupo(), "Error en metodo Create");
 		
 	}
 
@@ -56,11 +56,11 @@ class TestInvestigadorDAOImplementation {
 	void testRead() {
 		InvestigadorDAO idao = InvestigadorDAOImplementation.getInstance();
 		idao.create(investigador);
-		Investigador investigador = idao.read("test@alumnos.upm.es");
-		assertEquals("victor", investigador.getName());
-		assertEquals("pass", investigador.getPassword());
-		assertEquals("area", investigador.getArea());
-		assertEquals("grupo", investigador.getGrupo());
+		Investigador investigadorTest = idao.read("test@alumnos.upm.es");
+		assertEquals("victor", investigadorTest.getName());
+		assertEquals("pass", investigadorTest.getPassword());
+		assertEquals("area", investigadorTest.getArea());
+		assertEquals("grupo", investigadorTest.getGrupo());
 			}
 
 	@Test
